@@ -18,6 +18,7 @@ namespace Buttplug.Bluetooth
             // Now we just build a new info array on manager load, keeps things simple, and outside info can be added via AddInfo calls.
             BuiltinDevices = new List<IBluetoothDeviceInfo>
             {
+                new BLEArduinoBluetoothInfo(),
                 new FleshlightLaunchBluetoothInfo(),
                 new KiirooBluetoothInfo(),
                 new LovenseRev1BluetoothInfo(),

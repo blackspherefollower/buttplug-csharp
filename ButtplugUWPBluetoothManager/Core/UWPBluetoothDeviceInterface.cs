@@ -61,7 +61,7 @@ namespace ButtplugUWPBluetoothManager.Core
                 _currentTask.Cancel();
                 _bpLogger.Error("Cancelling device transfer in progress for new transfer.");
             }
-            var gattCharacteristic = _gattCharacteristics[aCharacteristicIndex];
+            var gattCharacteristic = aCharacteristicIndex < 0 || aCharacteristicIndex >= _gattCharacteristics.Length ? null : _gattCharacteristics[aCharacteristicIndex];
             if (gattCharacteristic == null)
             {
                 return _bpLogger.LogErrorMsg(aMsgId, ErrorClass.ERROR_DEVICE, $"Requested character {aCharacteristicIndex} out of range");
