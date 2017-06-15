@@ -55,14 +55,14 @@ namespace Buttplug.Bluetooth.Devices
             var cmdMsg = aMsg as SingleMotorVibrateCmd;
             if (cmdMsg is null)
             {
-                return BpLogger.LogErrorMsg(aMsg.Id, "Wrong Handler");
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
             }
 
             int speed = (int)(cmdMsg.Speed * 256);
 
             return await Interface.WriteValue(cmdMsg.Id,
                 (uint)BLEArduinoBluetoothInfo.Chrs.Tx,
-                Encoding.ASCII.GetBytes($"{(char)speed}\n"));
+                Encoding.ASCII.GetBytes($"{speed}\n"));
         }
     }
 }
