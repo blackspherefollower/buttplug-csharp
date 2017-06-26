@@ -106,8 +106,9 @@ namespace ButtplugControlLibrary
                 _guiLog.Warn("OS Version too old to load bluetooth core. Must be Windows 10 15063 or higher.");
             }
 
-            bpServer.AddDeviceSubtypeManager(aLogger => new XInputGamepadManager(aLogger));
-            return bpServer;
+            BpServer.AddDeviceSubtypeManager(aLogger => new XInputGamepadManager(aLogger));
+            BpServer.AddDeviceSubtypeManager(aLogger => new HidManager(aLogger));
+            await BpServer.SendMessage(new RequestServerInfo(aServerName));
         }
 
         private void SendExceptionToSentry(Exception aEx)
@@ -197,5 +198,6 @@ namespace ButtplugControlLibrary
         }
     }
 
+   
 }
 

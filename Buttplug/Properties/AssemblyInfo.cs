@@ -40,3 +40,4 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("ButtplugUWPBluetoothManager")]
 [assembly: InternalsVisibleTo("ButtplugXInputGamepadManager")]
 [assembly: InternalsVisibleTo("ButtplugUWPGamepadManager")]
+[assembly: InternalsVisibleTo("ButtplugControlLibrary")]
