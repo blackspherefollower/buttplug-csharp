@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using JetBrains.Annotations;
+using System.Linq;
 
 namespace Buttplug.Server.Managers.SimulatorManager
 {
@@ -26,6 +27,7 @@ namespace Buttplug.Server.Managers.SimulatorManager
             if (da.HasVibrator)
             {
                 MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
+                MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
             }
 
             if (da.HasRotator)
@@ -50,6 +52,18 @@ namespace Buttplug.Server.Managers.SimulatorManager
         {
             _manager.Vibrate(this, (aMsg as SingleMotorVibrateCmd).Speed);
             return new Ok(aMsg.Id);
+        }
+
+        private async Task<ButtplugMessage> HandleVibrateCmd(ButtplugDeviceMessage aMsg)
+        {
+            var speed = from x in (aMsg as VibrateCmd).Speeds where x.Index == 0 select x.Speed;
+            if (speed.Any())
+            {
+                _manager.Vibrate(this, speed.First());
+                return new Ok(aMsg.Id);
+            }
+
+            return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
         }
 
         private async Task<ButtplugMessage> HandleVorzeA10CycloneCmd(ButtplugDeviceMessage aMsg)

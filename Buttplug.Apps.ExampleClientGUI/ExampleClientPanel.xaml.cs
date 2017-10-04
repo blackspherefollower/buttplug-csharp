@@ -5,6 +5,7 @@ using Buttplug.Client;
 using Buttplug.Components.Controls;
 using Buttplug.Core.Messages;
 using static Buttplug.Client.DeviceEventArgs;
+using System.Collections.Generic;
 
 namespace Buttplug.Apps.ExampleClientGUI
 {
@@ -155,11 +156,11 @@ namespace Buttplug.Apps.ExampleClientGUI
 
             foreach (var dev in Devices.Values)
             {
-                if (dev.AllowedMessages.Contains("SingleMotorVibrateCmd"))
+                if (dev.AllowedMessages.Contains("VibrateCmd"))
                 {
                     _client.SendDeviceMessage(dev,
-                        new SingleMotorVibrateCmd(dev.Index,
-                            Convert.ToDouble(VibrateSpeed.Value),
+                        new VibrateCmd(dev.Index,
+                             new List<VibrateCmd.VibrateIndex> { new VibrateCmd.VibrateIndex(0, VibrateSpeed.Value) },
                             _client.nextMsgId));
                 }
             }

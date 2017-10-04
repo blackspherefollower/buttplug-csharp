@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Newtonsoft.Json;
 
@@ -213,10 +214,14 @@ namespace Buttplug.Core.Messages
         [JsonProperty(Required = Required.Always)]
         public string ClientName;
 
-        public RequestServerInfo(string aClientName, uint aId = ButtplugConsts.DefaultMsgId)
+        [JsonProperty(Required = Required.Default, NullValueHandling = NullValueHandling.Ignore)]
+        public uint MessageVersion = 0;
+
+        public RequestServerInfo(string aClientName, uint aId = ButtplugConsts.DefaultMsgId, uint aMessageVersion = CurrentMessageVersion)
             : base(aId)
         {
             ClientName = aClientName;
+            MessageVersion = aMessageVersion;
         }
     }
 
@@ -408,6 +413,55 @@ namespace Buttplug.Core.Messages
             : base(aId, aDeviceIndex)
         {
             Speed = aSpeed;
+        }
+    }
+
+    public class VibrateCmd : ButtplugDeviceMessage
+    {
+        public class VibrateIndex
+        {
+            [JsonIgnore]
+            public readonly uint MessageVersioningVersion = 1;
+
+            private double _speedImpl = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public uint Index = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public double Speed
+            {
+                get => _speedImpl;
+                set
+                {
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be less than 0!");
+                    }
+
+                    if (value > 1)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be greater than 1!");
+                    }
+
+                    _speedImpl = value;
+                }
+            }
+
+            public VibrateIndex(uint aIndex, double aSpeed)
+            {
+                Index = aIndex;
+                Speed = aSpeed;
+            }
+        }
+
+        [JsonProperty(Required = Required.Always)]
+        public List<VibrateIndex> Speeds;
+
+        public VibrateCmd(uint aDeviceIndex, List<VibrateIndex> aSpeeds, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            Speeds = aSpeeds;
         }
     }
 
