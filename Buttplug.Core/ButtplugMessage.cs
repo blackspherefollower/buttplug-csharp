@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace Buttplug.Core
 {
@@ -17,18 +18,46 @@ namespace Buttplug.Core
          *   Introduction of MessageVersioning
          *   Addition of generic VibrateCmd
          */
+        [JsonIgnore]
         public const uint CurrentMessageVersion = 1;
 
         [JsonProperty(Required = Required.Always)]
         public uint Id { get; set; }
 
+        [JsonIgnore]
+        public uint MessageVersioningVersion
+        {
+            get
+            {
+                return _messageVersioningVersion;
+            }
+
+            protected set
+            {
+                _messageVersioningVersion = value;
+            }
+        }
+
+        [JsonIgnore]
+        public Type MessageVersioningPrevious
+        {
+            get
+            {
+                return _messageVersioningPrevious;
+            }
+
+            protected set
+            {
+                _messageVersioningPrevious = value;
+            }
+        }
+
         // Base class starts at version 0
         [JsonIgnore]
-        public readonly uint MessageVersioningVersion = 0;
-
+        private uint _messageVersioningVersion = 0;
         // No previous version for base classes
         [JsonIgnore]
-        public readonly ButtplugMessage MessageVersioningPrevious = null;
+        private Type _messageVersioningPrevious = null;
 
         public ButtplugMessage(uint aId)
         {

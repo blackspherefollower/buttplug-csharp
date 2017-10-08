@@ -83,6 +83,7 @@ namespace Buttplug.Apps.DeviceSimulatorGUI
                         LinearPosition.Value = LinearCurrentPosition;
                     });
                 }
+
                 LinearCurrentTime = now;
                 Thread.Sleep(10);
             }

@@ -15,10 +15,12 @@ namespace Buttplug.Server.Bluetooth
         protected ButtplugBluetoothDevice([NotNull] IButtplugLogManager aLogManager,
             [NotNull] string aName,
             [NotNull] IBluetoothDeviceInterface aInterface,
-            [NotNull] IBluetoothDeviceInfo aInfo)
+            [NotNull] IBluetoothDeviceInfo aInfo,
+            uint aVibratorCount = 0)
             : base(aLogManager,
                    aName,
-                   aInterface.GetAddress().ToString())
+                   aInterface.GetAddress().ToString(),
+                   aVibratorCount)
         {
             Interface = aInterface;
             Info = aInfo;

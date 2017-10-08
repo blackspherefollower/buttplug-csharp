@@ -86,7 +86,30 @@ namespace Buttplug.Core.Messages
         [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
         public string[] DeviceMessages = new string[0];
 
-        public DeviceMessageInfo(uint aIndex, string aName, string[] aMessages)
+        [JsonProperty(Required = Required.Always)]
+        public uint VibratorCount;
+
+        public DeviceMessageInfo(uint aIndex, string aName, string[] aMessages, uint aVibratorCount)
+        {
+            DeviceName = aName;
+            DeviceIndex = aIndex;
+            DeviceMessages = aMessages;
+            VibratorCount = aVibratorCount;
+        }
+    }
+
+    public class DeviceMessageInfo0
+    {
+        [JsonProperty(Required = Required.Always)]
+        public string DeviceName;
+
+        [JsonProperty(Required = Required.Always)]
+        public uint DeviceIndex;
+
+        [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
+        public string[] DeviceMessages = new string[0];
+
+        public DeviceMessageInfo0(uint aIndex, string aName, string[] aMessages)
         {
             DeviceName = aName;
             DeviceIndex = aIndex;
@@ -103,6 +126,38 @@ namespace Buttplug.Core.Messages
              : base(aId)
         {
             Devices = aDeviceList;
+
+            MessageVersioningVersion = 1;
+            MessageVersioningPrevious = new DeviceList0().GetType();
+        }
+    }
+
+    public class DeviceList0 : ButtplugMessage, IButtplugMessageOutgoingOnly
+    {
+        [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
+        public readonly DeviceMessageInfo0[] Devices = new DeviceMessageInfo0[0];
+
+        public DeviceList0(DeviceMessageInfo0[] aDeviceList, uint aId)
+             : base(aId)
+        {
+            Devices = aDeviceList;
+        }
+
+        public DeviceList0()
+            : base(0)
+        {
+        }
+
+        public DeviceList0(DeviceList aMsg)
+             : base(aMsg.Id)
+        {
+            var tmp = new List<DeviceMessageInfo0>();
+            foreach (var dev in aMsg.Devices)
+            {
+                tmp.Add(new DeviceMessageInfo0(dev.DeviceIndex, dev.DeviceName, dev.DeviceMessages));
+            }
+
+            Devices = tmp.ToArray();
         }
     }
 
@@ -114,11 +169,46 @@ namespace Buttplug.Core.Messages
         [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
         public string[] DeviceMessages = new string[0];
 
-        public DeviceAdded(uint aIndex, string aName, string[] aMessages)
+        [JsonProperty(Required = Required.Always)]
+        public uint VibratorCount;
+
+        public DeviceAdded(uint aIndex, string aName, string[] aMessages, uint aVibratorCount)
             : base(ButtplugConsts.SystemMsgId, aIndex)
         {
             DeviceName = aName;
             DeviceMessages = aMessages;
+            VibratorCount = aVibratorCount;
+
+            MessageVersioningVersion = 1;
+            MessageVersioningPrevious = new DeviceAdded0().GetType();
+        }
+    }
+
+    public class DeviceAdded0 : ButtplugDeviceMessage, IButtplugMessageOutgoingOnly
+    {
+        [JsonProperty(Required = Required.Always)]
+        public string DeviceName;
+
+        [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
+        public string[] DeviceMessages = new string[0];
+
+        public DeviceAdded0(uint aIndex, string aName, string[] aMessages)
+            : base(ButtplugConsts.SystemMsgId, aIndex)
+        {
+            DeviceName = aName;
+            DeviceMessages = aMessages;
+        }
+
+        public DeviceAdded0()
+            : base(0, 0)
+        {
+        }
+
+        public DeviceAdded0(DeviceAdded aMsg)
+            : base(aMsg.Id, aMsg.DeviceIndex)
+        {
+            DeviceName = aMsg.DeviceName;
+            DeviceMessages = aMsg.DeviceMessages;
         }
     }
 

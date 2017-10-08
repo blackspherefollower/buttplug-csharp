@@ -8,7 +8,7 @@ namespace Buttplug.Server.Test
     internal class TestDevice : ButtplugDevice
     {
         public TestDevice(ButtplugLogManager aLogManager, string aName)
-            : base(aLogManager, aName, "Test")
+            : base(aLogManager, aName, "Test", 0)
         {
             MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
         }

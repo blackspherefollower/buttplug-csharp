@@ -21,23 +21,53 @@ namespace Buttplug.Core
             }
         }
 
+        public uint VibratorCount
+        {
+            get
+            {
+                return _vibratorCount;
+            }
+
+            protected set
+            {
+                var tmp = new double[value];
+                for (var i = 0; i < value; i++)
+                {
+                    tmp[i] = i < _vibratorCount ? _vibratorSpeeds[i] : 0;
+                }
+
+                _vibratorCount = value;
+                _vibratorSpeeds = tmp;
+            }
+        }
+
         [CanBeNull]
         public event EventHandler DeviceRemoved;
 
         [NotNull]
         protected readonly IButtplugLog BpLogger;
+
         [NotNull]
         protected readonly Dictionary<Type, Func<ButtplugDeviceMessage, Task<ButtplugMessage>>> MsgFuncs;
+
+        [NotNull]
+        protected double[] _vibratorSpeeds;
+
         private bool _isDisconnected;
+
+        private uint _vibratorCount;
 
         protected ButtplugDevice([NotNull] IButtplugLogManager aLogManager,
             [NotNull] string aName,
-            [NotNull] string aIdentifier)
+            [NotNull] string aIdentifier,
+            [NotNull] uint aVibratorCount = 0)
         {
             BpLogger = aLogManager.GetLogger(GetType());
             MsgFuncs = new Dictionary<Type, Func<ButtplugDeviceMessage, Task<ButtplugMessage>>>();
             Name = aName;
             Identifier = aIdentifier;
+            _vibratorCount = aVibratorCount;
+            _vibratorSpeeds = new double[aVibratorCount];
         }
 
         public IEnumerable<Type> GetAllowedMessageTypes()

@@ -3,7 +3,7 @@
   "title": "Buttplug Message Schema",
   "version": "0.2.0",
   "description": "The JSON Protocol format for the Buttplug Protocol.",
-  "components" : {
+  "components": {
     "Id": {
       "description": "User-set id for the message. 0 denotes system message and is reserved.",
       "type": "integer",
@@ -25,9 +25,9 @@
       "type": "integer",
       "minimum": 0
     },
-    "IdMessage" : {
+    "IdMessage": {
       "properties": {
-        "Id": {"$ref": "#/components/Id"}
+        "Id": { "$ref": "#/components/Id" }
       },
       "additionalProperties": false,
       "minProperties": 1,
@@ -36,18 +36,18 @@
         "Id"
       ]
     },
-    "DeviceMessages" : {
+    "DeviceMessages": {
       "description": "A list of the messages a device will accept on this server implementation.",
       "type": "array",
-      "items" : {
+      "items": {
         "type": "string",
         "minItems": 1
       }
     },
-    "SystemIdMessage" : {
+    "SystemIdMessage": {
       "description": "Message sent by the server that is not in direct reply to a message send from the client, and always uses system Id.",
       "properties": {
-        "Id": {"$ref": "#/components/SystemId"}
+        "Id": { "$ref": "#/components/SystemId" }
       },
       "additionalProperties": false,
       "minProperties": 1,
@@ -56,10 +56,10 @@
         "Id"
       ]
     },
-    "DeviceIndexMessage" : {
+    "DeviceIndexMessage": {
       "properties": {
-        "Id": {"$ref": "#/components/Id"},
-        "DeviceIndex":  { "$ref" : "#/components/DeviceIndex" }
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" }
       },
       "additionalProperties": false,
       "minProperties": 2,
@@ -68,6 +68,11 @@
         "Id",
         "DeviceIndex"
       ]
+    },
+    "FeatureCount": {
+      "description": "Number of features on device.",
+      "type": "integer",
+      "minimum": 0
     }
   },
   "messages": {
@@ -134,10 +139,11 @@
             "properties": {
               "DeviceName": { "$ref": "#/components/DeviceName" },
               "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
-              "DeviceMessages": { "$ref": "#/components/DeviceMessages" }
+              "DeviceMessages": { "$ref": "#/components/DeviceMessages" },
+              "VibratorCount": { "$ref": "#/components/FeatureCount" }
             },
             "minProperties": 3,
-            "maxProperties": 3,
+            "maxProperties": 4,
             "additionalProperties": false,
             "required": [
               "DeviceName",
@@ -162,10 +168,11 @@
         "Id": { "$ref": "#/components/SystemId" },
         "DeviceName": { "$ref": "#/components/DeviceName" },
         "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
-        "DeviceMessages": { "$ref": "#/components/DeviceMessages" }
+        "DeviceMessages": { "$ref": "#/components/DeviceMessages" },
+        "VibratorCount": { "$ref": "#/components/FeatureCount" }
       },
       "minProperties": 4,
-      "maxProperties": 4,
+      "maxProperties": 5,
       "additionalProperties": false,
       "required": [
         "Id",

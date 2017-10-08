@@ -47,6 +47,13 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             MsgFuncs.Add(typeof(KiirooCmd), HandleKiirooRawCmd);
             MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
+
+            if (aInterface.Name == "PEARL")
+            {
+                VibratorCount = 1;
+                MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
+                MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleVibrateCmd);
+            }
         }
 
         private Task<ButtplugMessage> HandleStopDeviceCmd([NotNull] ButtplugDeviceMessage aMsg)
@@ -69,6 +76,33 @@ namespace Buttplug.Server.Bluetooth.Devices
             return await Interface.WriteValue(cmdMsg.Id,
                 Info.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
                 Encoding.ASCII.GetBytes($"{cmdMsg.Position},\n"));
+        }
+
+        private async Task<ButtplugMessage> HandleVibrateCmd([NotNull] ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as SingleMotorVibrateCmd;
+            var cmdMsg2 = aMsg as VibrateCmd;
+            if (cmdMsg is null && cmdMsg2 is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            if (cmdMsg != null)
+            {
+                _vibratorSpeeds[0] = cmdMsg.Speed;
+            }
+            else
+            {
+                foreach (var vi in cmdMsg2.Speeds)
+                {
+                    if (vi.Index == 0)
+                    {
+                        _vibratorSpeeds[0] = vi.Speed;
+                    }
+                }
+            }
+
+            return await HandleKiirooRawCmd(new KiirooCmd(aMsg.DeviceIndex, Convert.ToUInt16(_vibratorSpeeds[0] * 3), aMsg.Id));
         }
     }
 }

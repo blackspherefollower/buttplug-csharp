@@ -66,7 +66,11 @@ namespace Buttplug.Server
 
             _devices[deviceIndex] = aEvent.Device;
             aEvent.Device.DeviceRemoved += DeviceRemovedHandler;
-            var msg = new DeviceAdded(deviceIndex, aEvent.Device.Name, GetAllowedMessageTypesAsStrings(aEvent.Device).ToArray());
+            var msg = new DeviceAdded(
+                deviceIndex,
+                aEvent.Device.Name,
+                GetAllowedMessageTypesAsStrings(aEvent.Device).ToArray(),
+                aEvent.Device.VibratorCount);
 
             DeviceMessageReceived?.Invoke(this, new MessageReceivedEventArgs(msg));
         }
@@ -164,8 +168,11 @@ namespace Buttplug.Server
                 case RequestDeviceList _:
                     _bpLogger.Debug("Got RequestDeviceList Message");
                     var msgDevices = _devices.Where(aDevice => aDevice.Value.IsConnected)
-                        .Select(aDevice => new DeviceMessageInfo(aDevice.Key, aDevice.Value.Name,
-                                GetAllowedMessageTypesAsStrings(aDevice.Value).ToArray())).ToList();
+                        .Select(aDevice => new DeviceMessageInfo(
+                            aDevice.Key,
+                            aDevice.Value.Name,
+                            GetAllowedMessageTypesAsStrings(aDevice.Value).ToArray(),
+                            aDevice.Value.VibratorCount)).ToList();
                     return new DeviceList(msgDevices.ToArray(), id);
 
                 // If it's a device message, it's most likely not ours.
