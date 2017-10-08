@@ -96,7 +96,7 @@ namespace Buttplug.Components.WebsocketServer
                 try
                 {
                     ws.WriteString(new ButtplugJsonMessageParser(_logManager).Serialize(_logger.LogErrorMsg(
-                        ButtplugConsts.SystemMsgId, ErrorClass.ERROR_INIT, "WebSocketServer already in use!")));
+                        ButtplugConsts.SystemMsgId, ErrorClass.ERROR_INIT, "WebSocketServer already in use!"), 0));
                     ws.Close();
                 }
                 catch

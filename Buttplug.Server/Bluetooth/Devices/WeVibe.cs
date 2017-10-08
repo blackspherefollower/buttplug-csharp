@@ -50,9 +50,11 @@ namespace Buttplug.Server.Bluetooth.Devices
             : base(aLogManager,
                    $"WeVibe Device ({aInterface.Name})",
                    aInterface,
-                   aInfo)
+                   aInfo,
+                   1)
         {
             MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
+            MsgFuncs.Add(typeof(VibrateCmd), HandleSingleMotorVibrateCmd);
             MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
         }
 
@@ -64,12 +66,28 @@ namespace Buttplug.Server.Bluetooth.Devices
         private async Task<ButtplugMessage> HandleSingleMotorVibrateCmd(ButtplugDeviceMessage aMsg)
         {
             var cmdMsg = aMsg as SingleMotorVibrateCmd;
-            if (cmdMsg is null)
+            var cmdMsg2 = aMsg as VibrateCmd;
+            if (cmdMsg is null && cmdMsg2 is null)
             {
                 return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
             }
 
-            var rSpeed = Convert.ToUInt16(cmdMsg.Speed * 15);
+            if (cmdMsg != null)
+            {
+                _vibratorSpeeds[0] = cmdMsg.Speed;
+            }
+            else
+            {
+                foreach (var vi in cmdMsg2.Speeds)
+                {
+                    if (vi.Index == 0)
+                    {
+                        _vibratorSpeeds[0] = vi.Speed;
+                    }
+                }
+            }
+
+            var rSpeed = Convert.ToUInt16(_vibratorSpeeds[0] * 15);
 
             // 0f 03 00 bc 00 00 00 00
             var data = new byte[] { 0x0f, 0x03, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00 };

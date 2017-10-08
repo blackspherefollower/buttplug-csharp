@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Windows;
 using Buttplug.Client;
 using Buttplug.Components.Controls;
 using Buttplug.Core.Messages;
 using static Buttplug.Client.DeviceEventArgs;
-using System.Collections.Generic;
 
 namespace Buttplug.Apps.ExampleClientGUI
 {
@@ -161,7 +161,7 @@ namespace Buttplug.Apps.ExampleClientGUI
                     _client.SendDeviceMessage(dev,
                         new VibrateCmd(dev.Index,
                              new List<VibrateCmd.VibrateIndex> { new VibrateCmd.VibrateIndex(0, VibrateSpeed.Value) },
-                            _client.nextMsgId));
+                             _client.nextMsgId));
                 }
             }
         }

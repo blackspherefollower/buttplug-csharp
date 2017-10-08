@@ -140,22 +140,54 @@ namespace Buttplug.Core
             return res.ToArray();
         }
 
-        public string Serialize([NotNull] ButtplugMessage aMsg)
+        public string Serialize([NotNull] ButtplugMessage aMsg, uint clientSchemaVersion)
         {
             // Warning: Any log messages in this function must be localOnly. They will possibly recurse.
-            var o = new JObject(new JProperty(aMsg.GetType().Name, JObject.FromObject(aMsg)));
+
+            // Support downgrading messages
+            var tmp = aMsg;
+            while (tmp.MessageVersioningVersion > clientSchemaVersion)
+            {
+                if (tmp.MessageVersioningPrevious == null)
+                {
+                    // There's no previous version of this message
+                    // Not sure what to do here... send an empty array?
+                    var a1 = new JArray();
+                    _bpLogger.Trace($"Message serialized to: {a1.ToString(Formatting.None)}", true);
+                    return a1.ToString(Formatting.None);
+                }
+
+                tmp = (ButtplugMessage)aMsg.MessageVersioningPrevious.GetConstructor(
+                    new Type[] { tmp.GetType() }).Invoke(new object[] { tmp });
+            }
+
+            var o = new JObject(new JProperty(aMsg.GetType().Name, JObject.FromObject(tmp)));
             var a = new JArray(o);
             _bpLogger.Trace($"Message serialized to: {a.ToString(Formatting.None)}", true);
             return a.ToString(Formatting.None);
         }
 
-        public string Serialize([NotNull] IEnumerable<ButtplugMessage> aMsgs)
+        public string Serialize([NotNull] IEnumerable<ButtplugMessage> aMsgs, uint clientSchemaVersion)
         {
             // Warning: Any log messages in this function must be localOnly. They will possibly recurse.
             var a = new JArray();
             foreach (var msg in aMsgs)
             {
-                var o = new JObject(new JProperty(msg.GetType().Name, JObject.FromObject(msg)));
+                // Support downgrading messages
+                var tmp = msg;
+                while (tmp.MessageVersioningVersion > clientSchemaVersion)
+                {
+                    if (tmp.MessageVersioningPrevious == null)
+                    {
+                        // There's no previous version of this message
+                        continue;
+                    }
+
+                    tmp = (ButtplugMessage)tmp.MessageVersioningPrevious.GetConstructor(
+                        new Type[] { tmp.GetType() }).Invoke(new object[] { tmp });
+                }
+
+                var o = new JObject(new JProperty(msg.GetType().Name, JObject.FromObject(tmp)));
                 a.Add(o);
             }
 

@@ -23,6 +23,9 @@ namespace Buttplug.Core
         IEnumerable<Type> GetAllowedMessageTypes();
 
         [NotNull]
+        uint VibratorCount { get; }
+
+        [NotNull]
         Task<ButtplugMessage> ParseMessage(ButtplugDeviceMessage aMsg);
 
         [NotNull]

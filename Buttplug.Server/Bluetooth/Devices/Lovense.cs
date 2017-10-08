@@ -202,9 +202,11 @@ namespace Buttplug.Server.Bluetooth.Devices
             : base(aLogManager,
                    $"Lovense Device ({friendlyNames[aInterface.Name]})",
                    aInterface,
-                   aInfo)
+                   aInfo,
+                   1)
         {
             MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
+            MsgFuncs.Add(typeof(VibrateCmd), HandleSingleMotorVibrateCmd);
             MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
         }
 
@@ -217,15 +219,31 @@ namespace Buttplug.Server.Bluetooth.Devices
         private async Task<ButtplugMessage> HandleSingleMotorVibrateCmd(ButtplugDeviceMessage aMsg)
         {
             var cmdMsg = aMsg as SingleMotorVibrateCmd;
-            if (cmdMsg is null)
+            var cmdMsg2 = aMsg as VibrateCmd;
+            if (cmdMsg is null && cmdMsg2 is null)
             {
                 return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            if (cmdMsg != null)
+            {
+                _vibratorSpeeds[0] = cmdMsg.Speed;
+            }
+            else
+            {
+                foreach (var vi in cmdMsg2.Speeds)
+                {
+                    if (vi.Index == 0)
+                    {
+                        _vibratorSpeeds[0] = vi.Speed;
+                    }
+                }
             }
 
             // While there are 3 lovense revs right now, all of the characteristic arrays are the same.
             return await Interface.WriteValue(aMsg.Id,
                 Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
-                Encoding.ASCII.GetBytes($"Vibrate:{(int)(cmdMsg.Speed * 20)};"));
+                Encoding.ASCII.GetBytes($"Vibrate:{(int)(_vibratorSpeeds[0] * 20)};"));
         }
     }
 }
