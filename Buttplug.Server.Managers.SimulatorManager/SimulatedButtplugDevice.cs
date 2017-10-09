@@ -22,8 +22,9 @@ namespace Buttplug.Server.Managers.SimulatorManager
                 MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), HandleFleshlightLaunchFW12Cmd);
             }
 
-            if (da.HasVibrator)
+            if (da.VibratorCount > 0)
             {
+                VibratorCount = da.VibratorCount;
                 MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
                 MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
             }
@@ -48,20 +49,28 @@ namespace Buttplug.Server.Managers.SimulatorManager
 
         private async Task<ButtplugMessage> HandleSingleMotorVibrateCmd(ButtplugDeviceMessage aMsg)
         {
-            _manager.Vibrate(this, (aMsg as SingleMotorVibrateCmd).Speed);
+            for (uint i = 0; i < VibratorCount; i++)
+            {
+                _manager.Vibrate(this, (aMsg as SingleMotorVibrateCmd).Speed, i);
+            }
+
             return new Ok(aMsg.Id);
         }
 
         private async Task<ButtplugMessage> HandleVibrateCmd(ButtplugDeviceMessage aMsg)
         {
-            var speed = from x in (aMsg as VibrateCmd).Speeds where x.Index == 0 select x.Speed;
-            if (speed.Any())
+            var vis = from x in (aMsg as VibrateCmd).Speeds where x.Index == 0 select x;
+            if (!vis.Any())
             {
-                _manager.Vibrate(this, speed.First());
-                return new Ok(aMsg.Id);
+                return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
             }
 
-            return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
+            foreach (var vi in vis)
+            {
+                _manager.Vibrate(this, vi.Speed, vi.Index);
+            }
+
+            return new Ok(aMsg.Id);
         }
 
         private async Task<ButtplugMessage> HandleVorzeA10CycloneCmd(ButtplugDeviceMessage aMsg)

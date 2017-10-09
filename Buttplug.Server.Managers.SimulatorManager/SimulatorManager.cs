@@ -48,9 +48,9 @@ namespace Buttplug.Server.Managers.SimulatorManager
             _pingThread.Start();
         }
 
-        internal void Vibrate(SimulatedButtplugDevice aDev, double aSpeed)
+        internal void Vibrate(SimulatedButtplugDevice aDev, double aSpeed, uint aVibratorId)
         {
-            _msgQueue.Enqueue(new Vibrate(aDev.Identifier, aSpeed));
+            _msgQueue.Enqueue(new Vibrate(aDev.Identifier, aSpeed, aVibratorId));
         }
 
         internal void Rotate(SimulatedButtplugDevice aDev, uint aSpeed, bool aClockwise)

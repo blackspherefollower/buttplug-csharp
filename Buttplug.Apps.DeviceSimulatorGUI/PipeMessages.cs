@@ -57,7 +57,7 @@ namespace Buttplug.DeviceSimulator.PipeMessages
 
         public bool HasLinear;
 
-        public bool HasVibrator;
+        public uint VibratorCount;
 
         public bool HasRotator;
 
@@ -87,11 +87,13 @@ namespace Buttplug.DeviceSimulator.PipeMessages
     {
         public string Id;
         public double Speed;
+        public uint VibratorId;
 
-        public Vibrate(string aId, double aSpeed)
+        public Vibrate(string aId, double aSpeed, uint aVibratorId)
         {
             Id = aId;
             Speed = aSpeed;
+            VibratorId = aVibratorId;
         }
     }
 

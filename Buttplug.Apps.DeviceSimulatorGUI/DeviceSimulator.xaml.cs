@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +20,7 @@ namespace Buttplug.Apps.DeviceSimulatorGUI
 
         public bool HasLinear;
 
-        public bool HasVibrator;
+        public uint VibratorCount = 0;
 
         public bool HasRotator;
 
@@ -36,6 +37,8 @@ namespace Buttplug.Apps.DeviceSimulatorGUI
         private CancellationTokenSource _tokenSource;
         private double _linearPosMax;
 
+        private Dictionary<uint, VibratorRow> _vibrators = new Dictionary<uint, VibratorRow>();
+
         public DeviceSimulator(int aTabId)
         {
             InitializeComponent();
@@ -44,9 +47,8 @@ namespace Buttplug.Apps.DeviceSimulatorGUI
             Name = Id = DeviceId.Text = DeviceName.Text;
             DeviceId.TextChanged += IdChangedEventHandler;
             DeviceName.TextChanged += NameChangedEventHandler;
-            HasRotator = HasVibrator = HasLinear = false;
+            HasRotator = HasLinear = false;
             DeviceHasLinear.Checked += LinearCheckedEventHandler;
-            DeviceHasVibrator.Checked += VibratorCheckedEventHandler;
             DeviceHasRotator.Checked += RotatorCheckedEventHandler;
 
             _linearPosMax = LinearPosition.Maximum;
@@ -111,14 +113,100 @@ namespace Buttplug.Apps.DeviceSimulatorGUI
             HasLinear = DeviceHasLinear.IsChecked.GetValueOrDefault(false);
         }
 
-        private void VibratorCheckedEventHandler(object o, RoutedEventArgs args)
-        {
-            HasVibrator = DeviceHasVibrator.IsChecked.GetValueOrDefault(false);
-        }
-
         private void RotatorCheckedEventHandler(object o, RoutedEventArgs args)
         {
             HasRotator = DeviceHasRotator.IsChecked.GetValueOrDefault(false);
+        }
+
+        private class VibratorRow
+        {
+            public Label RowLabel;
+            public ProgressBar RowProgress;
+
+            public VibratorRow(int vId)
+            {
+                RowLabel = new Label();
+                RowLabel.Name = "VibratorLabel" + vId;
+                RowLabel.Content = "Vibrator" + vId + " Speed:";
+                RowProgress = new ProgressBar();
+                RowProgress.Name = "VibratorSpeed" + vId;
+                RowProgress.Maximum = 1;
+
+                Grid.SetRow(RowLabel, vId);
+                Grid.SetColumn(RowLabel, 0);
+                Grid.SetRow(RowProgress, vId);
+                Grid.SetColumn(RowProgress, 1);
+            }
+        }
+
+        private void DeviceHasVibrator_ValueChanged(object sender, RoutedPropertyChangedEventArgs<decimal> e)
+        {
+            // Lock
+            DeviceHasVibrator.IsEnabled = false;
+
+            while (e.NewValue > VibratorCount)
+            {
+                // Add a vibe row
+                var vId = VibratorCount++;
+                var rowDef = new RowDefinition();
+                rowDef.Height = GridLength.Auto;
+                Vibrators.RowDefinitions.Add(rowDef);
+
+                var row = new VibratorRow((int)vId);
+                Vibrators.Children.Add(row.RowLabel);
+                Vibrators.Children.Add(row.RowProgress);
+                _vibrators.Add(vId, row);
+            }
+
+            while (e.NewValue < VibratorCount)
+            {
+                // Remove a vibe row
+                var vId = --VibratorCount;
+
+                if (_vibrators.TryGetValue(vId, out var row))
+                {
+                    Vibrators.Children.Remove(row.RowLabel);
+                    Vibrators.Children.Remove(row.RowProgress);
+                }
+
+                Vibrators.RowDefinitions.RemoveAt((int)vId);
+                _vibrators.Remove(vId);
+            }
+
+            // Unlock
+            DeviceHasVibrator.IsEnabled = true;
+        }
+
+        public void StopDevice()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                foreach (var j in _vibrators)
+                {
+                    j.Value.RowProgress.Value = 0;
+                }
+
+                if (DeviceHasRotator.IsChecked.GetValueOrDefault(false))
+                {
+                    RotatorSpeed.Value = 0;
+                }
+
+                if (DeviceHasLinear.IsChecked.GetValueOrDefault(false))
+                {
+                    // Complicated stuff: position stays the same
+                }
+            });
+        }
+
+        public void Vibrate(uint aId, double aSpeed)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (_vibrators.TryGetValue(aId, out var row))
+                {
+                    row.RowProgress.Value = Math.Min(aSpeed, 1) * row.RowProgress.Maximum;
+                }
+            });
         }
     }
 }
