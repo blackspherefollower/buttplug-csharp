@@ -48,7 +48,7 @@ namespace Buttplug.Core
         protected readonly IButtplugLog BpLogger;
 
         [NotNull]
-        protected readonly Dictionary<Type, Func<ButtplugDeviceMessage, Task<ButtplugMessage>>> MsgFuncs;
+        protected readonly Dictionary<Type, ButtplugDeviceWrapper> MsgFuncs;
 
         [NotNull]
         protected double[] _vibratorSpeeds;
@@ -57,13 +57,29 @@ namespace Buttplug.Core
 
         private uint _vibratorCount;
 
+        public class ButtplugDeviceWrapper
+        {
+            public Func<ButtplugDeviceMessage, Task<ButtplugMessage>> Func;
+            public Dictionary<string, string> Attrs;
+
+            public ButtplugDeviceWrapper(Func<ButtplugDeviceMessage, Task<ButtplugMessage>> aFunc, Dictionary<string, string> aAttrs = null)
+            {
+                Func = aFunc;
+                Attrs = aAttrs;
+                if (Attrs == null)
+                {
+                    Attrs = new Dictionary<string, string>();
+                }
+            }
+        }
+
         protected ButtplugDevice([NotNull] IButtplugLogManager aLogManager,
             [NotNull] string aName,
             [NotNull] string aIdentifier,
             [NotNull] uint aVibratorCount = 0)
         {
             BpLogger = aLogManager.GetLogger(GetType());
-            MsgFuncs = new Dictionary<Type, Func<ButtplugDeviceMessage, Task<ButtplugMessage>>>();
+            MsgFuncs = new Dictionary<Type, ButtplugDeviceWrapper>();
             Name = aName;
             Identifier = aIdentifier;
             _vibratorCount = aVibratorCount;
@@ -73,6 +89,16 @@ namespace Buttplug.Core
         public IEnumerable<Type> GetAllowedMessageTypes()
         {
             return MsgFuncs.Keys;
+        }
+
+        public Dictionary<string, string> GetMessageAttrs(Type aMsg)
+        {
+            if (MsgFuncs.TryGetValue(aMsg, out var wrapper))
+            {
+                return wrapper.Attrs ?? new Dictionary<string, string>();
+            }
+
+            return new Dictionary<string, string>();
         }
 
         protected void InvokeDeviceRemoved()
@@ -97,7 +123,7 @@ namespace Buttplug.Core
 
             // We just checked whether the key exists above, so we're ok.
             // ReSharper disable once PossibleNullReferenceException
-            return await MsgFuncs[aMsg.GetType()].Invoke(aMsg);
+            return await MsgFuncs[aMsg.GetType()].Func.Invoke(aMsg);
         }
 
         public virtual Task<ButtplugMessage> Initialize()

@@ -32,5 +32,7 @@ namespace Buttplug.Core
         Task<ButtplugMessage> Initialize();
 
         void Disconnect();
+
+        Dictionary<string, string> GetMessageAttrs(Type aMsg);
     }
 }

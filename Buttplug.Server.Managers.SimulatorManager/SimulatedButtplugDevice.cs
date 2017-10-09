@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using JetBrains.Annotations;
+using System.Collections.Generic;
 
 namespace Buttplug.Server.Managers.SimulatorManager
 {
@@ -19,22 +20,22 @@ namespace Buttplug.Server.Managers.SimulatorManager
             _manager = aManager;
             if (da.HasLinear)
             {
-                MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), HandleFleshlightLaunchFW12Cmd);
+                MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchFW12Cmd));
             }
 
             if (da.VibratorCount > 0)
             {
                 VibratorCount = da.VibratorCount;
-                MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
-                MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
+                MsgFuncs.Add(typeof(SingleMotorVibrateCmd), new ButtplugDeviceWrapper(HandleSingleMotorVibrateCmd));
+                MsgFuncs.Add(typeof(VibrateCmd), new ButtplugDeviceWrapper(HandleVibrateCmd, new Dictionary<string, string>() { { "VibratorCount", da.VibratorCount.ToString() } }));
             }
 
             if (da.HasRotator)
             {
-                MsgFuncs.Add(typeof(VorzeA10CycloneCmd), HandleVorzeA10CycloneCmd);
+                MsgFuncs.Add(typeof(VorzeA10CycloneCmd), new ButtplugDeviceWrapper(HandleVorzeA10CycloneCmd));
             }
 
-            MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
+            MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
         }
 
         public override void Disconnect()

@@ -373,7 +373,7 @@ namespace Buttplug.Client
         {
             if (_devices.TryGetValue(aDevice.Index, out ButtplugClientDevice dev))
             {
-                if (!dev.AllowedMessages.Contains(aDeviceMsg.GetType().Name))
+                if (!dev.AllowedMessages.ContainsKey(aDeviceMsg.GetType().Name))
                 {
                     return new Error("Device does not accept message type: " + aDeviceMsg.GetType().Name, Error.ErrorClass.ERROR_DEVICE, ButtplugConsts.SystemMsgId);
                 }

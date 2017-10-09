@@ -84,17 +84,15 @@ namespace Buttplug.Core.Messages
         public uint DeviceIndex;
 
         [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
-        public string[] DeviceMessages = new string[0];
+        public Dictionary<string, Dictionary<string, string>> DeviceMessages =
+            new Dictionary<string, Dictionary<string, string>>();
 
-        [JsonProperty(Required = Required.Always)]
-        public uint VibratorCount;
-
-        public DeviceMessageInfo(uint aIndex, string aName, string[] aMessages, uint aVibratorCount)
+        public DeviceMessageInfo(uint aIndex, string aName,
+            Dictionary<string, Dictionary<string, string>> aMessages)
         {
             DeviceName = aName;
             DeviceIndex = aIndex;
             DeviceMessages = aMessages;
-            VibratorCount = aVibratorCount;
         }
     }
 
@@ -154,7 +152,13 @@ namespace Buttplug.Core.Messages
             var tmp = new List<DeviceMessageInfo0>();
             foreach (var dev in aMsg.Devices)
             {
-                tmp.Add(new DeviceMessageInfo0(dev.DeviceIndex, dev.DeviceName, dev.DeviceMessages));
+                var tmp2 = new List<string>();
+                foreach (var k in dev.DeviceMessages.Keys)
+                {
+                    tmp2.Add(k);
+                }
+
+                tmp.Add(new DeviceMessageInfo0(dev.DeviceIndex, dev.DeviceName, tmp2.ToArray()));
             }
 
             Devices = tmp.ToArray();
@@ -167,17 +171,15 @@ namespace Buttplug.Core.Messages
         public string DeviceName;
 
         [JsonProperty(Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
-        public string[] DeviceMessages = new string[0];
+        public Dictionary<string, Dictionary<string, string>> DeviceMessages =
+            new Dictionary<string, Dictionary<string, string>>();
 
-        [JsonProperty(Required = Required.Always)]
-        public uint VibratorCount;
-
-        public DeviceAdded(uint aIndex, string aName, string[] aMessages, uint aVibratorCount)
+        public DeviceAdded(uint aIndex, string aName,
+            Dictionary<string, Dictionary<string, string>> aMessages)
             : base(ButtplugConsts.SystemMsgId, aIndex)
         {
             DeviceName = aName;
             DeviceMessages = aMessages;
-            VibratorCount = aVibratorCount;
 
             MessageVersioningVersion = 1;
             MessageVersioningPrevious = new DeviceAdded0().GetType();
@@ -208,7 +210,13 @@ namespace Buttplug.Core.Messages
             : base(aMsg.Id, aMsg.DeviceIndex)
         {
             DeviceName = aMsg.DeviceName;
-            DeviceMessages = aMsg.DeviceMessages;
+            var tmp = new List<string>();
+            foreach (var k in aMsg.DeviceMessages.Keys)
+            {
+                tmp.Add(k);
+            }
+
+            DeviceMessages = tmp.ToArray();
         }
     }
 
