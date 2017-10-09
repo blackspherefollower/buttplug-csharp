@@ -63,6 +63,11 @@ namespace Buttplug.Core
                     _schema = JsonSchema4.FromJsonAsync(result).GetAwaiter().GetResult();
                 }
             }
+            catch (Exception e)
+            {
+                _bpLogger.LogException(e);
+                throw e;
+            }
             finally
             {
                 stream?.Dispose();

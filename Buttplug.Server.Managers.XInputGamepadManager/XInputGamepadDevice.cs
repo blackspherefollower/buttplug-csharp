@@ -15,9 +15,9 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
             : base(aLogManager, "XBox Compatible Gamepad (XInput)", aDevice.UserIndex.ToString(), 2)
         {
             _device = aDevice;
-            MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleSingleMotorVibrateCmd);
-            MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
-            MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
+            MsgFuncs.Add(typeof(SingleMotorVibrateCmd), new ButtplugDeviceWrapper(HandleSingleMotorVibrateCmd));
+            MsgFuncs.Add(typeof(VibrateCmd), new ButtplugDeviceWrapper(HandleVibrateCmd, new Dictionary<string, string>() { { "VibratorCount", "2" } }));
+            MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
         }
 
         private Task<ButtplugMessage> HandleStopDeviceCmd(ButtplugDeviceMessage aMsg)

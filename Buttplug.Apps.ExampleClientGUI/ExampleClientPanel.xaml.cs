@@ -72,7 +72,7 @@ namespace Buttplug.Apps.ExampleClientGUI
 
                     foreach (var dev in _client.getDevices())
                     {
-                        devControl.DeviceAdded(new ButtplugDeviceInfo(dev.Index, dev.Name, dev.AllowedMessages.ToArray()));
+                        devControl.DeviceAdded(new ButtplugDeviceInfo(dev.Index, dev.Name, dev.AllowedMessages));
                     }
                 }
             }
@@ -87,7 +87,7 @@ namespace Buttplug.Apps.ExampleClientGUI
             switch (e.Action)
             {
                 case DeviceAction.ADDED:
-                    devControl.DeviceAdded(new ButtplugDeviceInfo(e.Device.Index, e.Device.Name, e.Device.AllowedMessages.ToArray()));
+                    devControl.DeviceAdded(new ButtplugDeviceInfo(e.Device.Index, e.Device.Name, e.Device.AllowedMessages));
                     break;
 
                 case DeviceAction.REMOVED:
@@ -136,7 +136,7 @@ namespace Buttplug.Apps.ExampleClientGUI
 
             foreach (var dev in Devices.Values)
             {
-                if (dev.AllowedMessages.Contains("FleshlightLaunchFW12Cmd"))
+                if (dev.AllowedMessages.ContainsKey("FleshlightLaunchFW12Cmd"))
                 {
                     _client.SendDeviceMessage(dev,
                         new FleshlightLaunchFW12Cmd(dev.Index,
@@ -156,12 +156,25 @@ namespace Buttplug.Apps.ExampleClientGUI
 
             foreach (var dev in Devices.Values)
             {
-                if (dev.AllowedMessages.Contains("VibrateCmd"))
+                if (dev.AllowedMessages.TryGetValue("VibrateCmd", out var attrs))
                 {
-                    _client.SendDeviceMessage(dev,
-                        new VibrateCmd(dev.Index,
-                             new List<VibrateCmd.VibrateIndex> { new VibrateCmd.VibrateIndex(0, VibrateSpeed.Value) },
-                             _client.nextMsgId));
+                    attrs.TryGetValue("VibratorCount", out var vcStr);
+                    try
+                    {
+                        uint vibratorCount = Convert.ToUInt32(vcStr);
+
+                        for (uint i = 0; i < vibratorCount; i++)
+                        {
+                            _client.SendDeviceMessage(dev,
+                                new VibrateCmd(dev.Index,
+                                    new List<VibrateCmd.VibrateIndex>
+                                    { new VibrateCmd.VibrateIndex(i, VibrateSpeed.Value) },
+                                    _client.nextMsgId));
+                        }
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }
@@ -175,7 +188,7 @@ namespace Buttplug.Apps.ExampleClientGUI
 
             foreach (var dev in Devices.Values)
             {
-                if (dev.AllowedMessages.Contains("VorzeA10CycloneCmd"))
+                if (dev.AllowedMessages.ContainsKey("VorzeA10CycloneCmd"))
                 {
                     bool clockwise = RotateSpeed.Value > 0;
                     _client.SendDeviceMessage(dev,

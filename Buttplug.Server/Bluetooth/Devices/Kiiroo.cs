@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using JetBrains.Annotations;
+using System.Collections.Generic;
 
 namespace Buttplug.Server.Bluetooth.Devices
 {
@@ -45,14 +46,14 @@ namespace Buttplug.Server.Bluetooth.Devices
                    aInterface,
                    aInfo)
         {
-            MsgFuncs.Add(typeof(KiirooCmd), HandleKiirooRawCmd);
-            MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
+            MsgFuncs.Add(typeof(KiirooCmd), new ButtplugDeviceWrapper(HandleKiirooRawCmd));
+            MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
 
             if (aInterface.Name == "PEARL")
             {
                 VibratorCount = 1;
-                MsgFuncs.Add(typeof(VibrateCmd), HandleVibrateCmd);
-                MsgFuncs.Add(typeof(SingleMotorVibrateCmd), HandleVibrateCmd);
+                MsgFuncs.Add(typeof(VibrateCmd), new ButtplugDeviceWrapper(HandleVibrateCmd, new Dictionary<string, string>() { { "VibratorCount", "1" } }));
+                MsgFuncs.Add(typeof(SingleMotorVibrateCmd), new ButtplugDeviceWrapper(HandleVibrateCmd));
             }
         }
 

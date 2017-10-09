@@ -44,6 +44,17 @@
         "minItems": 1
       }
     },
+    "DeviceMessagesEx": {
+      "description": "A list of the messages a device will accept on this server implementation.",
+      "type": "object",
+      "items": {
+        "description": "A list of the messages attributes.",
+        "type": "object",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
     "SystemIdMessage": {
       "description": "Message sent by the server that is not in direct reply to a message send from the client, and always uses system Id.",
       "properties": {
@@ -139,11 +150,15 @@
             "properties": {
               "DeviceName": { "$ref": "#/components/DeviceName" },
               "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
-              "DeviceMessages": { "$ref": "#/components/DeviceMessages" },
-              "VibratorCount": { "$ref": "#/components/FeatureCount" }
+              "DeviceMessages": {
+                "oneOf": [
+                  { "$ref": "#/components/DeviceMessages" },
+                  { "$ref": "#/components/DeviceMessagesEx" }
+                ]
+              }
             },
             "minProperties": 3,
-            "maxProperties": 4,
+            "maxProperties": 3,
             "additionalProperties": false,
             "required": [
               "DeviceName",
@@ -168,11 +183,15 @@
         "Id": { "$ref": "#/components/SystemId" },
         "DeviceName": { "$ref": "#/components/DeviceName" },
         "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
-        "DeviceMessages": { "$ref": "#/components/DeviceMessages" },
-        "VibratorCount": { "$ref": "#/components/FeatureCount" }
+        "DeviceMessages": {
+          "oneOf": [
+            { "$ref": "#/components/DeviceMessages" },
+            { "$ref": "#/components/DeviceMessagesEx" }
+          ]
+        }
       },
       "minProperties": 4,
-      "maxProperties": 5,
+      "maxProperties": 4,
       "additionalProperties": false,
       "required": [
         "Id",

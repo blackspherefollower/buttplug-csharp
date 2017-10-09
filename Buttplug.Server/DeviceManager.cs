@@ -38,9 +38,16 @@ namespace Buttplug.Server
             _managers = new List<IDeviceSubtypeManager>();
         }
 
-        private static IEnumerable<string> GetAllowedMessageTypesAsStrings([NotNull] IButtplugDevice aDevice)
+        private static Dictionary<string, Dictionary<string, string>>
+            GetAllowedMessageTypesAsDictionary([NotNull] IButtplugDevice aDevice)
         {
-            return from x in aDevice.GetAllowedMessageTypes() select x.Name;
+            Dictionary<string, Dictionary<string, string>> msgs = new Dictionary<string, Dictionary<string, string>>();
+            foreach (var msg in from x in aDevice.GetAllowedMessageTypes() select x)
+            {
+                msgs.Add(msg.Name, aDevice.GetMessageAttrs(msg));
+            }
+
+            return msgs;
         }
 
         private void DeviceAddedHandler(object aObj, DeviceAddedEventArgs aEvent)
@@ -69,8 +76,7 @@ namespace Buttplug.Server
             var msg = new DeviceAdded(
                 deviceIndex,
                 aEvent.Device.Name,
-                GetAllowedMessageTypesAsStrings(aEvent.Device).ToArray(),
-                aEvent.Device.VibratorCount);
+                GetAllowedMessageTypesAsDictionary(aEvent.Device));
 
             DeviceMessageReceived?.Invoke(this, new MessageReceivedEventArgs(msg));
         }
@@ -171,8 +177,7 @@ namespace Buttplug.Server
                         .Select(aDevice => new DeviceMessageInfo(
                             aDevice.Key,
                             aDevice.Value.Name,
-                            GetAllowedMessageTypesAsStrings(aDevice.Value).ToArray(),
-                            aDevice.Value.VibratorCount)).ToList();
+                            GetAllowedMessageTypesAsDictionary(aDevice.Value))).ToList();
                     return new DeviceList(msgDevices.ToArray(), id);
 
                 // If it's a device message, it's most likely not ours.
