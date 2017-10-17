@@ -4,18 +4,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Buttplug.Server;
-using Buttplug.Server.Managers.SimulatorManager;
+using Buttplug.Server.Managers.HidManager;
 using Buttplug.Server.Managers.UWPBluetoothManager;
 using Buttplug.Server.Managers.XInputGamepadManager;
 using JetBrains.Annotations;
 using Microsoft.Win32;
 using NLog;
 using NLog.Config;
-#if DEBUG
-using NLog.Targets;
-#endif
 using SharpRaven;
 using SharpRaven.Data;
+
+#if DEBUG
+using Buttplug.Server.Managers.SimulatorManager;
+using NLog.Targets;
+#endif
 
 namespace Buttplug.Components.Controls
 {
@@ -137,6 +139,7 @@ namespace Buttplug.Components.Controls
             }
 
             bpServer.AddDeviceSubtypeManager(aLogger => new XInputGamepadManager(aLogger));
+            bpServer.AddDeviceSubtypeManager(aLogger => new HidManager(aLogger));
 
 #if DEBUG
             bpServer.AddDeviceSubtypeManager(aLogger => new SimulatorManager(aLogger));

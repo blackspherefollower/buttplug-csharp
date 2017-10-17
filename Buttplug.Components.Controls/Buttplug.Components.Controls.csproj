@@ -150,6 +150,10 @@
       <Project>{fc4af8fe-8c21-4e07-8d24-7fb7791149d0}</Project>
       <Name>Buttplug.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Buttplug.Server.Managers.HidManager\Buttplug.Server.Managers.HidManager.csproj">
+      <Project>{83574729-6eb4-43e9-b7cc-ac5725380038}</Project>
+      <Name>Buttplug.Server.Managers.HidManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Buttplug.Server.Managers.SimulatorManager\Buttplug.Server.Managers.SimulatorManager.csproj">
       <Project>{334d5731-7619-471e-85c3-240831514741}</Project>
       <Name>Buttplug.Server.Managers.SimulatorManager</Name>

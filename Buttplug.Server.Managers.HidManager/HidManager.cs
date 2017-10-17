@@ -1,0 +1,93 @@
+﻿using Buttplug.Core;
+using Buttplug.Server.Managers.HidManager.Devices;
+using HidLibrary;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Buttplug.Server.Managers.HidManager
+{
+    public class HidManager : DeviceSubtypeManager
+    {
+        private readonly List<HidDeviceFactory> _deviceFactories;
+
+        private IButtplugLogManager _logger;
+        private bool _scanning = false;
+
+        public HidManager(IButtplugLogManager aLogger) : base(aLogger)
+        {
+            _logger = aLogger;
+            _deviceFactories = new List<HidDeviceFactory>() { new HidDeviceFactory(aLogger, new VstrokerHidDeviceInfo()) };
+        }
+
+        public override void StartScanning()
+        {
+            _scanning = true;
+            var hids = new HidEnumerator();
+            foreach (var hid in hids.Enumerate())
+            {
+                try
+                {
+                    hid.ReadProduct(out byte[] product);
+                    hid.ReadManufacturer(out byte[] vendor);
+                    var prod = Encoding.Unicode.GetString(product);
+                    var vend = Encoding.Unicode.GetString(vendor);
+                    if (prod != null)
+                    {
+                        prod = prod.Substring(0, prod.IndexOf('\0'));
+                    }
+                    if (vend != null)
+                    {
+                        vend = vend.Substring(0, vend.IndexOf('\0'));
+                    }
+
+                    _logger.GetLogger(this.GetType()).Trace("Found HID device (" + hid.Attributes.VendorHexId +
+                        ":" + hid.Attributes.ProductHexId + "): " + (vend ?? "") + " - " + (prod ?? "") );
+
+
+                    var factories = from x in _deviceFactories
+                                    where x.MayBeDevice(hid.Attributes.VendorId, hid.Attributes.ProductId)
+                                    select x;
+                    var buttplugHidDeviceFactories = factories as HidDeviceFactory[] ?? factories.ToArray();
+                    if (buttplugHidDeviceFactories.Length != 1)
+                    {
+                        if (buttplugHidDeviceFactories.Any())
+                        {
+                            BpLogger.Warn($"Found multiple HID factories for " + hid.Attributes.VendorHexId + ":" + hid.Attributes.ProductHexId);
+                            buttplugHidDeviceFactories.ToList().ForEach(x => BpLogger.Warn(x.GetType().Name));
+                        }
+                        else
+                        {
+                            // BpLogger.Trace("No BLE factories found for device.");
+                        }
+
+                        continue;
+                    }
+                    
+                    var factory = buttplugHidDeviceFactories.First();
+                    BpLogger.Debug($"Found HID factory: {factory.GetType().Name}");
+
+                    var d = factory.CreateDevice(hid);
+                    InvokeDeviceAdded(new DeviceAddedEventArgs(d));
+                }
+                catch (Exception e)
+                {
+                    _logger?.GetLogger(this.GetType()).LogException(e);
+                }
+            }
+
+            _scanning = false;
+            InvokeScanningFinished();
+            }
+
+        public override void StopScanning()
+        {
+        }
+
+        public override bool IsScanning()
+        {
+            return _scanning;
+        }
+    }
+}
