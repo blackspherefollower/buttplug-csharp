@@ -11,6 +11,7 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Label Content="Address:"  Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
@@ -63,6 +64,19 @@
 				<Label Content="Speed:" Grid.Row="0" Grid.Column="0"/>
 				<Slider Name="RotateSpeed" Grid.Row="0" Grid.Column="1" SmallChange="2" LargeChange="20" Maximum="99" Minimum="-99"/>
 				<Button Name="SendRotate" Content="Send" Grid.Row="0" Grid.Column="2" Height="26" Click="SendRotate_Click"/>
+			</Grid>
+		</GroupBox>
+		<GroupBox Grid.Row="4" Header="Accelerometer">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<CheckBox Name="ReportAccelerometer" Content="Report" Grid.Row="0" Grid.Column="0" Checked="ReportAccelerometer_Checked" Unchecked="ReportAccelerometer_Unchecked"/>
 			</Grid>
 		</GroupBox>
 	</Grid>

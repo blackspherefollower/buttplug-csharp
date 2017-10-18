@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using HidLibrary;
+using Buttplug.Core.Messages;
 
 namespace Buttplug.Server.Managers.HidManager.Devices
 {
@@ -26,6 +27,8 @@ namespace Buttplug.Server.Managers.HidManager.Devices
     {
         public Vstroker(IButtplugLogManager aLogManager, IHidDevice aHid, VstrokerHidDeviceInfo aDeviceInfo) : base(aLogManager, aHid, aDeviceInfo)
         {
+            MsgFuncs.Add(typeof(StartAccelerometerCmd), new ButtplugDeviceWrapper(HandleStartAccelerometerCmd));
+            MsgFuncs.Add(typeof(StopAccelerometerCmd), new ButtplugDeviceWrapper(HandleStopAccelerometerCmd));
         }
 
         protected override bool HandleData(byte[] data)
@@ -36,13 +39,35 @@ namespace Buttplug.Server.Managers.HidManager.Devices
             {
                 var a = (((data[(i * 2) + 1] & 0xf) << 4) | (data[(i * 2) + 1] >> 4)) ^ xor_byte;
                 var b = (((data[(i * 2) + 2] & 0xf) << 4) | (data[(i * 2) + 2] >> 4)) ^ xor_byte;
-                axis[i] = (a | b << 8);
-                if (axis[i] > (2 ^ 15))
-                    axis[i] = axis[i] - (2 ^ 15);
+                axis[i] = (short)(a | b << 8);
             }
 
             Console.Out.WriteLine($"x:{axis[0]} y:{axis[1]} z:{axis[2]}");
             return true;
+        }
+
+        private async Task<ButtplugMessage> HandleStartAccelerometerCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as StartAccelerometerCmd;
+            if (cmdMsg is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+            
+            BeginRead();
+            return new Ok(cmdMsg.Id);
+        }
+
+        private async Task<ButtplugMessage> HandleStopAccelerometerCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as StopAccelerometerCmd;
+            if (cmdMsg is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            EndRead();
+            return new Ok(cmdMsg.Id);
         }
     }
 }
