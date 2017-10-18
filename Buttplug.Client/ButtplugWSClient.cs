@@ -5,7 +5,6 @@ using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using JetBrains.Annotations;
@@ -49,7 +48,7 @@ namespace Buttplug.Client
 
         private CancellationTokenSource _tokenSource;
 
-        private Dispatcher _owningDispatcher;
+        private SynchronizationContext _owningDispatcher;
 
         [NotNull]
         private int _counter;
@@ -94,7 +93,7 @@ namespace Buttplug.Client
             _bpLogger = _bpLogManager.GetLogger(GetType());
             _parser = new ButtplugJsonMessageParser(_bpLogManager);
             _bpLogger.Info("Finished setting up ButtplugClient");
-            _owningDispatcher = Dispatcher.CurrentDispatcher;
+            _owningDispatcher = SynchronizationContext.Current;
             _tokenSource = new CancellationTokenSource();
         }
 
@@ -107,7 +106,7 @@ namespace Buttplug.Client
         {
             if (_ws != null && (_ws.State == WebSocketState.Connecting || _ws.State == WebSocketState.Open))
             {
-                throw new AccessViolationException("Already connected!");
+                throw new InvalidOperationException("Already connected!");
             }
 
             _ws = new ClientWebSocket();
@@ -232,44 +231,44 @@ namespace Buttplug.Client
                             switch (msg)
                             {
                                 case Log l:
-                                    _owningDispatcher.Invoke(() =>
+                                    _owningDispatcher.Send(_ =>
                                     {
                                         Log?.Invoke(this, new LogEventArgs(l));
-                                    });
+                                    }, null);
                                     break;
 
                                 case DeviceAdded d:
                                     var dev = new ButtplugClientDevice(d);
                                     _devices.AddOrUpdate(d.DeviceIndex, dev, (idx, old) => dev);
-                                    _owningDispatcher.Invoke(() =>
+                                    _owningDispatcher.Send(_ =>
                                     {
                                         DeviceAdded?.Invoke(this, new DeviceEventArgs(dev, DeviceAction.ADDED));
-                                    });
+                                    }, null);
                                     break;
 
                                 case DeviceRemoved d:
                                     if (_devices.TryRemove(d.DeviceIndex, out ButtplugClientDevice oldDev))
                                     {
-                                        _owningDispatcher.Invoke(() =>
+                                        _owningDispatcher.Send(_ =>
                                         {
                                             DeviceRemoved?.Invoke(this, new DeviceEventArgs(oldDev, DeviceAction.REMOVED));
-                                        });
+                                        }, null);
                                     }
 
                                     break;
 
                                 case ScanningFinished sf:
-                                    _owningDispatcher.Invoke(() =>
+                                    _owningDispatcher.Send(_ =>
                                     {
                                         ScanningFinished?.Invoke(this, new ScanningFinishedEventArgs(sf));
-                                    });
+                                    }, null);
                                     break;
 
                                 case Error e:
-                                    _owningDispatcher.Invoke(() =>
+                                    _owningDispatcher.Send(_ =>
                                     {
                                         ErrorReceived?.Invoke(this, new ErrorEventArgs(e));
-                                    });
+                                    }, null);
                                     break;
                             }
                         }
@@ -291,10 +290,10 @@ namespace Buttplug.Client
                 var msg = await SendMessage(new Ping(nextMsgId));
                 if (msg is Error)
                 {
-                    _owningDispatcher.Invoke(() =>
+                    _owningDispatcher.Send(_ =>
                     {
                         ErrorReceived?.Invoke(this, new ErrorEventArgs(msg as Error));
-                    });
+                    }, null);
                     throw new Exception((msg as Error).ErrorMessage);
                 }
             }
@@ -314,10 +313,10 @@ namespace Buttplug.Client
             {
                 if (resp is Error)
                 {
-                    _owningDispatcher.Invoke(() =>
+                    _owningDispatcher.Send(_ =>
                     {
                         ErrorReceived?.Invoke(this, new ErrorEventArgs(resp as Error));
-                    });
+                    }, null);
                 }
 
                 return;
@@ -330,10 +329,10 @@ namespace Buttplug.Client
                     var device = new ButtplugClientDevice(d);
                     if (_devices.TryAdd(d.DeviceIndex, device))
                     {
-                        _owningDispatcher.Invoke(() =>
+                        _owningDispatcher.Send(_ =>
                         {
                             DeviceAdded?.Invoke(this, new DeviceEventArgs(device, DeviceAction.ADDED));
-                        });
+                        }, null);
                     }
                 }
             }
