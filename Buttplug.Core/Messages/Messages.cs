@@ -517,9 +517,6 @@ namespace Buttplug.Core.Messages
     {
         public class VibrateIndex
         {
-            [JsonIgnore]
-            public readonly uint MessageVersioningVersion = 1;
-
             private double _speedImpl = 0;
 
             [JsonProperty(Required = Required.Always)]
@@ -575,6 +572,24 @@ namespace Buttplug.Core.Messages
         public StopAllDevices(uint aId = ButtplugConsts.DefaultMsgId)
             : base(aId)
         {
+        }
+    }
+
+    public class StartAccelerometerCmd : ButtplugDeviceMessage
+    {
+        public StartAccelerometerCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class StopAccelerometerCmd : ButtplugDeviceMessage
+    {
+        public StopAccelerometerCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
         }
     }
 }

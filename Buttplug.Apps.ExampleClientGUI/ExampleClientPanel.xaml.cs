@@ -199,5 +199,39 @@ namespace Buttplug.Apps.ExampleClientGUI
                 }
             }
         }
+
+        private void ReportAccelerometer_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!_client.IsConnected)
+            {
+                return;
+            }
+
+            foreach (var dev in Devices.Values)
+            {
+                if (dev.AllowedMessages.ContainsKey("StartAccelerometerCmd"))
+                {
+                    _client.SendDeviceMessage(dev,
+                        new StartAccelerometerCmd(dev.Index, _client.nextMsgId));
+                }
+            }
+        }
+
+        private void ReportAccelerometer_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!_client.IsConnected)
+            {
+                return;
+            }
+
+            foreach (var dev in Devices.Values)
+            {
+                if (dev.AllowedMessages.ContainsKey("StopAccelerometerCmd"))
+                {
+                    _client.SendDeviceMessage(dev,
+                        new StopAccelerometerCmd(dev.Index, _client.nextMsgId));
+                }
+            }
+        }
     }
 }

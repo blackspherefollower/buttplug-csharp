@@ -12,6 +12,7 @@ namespace Buttplug.Server.Managers.HidManager.Devices
         private VstrokerHidDeviceInfo _deviceInfo;
         private IHidDevice _hid;
         private bool _disposed = false;
+        private bool _reading = false;
 
         public HidButtplugDevice(IButtplugLogManager aLogManager, IHidDevice aHid, VstrokerHidDeviceInfo aDeviceInfo)
             : base(aLogManager, aDeviceInfo.Name, aHid.DevicePath)
@@ -34,8 +35,15 @@ namespace Buttplug.Server.Managers.HidManager.Devices
 
         public void BeginRead()
         {
+            _reading = true;
             _hid.MonitorDeviceEvents = true;
             _hid.ReadReport(OnReport);
+        }
+
+        public void EndRead()
+        {
+            _reading = false;
+            _hid.MonitorDeviceEvents = false;
         }
 
         private void DeviceAttachedHandler()
@@ -54,7 +62,7 @@ namespace Buttplug.Server.Managers.HidManager.Devices
                 return;
             }
 
-            if (HandleData(report.Data))
+            if (HandleData(report.Data) && _reading)
             {
                 _hid.ReadReport(OnReport);
             }

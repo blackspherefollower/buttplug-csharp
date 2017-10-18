@@ -540,6 +540,36 @@
       "type": "object",
       "description": "Stops all actions currently being taken by all connected devices.",
       "anyOf": [ { "$ref": "#/components/IdMessage" } ]
+    },
+    "StartAccelerometerCmd": {
+      "type": "object",
+      "description": "Starts accelerometer reporting from device.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" }
+      },
+      "minProperties": 2,
+      "maxProperties": 2,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex"
+      ]
+    },
+    "StopAccelerometerCmd": {
+      "type": "object",
+      "description": "Stops accelerometer reporting from device.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" }
+      },
+      "minProperties": 2,
+      "maxProperties": 2,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex"
+      ]
     }
   },
   "type": "array",
@@ -570,7 +600,9 @@
       "KiirooCmd": { "$ref": "#/messages/KiirooCmd" },
       "RawCmd": { "$ref": "#/messages/RawCmd" },
       "VorzeA10CycloneCmd": { "$ref": "#/messages/VorzeA10CycloneCmd" },
-      "VibrateCmd": { "$ref": "#/messages/VibrateCmd" }
+      "VibrateCmd": { "$ref": "#/messages/VibrateCmd" },
+      "StartAccelerometerCmd": { "$ref": "#/messages/StartAccelerometerCmd" },
+      "StopAccelerometerCmd": { "$ref": "#/messages/StopAccelerometerCmd" }
     },
     "additionalProperties": false,
     "minProperties": 1,

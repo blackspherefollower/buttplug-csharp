@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Bluetooth\BluetoothSubtypeManager.cs" />
     <Compile Include="Bluetooth\ButtplugBluetoothDevice.cs" />
+    <Compile Include="Bluetooth\BluetoothMessageReceivedEventArgs.cs" />
     <Compile Include="Bluetooth\Devices\FleshlightLaunch.cs" />
     <Compile Include="Bluetooth\Devices\Kiiroo.cs" />
     <Compile Include="Bluetooth\Devices\WeVibe.cs" />
