@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using HidLibrary;
+using System.Threading;
 
 namespace Buttplug.Server.Managers.HidManager.Devices
 {
@@ -13,6 +14,8 @@ namespace Buttplug.Server.Managers.HidManager.Devices
         private IHidDevice _hid;
         private bool _disposed = false;
         private bool _reading = false;
+        private Task _readerThread;
+        private CancellationTokenSource _tokenSource;
 
         public HidButtplugDevice(IButtplugLogManager aLogManager, IHidDevice aHid, VstrokerHidDeviceInfo aDeviceInfo)
             : base(aLogManager, aDeviceInfo.Name, aHid.DevicePath)
@@ -21,10 +24,9 @@ namespace Buttplug.Server.Managers.HidManager.Devices
             _hid = aHid;
             _deviceInfo = aDeviceInfo;
 
-            _hid.OpenDevice();
+            _tokenSource = new CancellationTokenSource();
             _hid.Inserted += DeviceAttachedHandler;
             _hid.Removed += DeviceRemovedHandler;
-            BeginRead();
         }
 
         public override void Disconnect()
@@ -35,15 +37,22 @@ namespace Buttplug.Server.Managers.HidManager.Devices
 
         public void BeginRead()
         {
-            _reading = true;
-            _hid.MonitorDeviceEvents = true;
-            _hid.ReadReport(OnReport);
+            if(_readerThread != null && _readerThread.Status == TaskStatus.Running)
+            {
+                return;
+            }
+
+            _readerThread = new Task(() => { ReportReader(_tokenSource.Token); }, _tokenSource.Token, TaskCreationOptions.LongRunning);
+            _readerThread.Start();
         }
 
         public void EndRead()
         {
             _reading = false;
+            _readerThread?.Wait();
+            _readerThread = null;
             _hid.MonitorDeviceEvents = false;
+            _hid.CloseDevice();
         }
 
         private void DeviceAttachedHandler()
@@ -52,7 +61,16 @@ namespace Buttplug.Server.Managers.HidManager.Devices
 
         private void DeviceRemovedHandler()
         {
+            _reading = false;
             InvokeDeviceRemoved();
+        }
+
+        private void ReportReader(CancellationToken aToken)
+        {
+            _hid.OpenDevice();
+            _reading = true;
+            _hid.MonitorDeviceEvents = true;
+            _hid.ReadReport(OnReport);
         }
 
         private void OnReport(HidReport report)

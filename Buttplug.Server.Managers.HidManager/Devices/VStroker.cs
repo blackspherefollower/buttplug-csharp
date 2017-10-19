@@ -29,6 +29,7 @@ namespace Buttplug.Server.Managers.HidManager.Devices
         {
             MsgFuncs.Add(typeof(StartAccelerometerCmd), new ButtplugDeviceWrapper(HandleStartAccelerometerCmd));
             MsgFuncs.Add(typeof(StopAccelerometerCmd), new ButtplugDeviceWrapper(HandleStopAccelerometerCmd));
+            MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopAccelerometerCmd));
         }
 
         protected override bool HandleData(byte[] data)
@@ -60,14 +61,15 @@ namespace Buttplug.Server.Managers.HidManager.Devices
 
         private async Task<ButtplugMessage> HandleStopAccelerometerCmd(ButtplugDeviceMessage aMsg)
         {
-            var cmdMsg = aMsg as StopAccelerometerCmd;
-            if (cmdMsg is null)
+            var cmdMsg1 = aMsg as StopAccelerometerCmd;
+            var cmdMsg2 = aMsg as StopDeviceCmd;
+            if (cmdMsg1 is null && cmdMsg2 is null)
             {
                 return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
             }
 
             EndRead();
-            return new Ok(cmdMsg.Id);
+            return new Ok(aMsg.Id);
         }
     }
 }

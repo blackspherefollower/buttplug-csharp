@@ -247,6 +247,14 @@ namespace Buttplug.Server.Bluetooth.Devices
         private async Task<ButtplugMessage> HandleStopDeviceCmd(ButtplugDeviceMessage aMsg)
         {
             BpLogger.Debug("Stopping Device " + Name);
+
+            if (friendlyNames[Interface.Name] == "Nora" || friendlyNames[Interface.Name] == "Max")
+            {
+                return await Interface.WriteValue(aMsg.Id,
+                    Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                    Encoding.ASCII.GetBytes($"StopMove:1;"));
+            }
+
             return await HandleSingleMotorVibrateCmd(new SingleMotorVibrateCmd(aMsg.DeviceIndex, 0, aMsg.Id));
         }
 
