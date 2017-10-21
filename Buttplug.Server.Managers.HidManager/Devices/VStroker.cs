@@ -43,7 +43,7 @@ namespace Buttplug.Server.Managers.HidManager.Devices
                 axis[i] = (short)(a | b << 8);
             }
 
-            Console.Out.WriteLine($"x:{axis[0]} y:{axis[1]} z:{axis[2]}");
+            EmitMessage(new AccelerometerData(axis[0], axis[1], axis[2], Index));
             return true;
         }
 

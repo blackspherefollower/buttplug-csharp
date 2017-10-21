@@ -13,6 +13,8 @@ namespace Buttplug.Core
 
         public string Identifier { get; }
 
+        public uint Index { get; set; }
+
         public bool IsConnected
         {
             get
@@ -43,6 +45,9 @@ namespace Buttplug.Core
 
         [CanBeNull]
         public event EventHandler DeviceRemoved;
+
+        [CanBeNull]
+        public event EventHandler<MessageReceivedEventArgs> MessageEmitted;
 
         [NotNull]
         protected readonly IButtplugLog BpLogger;
@@ -133,5 +138,10 @@ namespace Buttplug.Core
         }
 
         public abstract void Disconnect();
+
+        protected void EmitMessage(ButtplugMessage aMsg)
+        {
+            MessageEmitted?.Invoke(this, new MessageReceivedEventArgs(aMsg));
+        }
     }
 }

@@ -188,14 +188,26 @@ namespace Buttplug.Apps.ExampleClientGUI
 
             foreach (var dev in Devices.Values)
             {
-                if (dev.AllowedMessages.ContainsKey("VorzeA10CycloneCmd"))
+                if (dev.AllowedMessages.TryGetValue("RotateCmd", out var attrs))
                 {
-                    bool clockwise = RotateSpeed.Value > 0;
-                    _client.SendDeviceMessage(dev,
-                        new VorzeA10CycloneCmd(dev.Index,
-                            Convert.ToUInt32(RotateSpeed.Value * (clockwise ? 1 : -1)),
-                            clockwise,
-                            _client.nextMsgId));
+                    attrs.TryGetValue("RotatorCount", out var vcStr);
+                    try
+                    {
+                        uint rotatorCount = Convert.ToUInt32(vcStr);
+
+                        for (uint i = 0; i < rotatorCount; i++)
+                        {
+                            bool clockwise = RotateSpeed.Value > 0;
+                            _client.SendDeviceMessage(dev,
+                                new RotateCmd(dev.Index,
+                                    new List<RotateCmd.RotateIndex>
+                                            { new RotateCmd.RotateIndex(i, RotateSpeed.Value * (clockwise ? 1 : -1), clockwise) },
+                                    _client.nextMsgId));
+                        }
+                    }
+                    catch
+                    {
+                    }
                 }
             }
         }

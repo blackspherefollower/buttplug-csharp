@@ -557,6 +557,175 @@ namespace Buttplug.Core.Messages
             : base(aId, aDeviceIndex)
         {
             Speeds = aSpeeds;
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class RotateCmd : ButtplugDeviceMessage
+    {
+        public class RotateIndex
+        {
+            private double _speedImpl = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public uint Index = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public double Speed
+            {
+                get => _speedImpl;
+                set
+                {
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be less than 0!");
+                    }
+
+                    if (value > 1)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be greater than 1!");
+                    }
+
+                    _speedImpl = value;
+                }
+            }
+
+            [JsonProperty(Required = Required.Always)]
+            public bool Clockwise = true;
+
+            public RotateIndex(uint aIndex, double aSpeed, bool aClockwise)
+            {
+                Index = aIndex;
+                Speed = aSpeed;
+                Clockwise = aClockwise;
+            }
+        }
+
+        [JsonProperty(Required = Required.Always)]
+        public List<RotateIndex> Speeds;
+
+        public RotateCmd(uint aDeviceIndex, List<RotateIndex> aSpeeds, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            Speeds = aSpeeds;
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class LinearCmd : ButtplugDeviceMessage
+    {
+        public class VectoreIndex
+        {
+            private double _speedImpl = 0;
+
+            private double _positionImpl = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public uint Index = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public double Speed
+            {
+                get => _speedImpl;
+                set
+                {
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be less than 0!");
+                    }
+
+                    if (value > 1)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be greater than 1!");
+                    }
+
+                    _speedImpl = value;
+                }
+            }
+
+            [JsonProperty(Required = Required.Always)]
+            public double Position
+            {
+                get => _positionImpl;
+                set
+                {
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be less than 0!");
+                    }
+
+                    if (value > 1)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be greater than 1!");
+                    }
+
+                    _positionImpl = value;
+                }
+            }
+
+            public VectoreIndex(uint aIndex, double aSpeed, double aPosition)
+            {
+                Index = aIndex;
+                Speed = aSpeed;
+                Position = aPosition;
+            }
+        }
+
+        [JsonProperty(Required = Required.Always)]
+        public List<VectoreIndex> Speeds;
+
+        public LinearCmd(uint aDeviceIndex, List<VectoreIndex> aSpeeds, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            Speeds = aSpeeds;
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class ConstrictCmd : ButtplugDeviceMessage
+    {
+        public class ConstrictIndex
+        {
+            private double _levelImpl = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public uint Index = 0;
+
+            [JsonProperty(Required = Required.Always)]
+            public double Level
+            {
+                get => _levelImpl;
+                set
+                {
+                    if (value < 0)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be less than 0!");
+                    }
+
+                    if (value > 1)
+                    {
+                        throw new ArgumentException("VibrateCmd Speed cannot be greater than 1!");
+                    }
+
+                    _levelImpl = value;
+                }
+            }
+
+            public ConstrictIndex(uint aIndex, double aLevel)
+            {
+                Index = aIndex;
+                Level = aLevel;
+            }
+        }
+
+        [JsonProperty(Required = Required.Always)]
+        public List<ConstrictIndex> Levels;
+
+        public ConstrictCmd(uint aDeviceIndex, List<ConstrictIndex> aLevels, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            Levels = aLevels;
+            MessageVersioningVersion = 1;
         }
     }
 
@@ -590,6 +759,27 @@ namespace Buttplug.Core.Messages
         public StopAccelerometerCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
             : base(aId, aDeviceIndex)
         {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class AccelerometerData : ButtplugDeviceMessage, IButtplugMessageOutgoingOnly
+    {
+        [JsonProperty(Required = Required.Always)]
+        public int AccelerometerX = 0;
+
+        [JsonProperty(Required = Required.Always)]
+        public int AccelerometerY = 0;
+
+        [JsonProperty(Required = Required.Always)]
+        public int AccelerometerZ = 0;
+
+        public AccelerometerData(int aX, int aY, int aZ, uint aDeviceIndex, uint aId = ButtplugConsts.SystemMsgId)
+             : base(aId, aDeviceIndex)
+        {
+            AccelerometerX = aX;
+            AccelerometerY = aY;
+            AccelerometerZ = aZ;
             MessageVersioningVersion = 1;
         }
     }

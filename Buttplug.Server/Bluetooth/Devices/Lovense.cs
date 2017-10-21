@@ -197,6 +197,10 @@ namespace Buttplug.Server.Bluetooth.Devices
 
         private string _accelerometerData;
 
+        private bool _clockwise = true;
+        private double _rotateSpeed = 0;
+        private double _constrictLevel = 0;
+
         public Lovense(IButtplugLogManager aLogManager,
                        IBluetoothDeviceInterface aInterface,
                        IBluetoothDeviceInfo aInfo)
@@ -215,6 +219,16 @@ namespace Buttplug.Server.Bluetooth.Devices
                 MsgFuncs.Add(typeof(StartAccelerometerCmd), new ButtplugDeviceWrapper(HandleStartAccelerometerCmd));
                 MsgFuncs.Add(typeof(StopAccelerometerCmd), new ButtplugDeviceWrapper(HandleStopAccelerometerCmd));
                 aInterface.BluetoothMessageReceived += OnBluetoothMessageReceieved;
+            }
+
+            if (friendlyNames[aInterface.Name] == "Nora")
+            {
+                MsgFuncs.Add(typeof(RotateCmd), new ButtplugDeviceWrapper(HandleRotateCmd, new Dictionary<string, string>() { { "RotatorCount", "1" } }));
+            }
+
+            if (friendlyNames[aInterface.Name] == "Max")
+            {
+                MsgFuncs.Add(typeof(ConstrictCmd), new ButtplugDeviceWrapper(HandleConstrictCmd, new Dictionary<string, string>() { { "ConstrictorCount", "1" } }));
             }
         }
 
@@ -239,7 +253,7 @@ namespace Buttplug.Server.Bluetooth.Devices
                         axis[i] = (short)(data1 | data2 << 8);
                     }
 
-                    Console.Out.WriteLine($"x:{axis[0]} y:{axis[1]} z:{axis[2]}");
+                    EmitMessage(new AccelerometerData(axis[0], axis[1], axis[2], Index));
                 }
             }
         }
@@ -250,9 +264,23 @@ namespace Buttplug.Server.Bluetooth.Devices
 
             if (friendlyNames[Interface.Name] == "Nora" || friendlyNames[Interface.Name] == "Max")
             {
-                return await Interface.WriteValue(aMsg.Id,
+                await Interface.WriteValue(aMsg.Id,
                     Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
                     Encoding.ASCII.GetBytes($"StopMove:1;"));
+            }
+
+            if (friendlyNames[Interface.Name] == "Nora")
+            {
+                await Interface.WriteValue(aMsg.Id,
+                    Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                    Encoding.ASCII.GetBytes($"Rotate:0;"));
+            }
+
+            if (friendlyNames[Interface.Name] == "Max")
+            {
+                await Interface.WriteValue(aMsg.Id,
+                    Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                    Encoding.ASCII.GetBytes($"Air:Level:0;"));
             }
 
             return await HandleSingleMotorVibrateCmd(new SingleMotorVibrateCmd(aMsg.DeviceIndex, 0, aMsg.Id));
@@ -314,6 +342,58 @@ namespace Buttplug.Server.Bluetooth.Devices
             return await Interface.WriteValue(aMsg.Id,
                 Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
                 Encoding.ASCII.GetBytes($"StopMove:1;"));
+        }
+
+        private async Task<ButtplugMessage> HandleRotateCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as RotateCmd;
+            if (cmdMsg is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            var dirChange = false;
+            foreach (var vi in cmdMsg.Speeds)
+            {
+                if (vi.Index == 0)
+                {
+                    _rotateSpeed = vi.Speed;
+                    dirChange = _clockwise != vi.Clockwise;
+                }
+            }
+
+            if (dirChange)
+            {
+                _clockwise = !_clockwise;
+                await Interface.WriteValue(aMsg.Id,
+                   Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                   Encoding.ASCII.GetBytes($"RotateChange;"));
+            }
+
+            return await Interface.WriteValue(aMsg.Id,
+                Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                Encoding.ASCII.GetBytes($"Rotate:{(int)(_rotateSpeed * 20)};"));
+        }
+
+        private async Task<ButtplugMessage> HandleConstrictCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as ConstrictCmd;
+            if (cmdMsg is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            foreach (var vi in cmdMsg.Levels)
+            {
+                if (vi.Index == 0)
+                {
+                    _constrictLevel = vi.Level;
+                }
+            }
+
+            return await Interface.WriteValue(aMsg.Id,
+                Info.Characteristics[(uint)LovenseRev1BluetoothInfo.Chrs.Tx],
+                Encoding.ASCII.GetBytes($"Air:Level:{(int)(_constrictLevel * 5)};"));
         }
     }
 }

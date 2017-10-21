@@ -408,46 +408,6 @@
         "Speed"
       ]
     },
-    "VibrateCmd": {
-      "type": "object",
-      "description": "Sends a vibrate command to a device that supports vibration.",
-      "properties": {
-        "Id": { "$ref": "#/components/Id" },
-        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
-        "Speeds": {
-          "description": "Device vibration speeds (floating point, 0 < x < 1) keyed on vibrator number, stepping will be device specific.",
-          "type": "array",
-          "items": {
-            "Index": {
-              "description": "Vibrator number.",
-              "type": "integer",
-              "minimum": 0
-            },
-            "Speed": {
-              "description": "Vibration speed (floating point, 0 < x < 1), stepping will be device specific.",
-              "type": "number",
-              "minimum": 0,
-              "maximum": 1
-            }
-          },
-          "minProperties": 2,
-          "maxProperties": 2,
-          "additionalProperties": false,
-          "required": [
-            "Index",
-            "Speed"
-          ]
-        }
-      },
-      "minProperties": 3,
-      "maxProperties": 3,
-      "additionalProperties": false,
-      "required": [
-        "Id",
-        "DeviceIndex",
-        "Speeds"
-      ]
-    },
     "RawCmd": {
       "type": "object",
       "description": "Sends a raw byte array to a device. Should only be used for testing/development.",
@@ -541,6 +501,178 @@
       "description": "Stops all actions currently being taken by all connected devices.",
       "anyOf": [ { "$ref": "#/components/IdMessage" } ]
     },
+    "VibrateCmd": {
+      "type": "object",
+      "description": "Sends a vibrate command to a device that supports vibration.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "Speeds": {
+          "description": "Device vibration speeds (floating point, 0 < x < 1) keyed on vibrator number, stepping will be device specific.",
+          "type": "array",
+          "items": {
+            "Index": {
+              "description": "Vibrator number.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "Speed": {
+              "description": "Vibration speed (floating point, 0 < x < 1), stepping will be device specific.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "minProperties": 2,
+          "maxProperties": 2,
+          "additionalProperties": false,
+          "required": [
+            "Index",
+            "Speed"
+          ]
+        }
+      },
+      "minProperties": 3,
+      "maxProperties": 3,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "Speeds"
+      ]
+    },
+    "RotateCmd": {
+      "type": "object",
+      "description": "Sends a rotate command to a device that supports rotation.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "Speeds": {
+          "description": "Device rotation speeds (floating point, 0 < x < 1) keyed on rotator number, stepping will be device specific.",
+          "type": "array",
+          "items": {
+            "Index": {
+              "description": "Rotator number.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "Speed": {
+              "description": "Rotation speed (floating point, 0 < x < 1), stepping will be device specific.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "Clockwise": {
+              "description": "Rotation direction (boolean). Not all devices have a concept of actual clockwise.",
+              "type": "boolean"
+            }
+          },
+          "minProperties": 3,
+          "maxProperties": 3,
+          "additionalProperties": false,
+          "required": [
+            "Index",
+            "Speed",
+            "Clockwise"
+          ]
+        }
+      },
+      "minProperties": 3,
+      "maxProperties": 3,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "Speeds"
+      ]
+    },
+    "LinearCmd": {
+      "type": "object",
+      "description": "Sends a linear movement command to a device that supports linear movements.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "Vectors": {
+          "description": "Device linear movement speeds (floating point, 0 < x < 1) and positions (floating point, 0 < x < 1) keyed on linear actuator number, stepping will be device specific.",
+          "type": "array",
+          "items": {
+            "Index": {
+              "description": "Linear actuator number.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "Speed": {
+              "description": "Linear movement speed (floating point, 0 < x < 1), stepping will be device specific.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "Position": {
+              "description": "Linear movement position (floating point, 0 < x < 1), stepping will be device specific.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "minProperties": 3,
+          "maxProperties": 3,
+          "additionalProperties": false,
+          "required": [
+            "Index",
+            "Speed",
+            "Position"
+          ]
+        }
+      },
+      "minProperties": 3,
+      "maxProperties": 3,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "Vectors"
+      ]
+    },
+    "ConstrictCmd": {
+      "type": "object",
+      "description": "Sends a constrict command to a device that supports constriction.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "Levels": {
+          "description": "Constriction levels (floating point, 0 < x < 1) keyed on constrictor number, stepping will be device specific.",
+          "type": "array",
+          "items": {
+            "Index": {
+              "description": "Constrictor number.",
+              "type": "integer",
+              "minimum": 0
+            },
+            "Level": {
+              "description": "Constriction level (floating point, 0 < x < 1), stepping will be device specific.",
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "minProperties": 2,
+          "maxProperties": 2,
+          "additionalProperties": false,
+          "required": [
+            "Index",
+            "Level"
+          ]
+        }
+      },
+      "minProperties": 3,
+      "maxProperties": 3,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "Levels"
+      ]
+    },
     "StartAccelerometerCmd": {
       "type": "object",
       "description": "Starts accelerometer reporting from device.",
@@ -569,6 +701,34 @@
       "required": [
         "Id",
         "DeviceIndex"
+      ]
+    },
+    "AccelerometerData": {
+      "type": "object",
+      "description": "Notifies client of a device's accelerometer reading.",
+      "properties": {
+        "Id": { "$ref": "#/components/SystemId" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "AccelerometerX": {
+          "type": "integer"
+        },
+        "AccelerometerY": {
+          "type": "integer"
+        },
+        "AccelerometerZ": {
+          "type": "integer"
+        }
+      },
+      "minProperties": 5,
+      "maxProperties": 5,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "DeviceMessages",
+        "AccelerometerX",
+        "AccelerometerY",
+        "AccelerometerZ"
       ]
     }
   },
@@ -601,8 +761,12 @@
       "RawCmd": { "$ref": "#/messages/RawCmd" },
       "VorzeA10CycloneCmd": { "$ref": "#/messages/VorzeA10CycloneCmd" },
       "VibrateCmd": { "$ref": "#/messages/VibrateCmd" },
+      "RotateCmd": { "$ref": "#/messages/RotateCmd" },
+      "LinearCmd": { "$ref": "#/messages/LinearCmd" },
+      "ConstrictCmd": { "$ref": "#/messages/ConstrictCmd" },
       "StartAccelerometerCmd": { "$ref": "#/messages/StartAccelerometerCmd" },
-      "StopAccelerometerCmd": { "$ref": "#/messages/StopAccelerometerCmd" }
+      "StopAccelerometerCmd": { "$ref": "#/messages/StopAccelerometerCmd" },
+      "AccelerometerData": { "$ref": "#/messages/AccelerometerData" }
     },
     "additionalProperties": false,
     "minProperties": 1,

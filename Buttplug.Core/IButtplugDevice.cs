@@ -14,10 +14,16 @@ namespace Buttplug.Core
         string Identifier { get; }
 
         [NotNull]
+        uint Index { get; set; }
+
+        [NotNull]
         bool IsConnected { get; }
 
         [CanBeNull]
         event EventHandler DeviceRemoved;
+
+        [CanBeNull]
+        event EventHandler<MessageReceivedEventArgs> MessageEmitted;
 
         [NotNull]
         IEnumerable<Type> GetAllowedMessageTypes();
