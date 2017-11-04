@@ -7,7 +7,9 @@ using Buttplug.Core.Messages;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+#if !NET35
 using NJsonSchema;
+#endif
 using static Buttplug.Core.Messages.Error;
 
 namespace Buttplug.Core
@@ -18,8 +20,11 @@ namespace Buttplug.Core
         private readonly Dictionary<string, Type> _messageTypes;
         [NotNull]
         private readonly IButtplugLog _bpLogger;
+
+#if !NET35
         [NotNull]
         private readonly JsonSchema4 _schema;
+#endif
 
         public ButtplugJsonMessageParser([NotNull] IButtplugLogManager aLogManager)
         {
@@ -65,6 +70,7 @@ namespace Buttplug.Core
 #else
             var assembly = Assembly.GetExecutingAssembly();
 #endif
+#if !NET35
             const string resourceName = "Buttplug.Core.buttplug-schema.json";
             Stream stream = null;
             try
@@ -81,6 +87,7 @@ namespace Buttplug.Core
             {
                 stream?.Dispose();
             }
+#endif
         }
 
         [NotNull]
@@ -100,12 +107,14 @@ namespace Buttplug.Core
                 return res.ToArray();
             }
 
+#if !NET35
             var errors = _schema.Validate(msgArray);
             if (errors.Any())
             {
                 res.Add(_bpLogger.LogErrorMsg(ButtplugConsts.SystemMsgId, ErrorClass.ERROR_MSG, "Message does not conform to schema: " + string.Join(", ", errors.Select(aErr => aErr.ToString()).ToArray())));
                 return res.ToArray();
             }
+#endif
 
             if (!msgArray.Any())
             {

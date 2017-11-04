@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
   <PropertyGroup>
     <PackageId />
     <PackageVersion>1.0.0-dev</PackageVersion>
     <RootNamespace>Buttplug.Core</RootNamespace>
     <AssemblyName>Buttplug.Core</AssemblyName>
-    <TargetFrameworks>net452;netstandard1.4</TargetFrameworks>
+    <TargetFrameworks>net452;netstandard1.4;net35</TargetFrameworks>
     <CodeAnalysisRuleSet>..\Buttplug.ProjectFiles\ButtplugCodeAnalysisRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,7 +24,7 @@
     <!--Don't auto generate AssemblyInfo-->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <!--This isn't default as far as I'm aware (TODO: Check this)-->
     <DebugType>full</DebugType>
@@ -33,36 +33,42 @@
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
     <DefineConstants>LIBLOG_PORTABLE</DefineConstants>
   </PropertyGroup>
-  
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net35' ">
+    <DefineConstants>NET35</DefineConstants>
+    <DefineConstants>LIBLOG_PORTABLE</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" version="11.0.0" />
     <PackageReference Include="LibLog" version="4.2.6" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" version="10.0.3" />
-    <PackageReference Include="NJsonSchema" version="9.4.5" />
     <PackageReference Include="NLog" version="5.0.0-beta11" />
     <PackageReference Include="StyleCop.Analyzers" version="1.1.0-beta004" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.4' ">
+    <PackageReference Include="NJsonSchema" version="9.4.5" />
     <PackageReference Include="System.Diagnostics.StackTrace" version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
+    <PackageReference Include="NJsonSchema" version="9.4.5" />
     <PackageReference Include="Microsoft.CSharp" version="4.4.0" />
   </ItemGroup>
-  
+
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta004\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.0-beta004\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <EmbeddedResource Include="..\dependencies\buttplug-schema\schema\buttplug-schema.json" />
     <None Include="app.config" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <AdditionalFiles Include="..\Buttplug.ProjectFiles\stylecop.json" />
   </ItemGroup>
-  
+
 </Project>
