@@ -30,10 +30,6 @@ namespace Buttplug.Server.Managers.ETSerialManager
         {
             BpLogger.Info("Stopping Scanning Serial Ports for ErosTek Devices");
             _isScanning = false;
-            if (_scanThread.IsAlive)
-            {
-                _scanThread.Join();
-            }
         }
 
         public override bool IsScanning()
@@ -65,8 +61,8 @@ namespace Buttplug.Server.Managers.ETSerialManager
 
                     SerialPort serialPort = new SerialPort(port);
 
-                    serialPort.ReadTimeout = 200;
-                    serialPort.WriteTimeout = 200;
+                    serialPort.ReadTimeout = 50;
+                    serialPort.WriteTimeout = 50;
                     serialPort.BaudRate = 19200;
                     serialPort.Parity = Parity.None;
                     serialPort.StopBits = StopBits.One;
@@ -117,9 +113,9 @@ namespace Buttplug.Server.Managers.ETSerialManager
                         // This seems to be an ET312! Let's try to create the device.
                         try
                         {
-                            BpLogger.Info("Found device at port " + port);
-
                             var device = new ET312Device(serialPort, LogManager, "Erostek ET-312", port);
+
+                            BpLogger.Info("Found device at port " + port);
 
                             // Device succesfully created!
                             InvokeDeviceAdded(new DeviceAddedEventArgs(device));
@@ -136,8 +132,12 @@ namespace Buttplug.Server.Managers.ETSerialManager
                     serialPort.Dispose();
                 }
 
-                System.Threading.Thread.Sleep(5000);
+                System.Threading.Thread.Sleep(3000);
+
+                // _isScanning = false; // Uncomment to disable continuuous serial port scanning
             }
+
+            InvokeScanningFinished();
         }
     }
 }
