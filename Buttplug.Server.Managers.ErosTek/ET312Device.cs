@@ -69,8 +69,8 @@ namespace Buttplug.Server.Managers.ETSerialManager
             }
 
             // We're now ready to receive events
-            MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), HandleFleshlightLaunchFW12Cmd);
-            MsgFuncs.Add(typeof(StopDeviceCmd), HandleStopDeviceCmd);
+            MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchFW12Cmd));
+            MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
 
             // Start update timer
             _updateInterval = 20;                        // <- Change this value to adjust box update frequency in ms
