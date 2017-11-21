@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,7 @@ namespace Buttplug.Server.Managers.ETSerialManager
 
             // We're now ready to receive events
             MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchFW12Cmd));
+            MsgFuncs.Add(typeof(LinearCmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchFW12Cmd, new Dictionary<string, string>() { { "ActuatorCount", "1" } }));
             MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
 
             // Start update timer
@@ -211,10 +213,42 @@ namespace Buttplug.Server.Managers.ETSerialManager
 
         private async Task<ButtplugMessage> HandleFleshlightLaunchFW12Cmd(ButtplugDeviceMessage aMsg)
         {
+            var cmdMsg1 = aMsg as FleshlightLaunchFW12Cmd;
+            var cmdMsg2 = aMsg as LinearCmd;
+            if (cmdMsg1 is null && cmdMsg2 is null)
+            {
+                return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
+            }
+
+            if (cmdMsg2 != null)
+            {
+                foreach (var v in cmdMsg2.Speeds)
+                {
+                    if (v.Index != 0)
+                    {
+                        continue;
+                    }
+
+                    cmdMsg1 = new FleshlightLaunchFW12Cmd(
+                        cmdMsg2.DeviceIndex,
+                        Convert.ToUInt32(v.Speed * 99),
+                        Convert.ToUInt32(v.Position * 99),
+                        cmdMsg2.Id);
+
+                    break;
+                }
+            }
+
+            if (cmdMsg1 is null)
+            {
+                // If we're here, the generic command specified an actuator we don't have.
+                return new Ok(aMsg.Id);
+            }
+
             lock (_movementLock)
             {
-                _speed = (aMsg as FleshlightLaunchFW12Cmd).Speed;
-                _position = (aMsg as FleshlightLaunchFW12Cmd).Position;
+                _speed = cmdMsg1.Speed;
+                _position = cmdMsg1.Position;
 
                 _position = _position < 0 ? 0 : _position;
                 _position = _position > 100 ? 100 : _position;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
@@ -52,6 +53,7 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             // Setup message function array
             MsgFuncs.Add(typeof(FleshlightLaunchFW12Cmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchRawCmd));
+            MsgFuncs.Add(typeof(LinearCmd), new ButtplugDeviceWrapper(HandleFleshlightLaunchRawCmd, new Dictionary<string, string>() { { "ActuatorCount", "1" } }));
             MsgFuncs.Add(typeof(StopDeviceCmd), new ButtplugDeviceWrapper(HandleStopDeviceCmd));
         }
 
@@ -78,15 +80,33 @@ namespace Buttplug.Server.Bluetooth.Devices
         private async Task<ButtplugMessage> HandleFleshlightLaunchRawCmd(ButtplugDeviceMessage aMsg)
         {
             // TODO: Split into Command message and Control message? (Issue #17)
-            var cmdMsg = aMsg as FleshlightLaunchFW12Cmd;
-            if (cmdMsg is null)
+            var cmdMsg1 = aMsg as FleshlightLaunchFW12Cmd;
+            var cmdMsg2 = aMsg as LinearCmd;
+            if (cmdMsg1 is null && cmdMsg2 is null)
             {
                 return BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler");
             }
 
+            if (cmdMsg2 != null)
+            {
+                foreach (var v in cmdMsg2.Speeds)
+                {
+                    if (v.Index != 0)
+                    {
+                        continue;
+                    }
+
+                    return await Interface.WriteValue(aMsg.Id,
+                        Info.Characteristics[(uint)FleshlightLaunchBluetoothInfo.Chrs.Tx],
+                        new[] { (byte)Convert.ToUInt32(v.Position * 99), (byte)Convert.ToUInt32(v.Speed * 99) });
+                }
+
+                return new Ok(aMsg.Id);
+            }
+
             return await Interface.WriteValue(aMsg.Id,
                 Info.Characteristics[(uint)FleshlightLaunchBluetoothInfo.Chrs.Tx],
-                new[] { (byte)cmdMsg.Position, (byte)cmdMsg.Speed });
+                new[] { (byte)cmdMsg1.Position, (byte)cmdMsg1.Speed });
         }
     }
 }
