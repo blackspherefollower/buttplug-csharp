@@ -142,6 +142,7 @@ namespace Buttplug.Components.Controls
             bpServer.AddDeviceSubtypeManager(aLogger => new XInputGamepadManager(aLogger));
             bpServer.AddDeviceSubtypeManager(aLogger => new HidManager(aLogger));
             bpServer.AddDeviceSubtypeManager(aLogger => new ETSerialManager(aLogger));
+            bpServer.AddDeviceSubtypeManager(aLogger => new WiiMoteManager(aLogger));
 
 #if DEBUG
             bpServer.AddDeviceSubtypeManager(aLogger => new SimulatorManager(aLogger));
