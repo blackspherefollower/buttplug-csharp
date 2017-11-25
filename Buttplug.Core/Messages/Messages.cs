@@ -783,4 +783,42 @@ namespace Buttplug.Core.Messages
             MessageVersioningVersion = 1;
         }
     }
+    public class StartButtonsCmd : ButtplugDeviceMessage
+    {
+        public StartButtonsCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class StopButtonsCmd : ButtplugDeviceMessage
+    {
+        public StopButtonsCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class ButtonData : ButtplugDeviceMessage, IButtplugMessageOutgoingOnly
+    {
+        [JsonProperty(Required = Required.Always)]
+        public string Button = string.Empty;
+
+        [JsonProperty(Required = Required.Always)]
+        public bool Down = false;
+
+        [JsonProperty(Required = Required.Always)]
+        public long Duration = -1;
+
+        public ButtonData(string aButton, bool aDown, long aDuration, uint aDeviceIndex, uint aId = ButtplugConsts.SystemMsgId)
+             : base(aId, aDeviceIndex)
+        {
+            Button = aButton;
+            Down = aDown;
+            Duration = aDuration;
+            MessageVersioningVersion = 1;
+        }
+    }
 }

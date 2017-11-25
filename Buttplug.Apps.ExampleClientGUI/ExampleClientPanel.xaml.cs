@@ -245,5 +245,39 @@ namespace Buttplug.Apps.ExampleClientGUI
                 }
             }
         }
+
+        private void ReportButtons_Checked(object sender, RoutedEventArgs e)
+        {
+            if (!_client.IsConnected)
+            {
+                return;
+            }
+
+            foreach (var dev in Devices.Values)
+            {
+                if (dev.AllowedMessages.ContainsKey("StartButtonsCmd"))
+                {
+                    _client.SendDeviceMessage(dev,
+                        new StartButtonsCmd(dev.Index, _client.nextMsgId));
+                }
+            }
+        }
+
+        private void ReportButtons_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!_client.IsConnected)
+            {
+                return;
+            }
+
+            foreach (var dev in Devices.Values)
+            {
+                if (dev.AllowedMessages.ContainsKey("StopButtonsCmd"))
+                {
+                    _client.SendDeviceMessage(dev,
+                        new StopButtonsCmd(dev.Index, _client.nextMsgId));
+                }
+            }
+        }
     }
 }

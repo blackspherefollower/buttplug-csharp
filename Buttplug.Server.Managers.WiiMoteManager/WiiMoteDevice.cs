@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using WiimoteLib;
+using System.Collections.Concurrent;
 
 namespace Buttplug.Server.Managers.XInputGamepadManager
 {
@@ -12,6 +13,9 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
         private Wiimote _device;
 
         private bool _reportAccel = false;
+        private bool _reportButtons = false;
+
+        private ConcurrentDictionary<string, DateTime> _buttonDowns = new ConcurrentDictionary<string, DateTime>();
 
         public WiiMoteDevice(IButtplugLogManager aLogManager, Wiimote aDevice)
             : base(aLogManager, "WiiMote", aDevice.ID.ToString(), 1)
@@ -23,7 +27,19 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
 
             MsgFuncs.Add(typeof(StartAccelerometerCmd), new ButtplugDeviceWrapper(HandleStartAccelerometerCmd));
             MsgFuncs.Add(typeof(StopAccelerometerCmd), new ButtplugDeviceWrapper(HandleStopAccelerometerCmd));
+            MsgFuncs.Add(typeof(StartButtonsCmd), new ButtplugDeviceWrapper(HandleStartButtonsCmd));
+            MsgFuncs.Add(typeof(StopButtonsCmd), new ButtplugDeviceWrapper(HandleStopButtonsCmd));
             _device.WiimoteChanged += HandleWiimoteChanged;
+
+            var buttons = _device.WiimoteState.ButtonState;
+            foreach (var x in buttons.GetType().GetFields())
+            {
+                var t = x.GetValue(buttons);
+                if ((t as bool?) ?? true)
+                {
+                    _buttonDowns.TryAdd(x.Name, DateTime.Now);
+                }
+            }
         }
 
         private void HandleWiimoteChanged(object sender, WiimoteChangedEventArgs e)
@@ -32,6 +48,27 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
             {
                 var axis = e.WiimoteState.AccelState.RawValues;
                 EmitMessage(new AccelerometerData(axis.X, axis.Y, axis.Z, Index));
+            }
+
+            var buttons = _device.WiimoteState.ButtonState;
+            foreach (var x in buttons.GetType().GetFields())
+            {
+                var t = x.GetValue(buttons);
+                if ((t as bool?) ?? true)
+                {
+                    if (_buttonDowns.TryAdd(x.Name, DateTime.Now) && _reportButtons)
+                    {
+                        EmitMessage(new ButtonData(x.Name, true, 0, Index));
+                    }
+                }
+                else if (_buttonDowns.TryRemove(x.Name, out var then))
+                {
+                    var now = DateTime.Now;
+                    if (_reportButtons)
+                    {
+                        EmitMessage(new ButtonData(x.Name, false, now.Subtract(then).Milliseconds, Index));
+                    }
+                }
             }
         }
 
@@ -107,6 +144,30 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
 
             _reportAccel = false;
             _device.SetReportType(InputReport.Buttons, false);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
+        }
+
+        private Task<ButtplugMessage> HandleStartButtonsCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as StartButtonsCmd;
+            if (cmdMsg is null)
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
+            _reportButtons = true;
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
+        }
+
+        private Task<ButtplugMessage> HandleStopButtonsCmd(ButtplugDeviceMessage aMsg)
+        {
+            var cmdMsg = aMsg as StopButtonsCmd;
+            if (cmdMsg is null)
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
+            _reportButtons = false;
             return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
