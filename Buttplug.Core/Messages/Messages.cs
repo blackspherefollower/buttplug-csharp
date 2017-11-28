@@ -783,6 +783,7 @@ namespace Buttplug.Core.Messages
             MessageVersioningVersion = 1;
         }
     }
+
     public class StartButtonsCmd : ButtplugDeviceMessage
     {
         public StartButtonsCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
@@ -818,6 +819,49 @@ namespace Buttplug.Core.Messages
             Button = aButton;
             Down = aDown;
             Duration = aDuration;
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class StartMovementCmd : ButtplugDeviceMessage
+    {
+        public StartMovementCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class StopMovementCmd : ButtplugDeviceMessage
+    {
+        public StopMovementCmd(uint aDeviceIndex, uint aId = ButtplugConsts.DefaultMsgId)
+            : base(aId, aDeviceIndex)
+        {
+            MessageVersioningVersion = 1;
+        }
+    }
+
+    public class MovementData : ButtplugDeviceMessage, IButtplugMessageOutgoingOnly
+    {
+        [JsonProperty(Required = Required.Always)]
+        public int DeltaX = 0;
+
+        [JsonProperty(Required = Required.Always)]
+        public int DeltaY = 0;
+
+        [JsonProperty(Required = Required.Always)]
+        public int DeltaZ = 0;
+
+        [JsonProperty(Required = Required.Always)]
+        public uint SensorIndex = 0;
+
+        public MovementData(int aX, int aY, int aZ, uint aSensorIndex, uint aDeviceIndex, uint aId = ButtplugConsts.SystemMsgId)
+             : base(aId, aDeviceIndex)
+        {
+            DeltaX = aX;
+            DeltaY = aY;
+            DeltaZ = aZ;
+            SensorIndex = aSensorIndex;
             MessageVersioningVersion = 1;
         }
     }

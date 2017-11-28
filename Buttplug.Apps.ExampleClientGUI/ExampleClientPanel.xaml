@@ -13,6 +13,7 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 		<Label Content="Address:"  Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"/>
@@ -92,6 +93,20 @@
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<CheckBox Name="ReportButtons" Content="Report" Grid.Row="0" Grid.Column="0" Checked="ReportButtons_Checked" Unchecked="ReportButtons_Unchecked"/>
+			</Grid>
+		</GroupBox>
+		
+		<GroupBox Grid.Row="5" Header="Movement">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<CheckBox Name="ReportMovement" Content="Report" Grid.Row="0" Grid.Column="0" Checked="ReportMovement_Checked" Unchecked="ReportMovement_Unchecked"/>
 			</Grid>
 		</GroupBox>
 	</Grid>

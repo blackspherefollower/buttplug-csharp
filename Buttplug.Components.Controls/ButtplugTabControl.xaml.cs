@@ -14,6 +14,7 @@ using NLog;
 using NLog.Config;
 using SharpRaven;
 using SharpRaven.Data;
+using Buttplug.Server.Managers.QuadMouse;
 
 #if DEBUG
 using Buttplug.Server.Managers.SimulatorManager;
@@ -141,8 +142,9 @@ namespace Buttplug.Components.Controls
 
             bpServer.AddDeviceSubtypeManager(aLogger => new XInputGamepadManager(aLogger));
             bpServer.AddDeviceSubtypeManager(aLogger => new HidManager(aLogger));
-            bpServer.AddDeviceSubtypeManager(aLogger => new ETSerialManager(aLogger));
-            bpServer.AddDeviceSubtypeManager(aLogger => new WiiMoteManager(aLogger));
+            //bpServer.AddDeviceSubtypeManager(aLogger => new ETSerialManager(aLogger));
+            //bpServer.AddDeviceSubtypeManager(aLogger => new WiiMoteManager(aLogger));
+            bpServer.AddDeviceSubtypeManager(aLogger => new QuadMouse(aLogger));
 
 #if DEBUG
             bpServer.AddDeviceSubtypeManager(aLogger => new SimulatorManager(aLogger));

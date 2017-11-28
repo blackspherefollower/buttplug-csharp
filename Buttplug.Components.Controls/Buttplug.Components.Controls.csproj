@@ -158,6 +158,10 @@
       <Project>{436cf4ff-ae10-45da-8909-9aacf1ed6425}</Project>
       <Name>Buttplug.Server.Managers.ETSerialManager</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Buttplug.Server.Managers.QuadMouse\Buttplug.Server.Managers.QuadMouse.csproj">
+      <Project>{436cf4ff-ae10-45da-8909-9aacf1ed6435}</Project>
+      <Name>Buttplug.Server.Managers.QuadMouse</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Buttplug.Server.Managers.SimulatorManager\Buttplug.Server.Managers.SimulatorManager.csproj">
       <Project>{334d5731-7619-471e-85c3-240831514741}</Project>
       <Name>Buttplug.Server.Managers.SimulatorManager</Name>

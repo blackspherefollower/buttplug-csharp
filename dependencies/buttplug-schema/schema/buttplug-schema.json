@@ -786,6 +786,68 @@
         "Down",
         "Duration"
       ]
+    },
+    "StartMovementCmd": {
+      "type": "object",
+      "description": "Starts accelerometer reporting from device.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" }
+      },
+      "minProperties": 2,
+      "maxProperties": 2,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex"
+      ]
+    },
+    "StopMovementCmd": {
+      "type": "object",
+      "description": "Stops accelerometer reporting from device.",
+      "properties": {
+        "Id": { "$ref": "#/components/Id" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" }
+      },
+      "minProperties": 2,
+      "maxProperties": 2,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex"
+      ]
+    },
+    "MovementData": {
+      "type": "object",
+      "description": "Notifies client of a device's accelerometer reading.",
+      "properties": {
+        "Id": { "$ref": "#/components/SystemId" },
+        "DeviceIndex": { "$ref": "#/components/DeviceIndex" },
+        "SensorIndex": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "DeltaX": {
+          "type": "integer"
+        },
+        "DeltaY": {
+          "type": "integer"
+        },
+        "DeltaZ": {
+          "type": "integer"
+        }
+      },
+      "minProperties": 6,
+      "maxProperties": 6,
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "DeviceIndex",
+        "SensorIndex",
+        "DeltaX",
+        "DeltaY",
+        "DeltaZ"
+      ]
     }
   },
   "type": "array",
@@ -825,7 +887,10 @@
       "AccelerometerData": { "$ref": "#/messages/AccelerometerData" },
       "StartButtonsCmd": { "$ref": "#/messages/StartButtonsCmd" },
       "StopButtonsCmd": { "$ref": "#/messages/StopButtonsCmd" },
-      "ButtonData": { "$ref": "#/messages/ButtonData" }
+      "ButtonData": { "$ref": "#/messages/ButtonData" },
+      "StartMovementCmd": { "$ref": "#/messages/StartMovementCmd" },
+      "StopMovementCmd": { "$ref": "#/messages/StopMovementCmd" },
+      "MovementData": { "$ref": "#/messages/MovementData" }
     },
     "additionalProperties": false,
     "minProperties": 1,
