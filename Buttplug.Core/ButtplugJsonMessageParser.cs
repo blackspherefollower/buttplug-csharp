@@ -16,14 +16,14 @@ namespace Buttplug.Core
     {
         [NotNull]
         private readonly Dictionary<string, Type> _messageTypes;
-        [NotNull]
+
         private readonly IButtplugLog _bpLogger;
         [NotNull]
         private readonly JsonSchema4 _schema;
 
         public ButtplugJsonMessageParser(IButtplugLogManager aLogManager = null)
         {
-            _bpLogger = aLogManager.GetLogger(GetType());
+            _bpLogger = aLogManager?.GetLogger(GetType());
             _bpLogger?.Info($"Setting up {GetType().Name}");
             IEnumerable<Type> allTypes;
 
@@ -65,8 +65,8 @@ namespace Buttplug.Core
             }
             catch (Exception e)
             {
-                _bpLogger.LogException(e);
-                throw e;
+                _bpLogger?.LogException(e);
+                throw;
             }
             finally
             {
@@ -163,7 +163,7 @@ namespace Buttplug.Core
 
             // Support downgrading messages
             var tmp = aMsg;
-            while (tmp.SchemaVersion > clientSchemaVersion)
+            while (tmp != null && tmp.SchemaVersion > clientSchemaVersion)
             {
                 if (tmp.PreviousType == null)
                 {
@@ -179,8 +179,8 @@ namespace Buttplug.Core
                     continue;
                 }
 
-                tmp = (ButtplugMessage)aMsg.PreviousType.GetConstructor(
-                    new Type[] { tmp.GetType() }).Invoke(new object[] { tmp });
+                tmp = (ButtplugMessage)aMsg.PreviousType?.GetConstructor(
+                    new[] { tmp.GetType() })?.Invoke(new object[] { tmp });
             }
 
             var o = new JObject(new JProperty(aMsg.GetType().Name, JObject.FromObject(tmp)));
@@ -197,7 +197,7 @@ namespace Buttplug.Core
             {
                 // Support downgrading messages
                 var tmp = msg;
-                while (tmp.SchemaVersion > clientSchemaVersion)
+                while (tmp != null && tmp.SchemaVersion > clientSchemaVersion)
                 {
                     if (tmp.PreviousType == null)
                     {
@@ -212,8 +212,8 @@ namespace Buttplug.Core
                         continue;
                     }
 
-                    tmp = (ButtplugMessage)tmp.PreviousType.GetConstructor(
-                        new Type[] { tmp.GetType() }).Invoke(new object[] { tmp });
+                    tmp = (ButtplugMessage)tmp.PreviousType?.GetConstructor(
+                        new[] { tmp.GetType() })?.Invoke(new object[] { tmp });
                 }
 
                 var o = new JObject(new JProperty(msg.GetType().Name, JObject.FromObject(tmp)));
