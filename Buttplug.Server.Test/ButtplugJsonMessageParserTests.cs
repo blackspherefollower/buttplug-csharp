@@ -71,5 +71,25 @@ namespace Buttplug.Server.Test
                     break;
             }
         }
+
+        [Fact]
+        public void SerializeDowngrade()
+        {
+            var msg = new DeviceList(new DeviceMessageInfo[]
+            {
+                new DeviceMessageInfo(0, "testDev0", new System.Collections.Generic.Dictionary<string, MessageAttributes>()
+                {
+                    { "VibrateCmd", new MessageAttributes() { FeatureCount = 2 } },
+                }),
+                new DeviceMessageInfo(5, "testDev5", new System.Collections.Generic.Dictionary<string, MessageAttributes>()
+                {
+                    { "LinearCmd", new MessageAttributes() { FeatureCount = 1 } },
+                }),
+            }, 3);
+
+            var parser = new ButtplugJsonMessageParser(new ButtplugLogManager());
+            Assert.Equal("[{\"DeviceList\":{\"Devices\":[{\"DeviceName\":\"testDev0\",\"DeviceIndex\":0,\"DeviceMessages\":{\"VibrateCmd\":{\"FeatureCount\":2}}},{\"DeviceName\":\"testDev5\",\"DeviceIndex\":5,\"DeviceMessages\":{\"LinearCmd\":{\"FeatureCount\":1}}}],\"Id\":3}}]", parser.Serialize(msg, 1));
+            Assert.Equal("[{\"DeviceList\":{\"Devices\":[{\"DeviceName\":\"testDev0\",\"DeviceIndex\":0,\"DeviceMessages\":[\"VibrateCmd\"]},{\"DeviceName\":\"testDev5\",\"DeviceIndex\":5,\"DeviceMessages\":[\"LinearCmd\"]}],\"Id\":3}}]", parser.Serialize(msg, 0));
+        }
     }
 }
