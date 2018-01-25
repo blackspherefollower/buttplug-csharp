@@ -51,6 +51,7 @@ namespace Buttplug.Server.Test
             return _address;
         }
 
+        /// <inheritdoc/>
         public event EventHandler DeviceRemoved;
 
         public void Disconnect()

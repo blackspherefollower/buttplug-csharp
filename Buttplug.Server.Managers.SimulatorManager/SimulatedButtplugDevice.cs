@@ -9,8 +9,9 @@ namespace Buttplug.Server.Managers.SimulatorManager
 {
     internal class SimulatedButtplugDevice : ButtplugDevice
     {
-        private SimulatorManager _manager;
-        private uint _vibratorCount = 0;
+        private readonly SimulatorManager _manager;
+
+        private readonly uint _vibratorCount;
 
         public SimulatedButtplugDevice(
             SimulatorManager aManager,
@@ -44,28 +45,38 @@ namespace Buttplug.Server.Managers.SimulatorManager
         {
         }
 
-        private async Task<ButtplugMessage> HandleStopDeviceCmd(ButtplugDeviceMessage aMsg)
+        private Task<ButtplugMessage> HandleStopDeviceCmd(ButtplugDeviceMessage aMsg)
         {
             _manager.StopDevice(this);
-            return new Ok(aMsg.Id);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
-        private async Task<ButtplugMessage> HandleSingleMotorVibrateCmd(ButtplugDeviceMessage aMsg)
+        private Task<ButtplugMessage> HandleSingleMotorVibrateCmd(ButtplugDeviceMessage aMsg)
         {
-            for (uint i = 0; i < _vibratorCount; i++)
+            if (!(aMsg is SingleMotorVibrateCmd cmdMsg))
             {
-                _manager.Vibrate(this, (aMsg as SingleMotorVibrateCmd).Speed, i);
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
             }
 
-            return new Ok(aMsg.Id);
+            for (uint i = 0; i < _vibratorCount; i++)
+            {
+                _manager.Vibrate(this, cmdMsg.Speed, i);
+            }
+
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
-        private async Task<ButtplugMessage> HandleVibrateCmd(ButtplugDeviceMessage aMsg)
+        private Task<ButtplugMessage> HandleVibrateCmd(ButtplugDeviceMessage aMsg)
         {
-            var vis = from x in (aMsg as VibrateCmd).Speeds where x.Index >= 0 && x.Index < _vibratorCount select x;
+            if (!(aMsg is VibrateCmd cmdMsg))
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
+            var vis = cmdMsg.Speeds.Where(x => x.Index < _vibratorCount).ToList();
             if (!vis.Any())
             {
-                return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
+                return Task.FromResult<ButtplugMessage>(new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id));
             }
 
             foreach (var vi in vis)
@@ -73,29 +84,45 @@ namespace Buttplug.Server.Managers.SimulatorManager
                 _manager.Vibrate(this, vi.Speed, vi.Index);
             }
 
-            return new Ok(aMsg.Id);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
-        private async Task<ButtplugMessage> HandleVorzeA10CycloneCmd(ButtplugDeviceMessage aMsg)
+        private Task<ButtplugMessage> HandleVorzeA10CycloneCmd(ButtplugDeviceMessage aMsg)
         {
-            _manager.Rotate(this, (aMsg as VorzeA10CycloneCmd).Speed, (aMsg as VorzeA10CycloneCmd).Clockwise);
-            return new Ok(aMsg.Id);
+            if (!(aMsg is VorzeA10CycloneCmd cmdMsg))
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
+            _manager.Rotate(this, cmdMsg.Speed, cmdMsg.Clockwise);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
-        private async Task<ButtplugMessage> HandleFleshlightLaunchFW12Cmd(ButtplugDeviceMessage aMsg)
+        // ReSharper disable once InconsistentNaming
+        private Task<ButtplugMessage> HandleFleshlightLaunchFW12Cmd(ButtplugDeviceMessage aMsg)
         {
+            if (!(aMsg is FleshlightLaunchFW12Cmd cmdMsg))
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
             _manager.Linear(this,
-                Convert.ToDouble((aMsg as FleshlightLaunchFW12Cmd).Speed) / 99,
-                Convert.ToDouble((aMsg as FleshlightLaunchFW12Cmd).Position) / 99);
-            return new Ok(aMsg.Id);
+                Convert.ToDouble(cmdMsg.Speed) / 99,
+                Convert.ToDouble(cmdMsg.Position) / 99);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
 
-        private async Task<ButtplugMessage> HandleLinearCmd(ButtplugDeviceMessage aMsg)
+        private Task<ButtplugMessage> HandleLinearCmd(ButtplugDeviceMessage aMsg)
         {
-            var vis = from x in (aMsg as LinearCmd).Vectors where x.Index == 0 select x;
+            if (!(aMsg is LinearCmd cmdMsg))
+            {
+                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, "Wrong Handler"));
+            }
+
+            var vis = cmdMsg.Vectors.Where(x => x.Index == 0).ToList();
             if (!vis.Any())
             {
-                return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
+                return Task.FromResult<ButtplugMessage>(new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id));
             }
 
             foreach (var vi in vis)
@@ -103,7 +130,7 @@ namespace Buttplug.Server.Managers.SimulatorManager
                 _manager.Linear2(this, vi.Duration, vi.Position);
             }
 
-            return new Ok(aMsg.Id);
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
         }
     }
 }

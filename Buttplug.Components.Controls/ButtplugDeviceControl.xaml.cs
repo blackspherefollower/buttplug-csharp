@@ -2,26 +2,23 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
 using Buttplug.Server;
-using JetBrains.Annotations;
 
 namespace Buttplug.Components.Controls
 {
     /// <summary>
     /// Interaction logic for ButtplugDeviceControl.xaml
     /// </summary>
-    public partial class ButtplugDeviceControl : UserControl
+    public partial class ButtplugDeviceControl
     {
-        public class DeviceListItem
+        private class DeviceListItem
         {
-            public ButtplugDeviceInfo Info;
+            public readonly ButtplugDeviceInfo Info;
 
             public bool Connected;
 
@@ -30,8 +27,6 @@ namespace Buttplug.Components.Controls
                 Info = aInfo;
                 Connected = true;
             }
-
-            public event PropertyChangedEventHandler PropertyChanged;
 
             public override string ToString()
             {
@@ -55,9 +50,6 @@ namespace Buttplug.Components.Controls
 
         private readonly DeviceList _devices;
 
-        [NotNull]
-        private readonly List<DispatcherOperation> _ops;
-
         private ButtplugServer _bpServer;
 
         public ButtplugDeviceControl()
@@ -68,7 +60,6 @@ namespace Buttplug.Components.Controls
             DeviceListBox.ItemsSource = _devices;
             DeviceListBox.SelectionMode = SelectionMode.Multiple;
             DeviceListBox.SelectionChanged += SelectionChangedHandler;
-            _ops = new List<DispatcherOperation>();
         }
 
         public void SetButtplugServer(ButtplugServer aServer)
@@ -85,12 +76,11 @@ namespace Buttplug.Components.Controls
 
         public void DeviceAdded(ButtplugDeviceInfo aDev)
         {
-            var devAdd = from dl in _devices
-                         where dl.Info.Index == aDev.Index
-                         select dl;
+            var devAdd = _devices.Where(dl => dl.Info.Index == aDev.Index).ToList();
+
             if (devAdd.Any())
             {
-                foreach (var dr in devAdd.ToList())
+                foreach (var dr in devAdd)
                 {
                     dr.Connected = true;
                     _devices.UpdateList();
@@ -104,10 +94,8 @@ namespace Buttplug.Components.Controls
 
         public void DeviceRemoved(uint aIndex)
         {
-            var devRem = from dl in _devices
-                         where dl.Info.Index == aIndex
-                         select dl;
-            foreach (var dr in devRem.ToList())
+            var devRem = _devices.Where(dl => dl.Info.Index == aIndex).ToList();
+            foreach (var dr in devRem)
             {
                 dr.Connected = false;
                 _devices.UpdateList();
@@ -116,7 +104,7 @@ namespace Buttplug.Components.Controls
 
         private void OnMessageReceived(object aObj, MessageReceivedEventArgs aEvent)
         {
-            var op = Dispatcher.InvokeAsync(() =>
+            Dispatcher.InvokeAsync(() =>
             {
                 switch (aEvent.Message)
                 {
@@ -129,24 +117,17 @@ namespace Buttplug.Components.Controls
                         break;
                 }
             });
-            _ops.Add(op);
-            op.Completed += OperationCompletedHandler;
-        }
-
-        private void OperationCompletedHandler(object aObj, EventArgs aEvent)
-        {
-            _ops.Remove(aObj as DispatcherOperation);
         }
 
         private void SelectionChangedHandler(object aObj, EventArgs aEvent)
         {
             DeviceSelectionChanged?.Invoke(this,
                 DeviceListBox.SelectedItems.Cast<DeviceListItem>()
-                    .Where(aLI => aLI.Connected)
-                    .Select(aLI => aLI.Info).ToList());
+                    .Where(aLi => aLi.Connected)
+                    .Select(aLi => aLi.Info).ToList());
         }
 
-        public void StoppedScanning()
+        private void StoppedScanning()
         {
             ScanButton.Content = "Start Scanning";
         }

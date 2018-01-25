@@ -79,7 +79,7 @@ namespace Buttplug.Components.WebsocketServer
                     ws = await aServer.AcceptWebSocketAsync(aToken).ConfigureAwait(false);
                     if (ws != null)
                     {
-                        Task.Run(() => HandleConnectionAsync(ws, aToken));
+                        Parallel.Invoke(async () => await HandleConnectionAsync(ws, aToken));
                     }
                 }
                 catch (Exception aEx)
