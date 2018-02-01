@@ -32,6 +32,9 @@ namespace Buttplug.Server.Managers.UWPBluetoothManager
         [CanBeNull]
         public event EventHandler DeviceRemoved;
 
+        [CanBeNull]
+        public event EventHandler<BluetoothMessageReceivedEventArgs> BluetoothMessageReceived;
+
         public UWPBluetoothDeviceInterface(
             [NotNull] IButtplugLogManager aLogManager,
             [NotNull] BluetoothLEDevice aDevice,
@@ -101,6 +104,85 @@ namespace Buttplug.Server.Managers.UWPBluetoothManager
             }
 
             return new Ok(aMsgId);
+        }
+
+        [ItemNotNull]
+        public async Task<ButtplugMessage> SubscribeValue(uint aMsgId, Guid aCharacteristic)
+        {
+            var chrs = from x in _gattCharacteristics
+                       where x.Uuid == aCharacteristic
+                       select x;
+
+            var gattCharacteristics = chrs.ToArray();
+
+            if (!gattCharacteristics.Any())
+            {
+                return _bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"Requested characteristic {aCharacteristic} not found");
+            }
+            else if (gattCharacteristics.Length > 1)
+            {
+                _bpLogger.Warn($"Multiple gattCharacteristics for {aCharacteristic} found");
+            }
+
+            var gattCharacteristic = gattCharacteristics[0];
+            try
+            {
+                gattCharacteristic.ValueChanged += OnValueChanged;
+                var status = await gattCharacteristic.WriteClientCharacteristicConfigurationDescriptorAsync(GattClientCharacteristicConfigurationDescriptorValue.Notify);
+                if (status != GattCommunicationStatus.Success)
+                {
+                    return _bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"GattCommunication Error: {status}");
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                // This exception will be thrown if the bluetooth device disconnects in the middle of a transfer.
+                return _bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"GattCommunication Error: {e.Message}");
+            }
+
+            return new Ok(aMsgId);
+        }
+
+        private void OnValueChanged(GattCharacteristic sender, GattValueChangedEventArgs args)
+        {
+            args.CharacteristicValue.ToArray();
+            BluetoothMessageReceived?.Invoke(this, new BluetoothMessageReceivedEventArgs(args.CharacteristicValue.ToArray(), args.Timestamp.DateTime));
+        }
+
+        [ItemNotNull]
+        public async Task<BluetoothResultWrapper> ReadValue(uint aMsgId, Guid aCharacteristic)
+        {
+            var chrs = from x in _gattCharacteristics
+                where x.Uuid == aCharacteristic
+                select x;
+
+            var gattCharacteristics = chrs.ToArray();
+
+            if (!gattCharacteristics.Any())
+            {
+                return new BluetoothResultWrapper(_bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"Requested characteristic {aCharacteristic} not found"));
+            }
+            else if (gattCharacteristics.Length > 1)
+            {
+                _bpLogger.Warn($"Multiple gattCharacteristics for {aCharacteristic} found");
+            }
+
+            var gattCharacteristic = gattCharacteristics[0];
+            try
+            {
+                var result = await gattCharacteristic.ReadValueAsync(BluetoothCacheMode.Uncached);
+                if (result.Status != GattCommunicationStatus.Success)
+                {
+                    return new BluetoothResultWrapper(_bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"GattCommunication Error: {result.Status}"));
+                }
+
+                return new BluetoothResultWrapper(new Ok(aMsgId), result.Value.ToArray());
+            }
+            catch (InvalidOperationException e)
+            {
+                // This exception will be thrown if the bluetooth device disconnects in the middle of a transfer.
+                return new BluetoothResultWrapper(_bpLogger.LogErrorMsg(aMsgId, Error.ErrorClass.ERROR_DEVICE, $"GattCommunication Error: {e.Message}"));
+            }
         }
 
         public void Disconnect()

@@ -57,7 +57,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
             Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
-            Assert.AreEqual("2,\n", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
+            Assert.AreEqual("2,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
             Assert.False(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
@@ -69,7 +69,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
             Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
-            Assert.AreEqual("4,\n", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
+            Assert.AreEqual("4,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
             Assert.False(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
@@ -78,7 +78,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
             Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
-            Assert.AreEqual("1,\n", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
+            Assert.AreEqual("1,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
             Assert.False(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
@@ -87,7 +87,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.AreEqual(9, inter.LastWriten[0].MsgId);
             Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
-            Assert.AreEqual("0,\n", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
+            Assert.AreEqual("0,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
             Assert.False(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
