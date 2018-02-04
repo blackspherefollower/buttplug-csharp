@@ -9,8 +9,8 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
 {
     internal class XInputGamepadDevice : ButtplugDevice
     {
+        private readonly double[] _vibratorSpeeds = { 0, 0 };
         private Controller _device;
-        private double[] _vibratorSpeeds = { 0, 0 };
 
         public XInputGamepadDevice(IButtplugLogManager aLogManager, Controller aDevice)
             : base(aLogManager, "XBox Compatible Gamepad (XInput)", aDevice.UserIndex.ToString())
@@ -60,7 +60,7 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
 
             foreach (var vi in cmdMsg.Speeds)
             {
-                if (vi.Index < 0 || vi.Index >= 2)
+                if (vi.Index >= 2)
                 {
                     return Task.FromResult<ButtplugMessage>(new Error(
                         $"Index {vi.Index} is out of bounds for VibrateCmd for this device.",
@@ -85,15 +85,14 @@ namespace Buttplug.Server.Managers.XInputGamepadManager
             }
             catch (Exception e)
             {
-                if (_device?.IsConnected != true)
+                if (_device?.IsConnected == true)
                 {
-                    InvokeDeviceRemoved();
-
-                    // Don't throw a spanner in the works
-                    return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
+                    return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE,
+                        e.Message));
                 }
 
-                return Task.FromResult<ButtplugMessage>(BpLogger.LogErrorMsg(aMsg.Id, Error.ErrorClass.ERROR_DEVICE, e.Message));
+                InvokeDeviceRemoved();
+                return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
             }
 
             return Task.FromResult<ButtplugMessage>(new Ok(aMsg.Id));
