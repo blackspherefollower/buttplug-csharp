@@ -20,7 +20,9 @@ namespace Buttplug.Server.Bluetooth
             BuiltinDevices = new List<IBluetoothDeviceInfo>
             {
                 new FleshlightLaunchBluetoothInfo(),
-                new KiirooBluetoothInfo(),
+                new Kiiroo3rdPartyBluetoothInfo(),
+                new KiirooGen1BluetoothInfo(),
+                new KiirooGen2BluetoothInfo(),
                 new YoucupsBluetoothInfo(),
                 new LovenseRev1BluetoothInfo(),
                 new LovenseRev2BluetoothInfo(),
@@ -30,7 +32,6 @@ namespace Buttplug.Server.Bluetooth
                 new LovenseRev6BluetoothInfo(),
                 new LovenseRev7BluetoothInfo(),
                 new MagicMotionBluetoothInfo(),
-                new OhMiBodFuseBluetoothInfo(),
                 new VibratissimoBluetoothInfo(),
                 new VorzeA10CycloneInfo(),
                 new WeVibeBluetoothInfo(),
