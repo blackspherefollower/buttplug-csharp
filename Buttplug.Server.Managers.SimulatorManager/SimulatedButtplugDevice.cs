@@ -95,7 +95,7 @@ namespace Buttplug.Server.Managers.SimulatorManager
             var vis = from x in (aMsg as LinearCmd).Vectors where x.Index == 0 select x;
             if (!vis.Any())
             {
-                return new Error("Invalid vibrator index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
+                return new Error("Invalid linear index!", Error.ErrorClass.ERROR_DEVICE, aMsg.Id);
             }
 
             foreach (var vi in vis)

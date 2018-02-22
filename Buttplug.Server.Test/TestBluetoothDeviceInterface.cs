@@ -53,9 +53,20 @@ namespace Buttplug.Server.Test
 
         public event EventHandler DeviceRemoved;
 
+        public event EventHandler<BluetoothMessageReceivedEventArgs> BluetoothMessageReceived;
+
         public void Disconnect()
         {
-            throw new NotImplementedException();
+        }
+
+        public Task<BluetoothResultWrapper> ReadValue(uint aMsgId, Guid aCharacteristic)
+        {
+            return Task.FromResult(new BluetoothResultWrapper(new Ok(aMsgId), new byte[] { }));
+        }
+
+        public Task<ButtplugMessage> SubscribeValue(uint aMsgId, Guid aCharacteristic)
+        {
+            return Task.FromResult<ButtplugMessage>(new Ok(aMsgId));
         }
     }
 }

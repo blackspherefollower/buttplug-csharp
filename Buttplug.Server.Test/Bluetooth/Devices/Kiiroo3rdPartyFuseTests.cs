@@ -7,19 +7,20 @@ using NUnit.Framework;
 
 namespace Buttplug.Server.Test.Bluetooth.Devices
 {
+    // ReSharper disable once InconsistentNaming
     [TestFixture]
-    public class OhMiBodFuseTests
+    public class Kiiroo3rdPartyFuseTests
     {
         [Test]
         public void OhMiBodFuseTest()
         {
-            var bleInfo = new OhMiBodFuseBluetoothInfo();
+            var bleInfo = new Kiiroo3rdPartyBluetoothInfo();
 
             foreach (var chr in new[]
             {
-                OhMiBodFuseBluetoothInfo.Chrs.Tx,
-                OhMiBodFuseBluetoothInfo.Chrs.RxTouch,
-                OhMiBodFuseBluetoothInfo.Chrs.RxAccel,
+                Kiiroo3rdPartyBluetoothInfo.Chrs.Tx,
+                Kiiroo3rdPartyBluetoothInfo.Chrs.RxTouch,
+                Kiiroo3rdPartyBluetoothInfo.Chrs.RxAccel,
             })
             {
                 Assert.True(bleInfo.Characteristics.Length > (uint)chr);
@@ -52,7 +53,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 0.5, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)OhMiBodFuseBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)Kiiroo3rdPartyBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual(new byte[] { 0x32, 0x32, 0x00 }, inter.LastWriten[0].Value);
             Assert.False(inter.LastWriten[0].WriteWithResponse);
@@ -64,7 +65,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 1, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)OhMiBodFuseBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)Kiiroo3rdPartyBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual(new byte[] { 0x64, 0x64, 0x00 }, inter.LastWriten[0].Value);
             Assert.False(inter.LastWriten[0].WriteWithResponse);
@@ -73,7 +74,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 0.25, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)OhMiBodFuseBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)Kiiroo3rdPartyBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual(new byte[] { 0x19, 0x19, 0x00 }, inter.LastWriten[0].Value);
             Assert.False(inter.LastWriten[0].WriteWithResponse);
@@ -87,7 +88,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
                 }, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)OhMiBodFuseBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)Kiiroo3rdPartyBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual(new byte[] { 0x19, 0x4B, 0x00 }, inter.LastWriten[0].Value);
             Assert.False(inter.LastWriten[0].WriteWithResponse);
@@ -104,7 +105,7 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new StopDeviceCmd(4, 9)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(9, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)OhMiBodFuseBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)Kiiroo3rdPartyBluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual(new byte[] { 0x00, 0x00, 0x00 }, inter.LastWriten[0].Value);
             Assert.False(inter.LastWriten[0].WriteWithResponse);
