@@ -18,7 +18,7 @@ namespace Buttplug.Server.Bluetooth.Devices
             Cmd,
         }
 
-        public string[] Names { get; } = { "Onyx2", "Pearl2" };
+        public string[] Names { get; } = { "Onyx2" };
 
         public Guid[] Services { get; } = { new Guid("f60402a6-0294-4bdb-9f20-6758133f7090") };
 
