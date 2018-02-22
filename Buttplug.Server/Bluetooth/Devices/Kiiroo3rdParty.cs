@@ -21,6 +21,7 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             "Fuse",
             "Virtual Blowbot",
+            "Pearl2",
         };
 
         public Guid[] Services { get; } = { new Guid("88f82580-0000-01e6-aace-0002a5d5c51b") };
@@ -74,6 +75,15 @@ namespace Buttplug.Server.Bluetooth.Devices
                 {
                     Brand = "PornHub",
                     VibeCount = 2,
+                    VibeOrder = new[] { 0u, 1u, 2u },
+                }
+            },
+            {
+                "Pearl2",
+                new Kiiroo3rdPartyType
+                {
+                    Brand = "Kiiroo",
+                    VibeCount = 1,
                     VibeOrder = new[] { 0u, 1u, 2u },
                 }
             },
