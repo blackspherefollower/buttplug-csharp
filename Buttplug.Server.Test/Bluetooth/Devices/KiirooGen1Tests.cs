@@ -9,17 +9,17 @@ using NUnit.Framework;
 namespace Buttplug.Server.Test.Bluetooth.Devices
 {
     [TestFixture]
-    public class KiirooTests
+    public class KiirooGen1Tests
     {
         [Test]
         public void PearlTest()
         {
-            var bleInfo = new KiirooBluetoothInfo();
+            var bleInfo = new KiirooGen1BluetoothInfo();
 
             foreach (var chr in new[]
             {
-                KiirooBluetoothInfo.Chrs.Rx,
-                KiirooBluetoothInfo.Chrs.Tx,
+                KiirooGen1BluetoothInfo.Chrs.Rx,
+                KiirooGen1BluetoothInfo.Chrs.Tx,
             })
             {
                 Assert.True(bleInfo.Characteristics.Length > (uint)chr);
@@ -55,10 +55,10 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 0.5, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooGen1BluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual("2,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
-            Assert.False(inter.LastWriten[0].WriteWithResponse);
+            Assert.True(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 0.5, 6)).GetAwaiter().GetResult() is Ok);
@@ -67,28 +67,28 @@ namespace Buttplug.Server.Test.Bluetooth.Devices
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 1, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooGen1BluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual("4,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
-            Assert.False(inter.LastWriten[0].WriteWithResponse);
+            Assert.True(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
             Assert.True(dev.ParseMessage(new SingleMotorVibrateCmd(4, 0.25, 6)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(6, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooGen1BluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual("1,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
-            Assert.False(inter.LastWriten[0].WriteWithResponse);
+            Assert.True(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
             Assert.True(dev.ParseMessage(new StopDeviceCmd(4, 9)).GetAwaiter().GetResult() is Ok);
             Assert.AreEqual(1, inter.LastWriten.Count);
             Assert.AreEqual(9, inter.LastWriten[0].MsgId);
-            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooBluetoothInfo.Chrs.Tx],
+            Assert.AreEqual(bleInfo.Characteristics[(uint)KiirooGen1BluetoothInfo.Chrs.Tx],
                 inter.LastWriten[0].Characteristic);
             Assert.AreEqual("0,", Encoding.ASCII.GetString(inter.LastWriten[0].Value));
-            Assert.False(inter.LastWriten[0].WriteWithResponse);
+            Assert.True(inter.LastWriten[0].WriteWithResponse);
             inter.LastWriten.Clear();
 
             Assert.True(dev.ParseMessage(new VibrateCmd(4,
