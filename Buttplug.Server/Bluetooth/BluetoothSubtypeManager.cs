@@ -20,9 +20,9 @@ namespace Buttplug.Server.Bluetooth
             BuiltinDevices = new List<IBluetoothDeviceInfo>
             {
                 new FleshlightLaunchBluetoothInfo(),
-                new Kiiroo3rdPartyBluetoothInfo(),
                 new KiirooGen1BluetoothInfo(),
                 new KiirooGen2BluetoothInfo(),
+                new KiirooGen2VibeBluetoothInfo(),
                 new YoucupsBluetoothInfo(),
                 new LovenseRev1BluetoothInfo(),
                 new LovenseRev2BluetoothInfo(),

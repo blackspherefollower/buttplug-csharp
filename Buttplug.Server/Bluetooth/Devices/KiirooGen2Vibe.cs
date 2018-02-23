@@ -8,7 +8,7 @@ using JetBrains.Annotations;
 namespace Buttplug.Server.Bluetooth.Devices
 {
     // ReSharper disable once InconsistentNaming
-    internal class Kiiroo3rdPartyBluetoothInfo : IBluetoothDeviceInfo
+    internal class KiirooGen2VibeBluetoothInfo : IBluetoothDeviceInfo
     {
         public enum Chrs : uint
         {
@@ -19,6 +19,7 @@ namespace Buttplug.Server.Bluetooth.Devices
 
         public string[] Names { get; } =
         {
+            "Pearl2",
             "Fuse",
             "Virtual Blowbot",
         };
@@ -40,28 +41,37 @@ namespace Buttplug.Server.Bluetooth.Devices
         public IButtplugDevice CreateDevice(IButtplugLogManager aLogManager,
             IBluetoothDeviceInterface aInterface)
         {
-            return new Kiiroo3rdParty(aLogManager, aInterface, this);
+            return new KiirooGen2Vibe(aLogManager, aInterface, this);
         }
     }
 
     // ReSharper disable once InconsistentNaming
-    internal class Kiiroo3rdParty : ButtplugBluetoothDevice
+    internal class KiirooGen2Vibe : ButtplugBluetoothDevice
     {
         private readonly double[] _vibratorSpeeds = { 0, 0, 0 };
 
         // ReSharper disable once InconsistentNaming
-        private struct Kiiroo3rdPartyType
+        private struct KiirooGen2VibeType
         {
             public string Brand;
             public uint VibeCount;
             public uint[] VibeOrder;
         }
 
-        private static readonly Dictionary<string, Kiiroo3rdPartyType> DevInfos = new Dictionary<string, Kiiroo3rdPartyType>()
+        private static readonly Dictionary<string, KiirooGen2VibeType> DevInfos = new Dictionary<string, KiirooGen2VibeType>()
         {
             {
+                "Pearl2",
+                new KiirooGen2VibeType
+                {
+                    Brand = "Kiiroo",
+                    VibeCount = 1,
+                    VibeOrder = new[] { 0u, 1u, 2u },
+                }
+            },
+            {
                 "Fuse",
-                new Kiiroo3rdPartyType
+                new KiirooGen2VibeType
                 {
                     Brand = "OhMiBod",
                     VibeCount = 2,
@@ -70,18 +80,18 @@ namespace Buttplug.Server.Bluetooth.Devices
             },
             {
                 "Virtual Blowbot",
-                new Kiiroo3rdPartyType
+                new KiirooGen2VibeType
                 {
                     Brand = "PornHub",
-                    VibeCount = 2,
+                    VibeCount = 3,
                     VibeOrder = new[] { 0u, 1u, 2u },
                 }
             },
         };
 
-        private Kiiroo3rdPartyType _devInfo;
+        private KiirooGen2VibeType _devInfo;
 
-        public Kiiroo3rdParty([NotNull] IButtplugLogManager aLogManager,
+        public KiirooGen2Vibe([NotNull] IButtplugLogManager aLogManager,
                       [NotNull] IBluetoothDeviceInterface aInterface,
                       [NotNull] IBluetoothDeviceInfo aInfo)
             : base(aLogManager,
