@@ -1,0 +1,988 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ButtplugWSClient
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ButtplugWSClient
+   ">
+    <meta name="generator" content="docfx 2.33.0.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Buttplug.Client.ButtplugWSClient">
+  
+  
+  <h1 id="Buttplug_Client_ButtplugWSClient" data-uid="Buttplug.Client.ButtplugWSClient" class="text-break">Class ButtplugWSClient
+  </h1>
+  <div class="markdown level0 summary"><p>This is the Buttplug C# WebSocket Client implementation.
+It&apos;s intended to abstract away the process of comunicating with
+a Buttplug Server over WebSockets, so you don&apos;t have to worry
+about the lower level protocol.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ButtplugWSClient</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Buttplug.Client.html">Buttplug.Client</a></h6>
+  <h6><strong>Assembly</strong>: Buttplug.Client.dll</h6>
+  <h5 id="Buttplug_Client_ButtplugWSClient_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ButtplugWSClient</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient__ctor_System_String_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L123">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient__ctor_" data-uid="Buttplug.Client.ButtplugWSClient.#ctor*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient__ctor_System_String_" data-uid="Buttplug.Client.ButtplugWSClient.#ctor(System.String)">ButtplugWSClient(String)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Buttplug.Client.ButtplugWSClient.html">ButtplugWSClient</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ButtplugWSClient(string aClientName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">aClientName</span></td>
+        <td><p>The name of the client to present to the server</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Devices.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Devices%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L110">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Devices_" data-uid="Buttplug.Client.ButtplugWSClient.Devices*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Devices" data-uid="Buttplug.Client.ButtplugWSClient.Devices">Devices</h4>
+  <div class="markdown level1 summary"><p>Gets the connected Buttplug devices</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ButtplugClientDevice[] Devices { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Buttplug.Client.ButtplugClientDevice.html">ButtplugClientDevice</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_IsConnected.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.IsConnected%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L115">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_IsConnected_" data-uid="Buttplug.Client.ButtplugWSClient.IsConnected*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_IsConnected" data-uid="Buttplug.Client.ButtplugWSClient.IsConnected">IsConnected</h4>
+  <div class="markdown level1 summary"><p>Is the client connected?</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsConnected { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_NextMsgId.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.NextMsgId%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L105">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_NextMsgId_" data-uid="Buttplug.Client.ButtplugWSClient.NextMsgId*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_NextMsgId" data-uid="Buttplug.Client.ButtplugWSClient.NextMsgId">NextMsgId</h4>
+  <div class="markdown level1 summary"><p>Gets the next available message ID
+In most cases setting the message ID is done automatically</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint NextMsgId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UInt32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Connect_System_Uri_System_Boolean_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Connect(System.Uri%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L158">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Connect_" data-uid="Buttplug.Client.ButtplugWSClient.Connect*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Connect_System_Uri_System_Boolean_" data-uid="Buttplug.Client.ButtplugWSClient.Connect(System.Uri,System.Boolean)">Connect(Uri, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Creates the connection to the Buttplug Server and performs the protocol hanshake.
+Once the WebSocket connetion is open, the RequestServerInfo message is sent;
+the response is used to set up the ping timer loop. The RequestDeviceList
+message is also sent here so that any devices the server is already connected to
+are made known to the client.</p>
+<p><strong>Important:</strong> Ensure that <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_DeviceAdded">DeviceAdded</a>, <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_DeviceRemoved">DeviceRemoved</a>
+and <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_ErrorReceived">ErrorReceived</a> handlers are set before Connect is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task Connect(Uri aURL, bool aIgnoreSSLErrors = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Uri</span></td>
+        <td><span class="parametername">aURL</span></td>
+        <td><p>The URL for the Buttplug WebSocket Server. This will likely be in the form wss://localhost:12345 (wss:// is to ws:// as https:// is to http://)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">aIgnoreSSLErrors</span></td>
+        <td><p>When using SSL (wss://), this option prevents bad certificates from causing connection failures</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>An untyped Task; the await/async equivelent of void</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Deserialize_System_String_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Deserialize(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L556">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Deserialize_" data-uid="Buttplug.Client.ButtplugWSClient.Deserialize*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Deserialize_System_String_" data-uid="Buttplug.Client.ButtplugWSClient.Deserialize(System.String)">Deserialize(String)</h4>
+  <div class="markdown level1 summary"><p>Converts a JSON string into an array of <a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ButtplugMessage[] Deserialize(string aMsg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">aMsg</span></td>
+        <td><p>A JSON string representing one or more messages</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a>[]</td>
+        <td><p>An array of messages</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Disconnect.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Disconnect%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L293">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Disconnect_" data-uid="Buttplug.Client.ButtplugWSClient.Disconnect*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Disconnect" data-uid="Buttplug.Client.ButtplugWSClient.Disconnect">Disconnect()</h4>
+  <div class="markdown level1 summary"><p>Closes the WebSocket Connection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task Disconnect()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>An untyped Task; the await/async equivelent of void</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Finalize.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L140">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Finalize_" data-uid="Buttplug.Client.ButtplugWSClient.Finalize*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Finalize" data-uid="Buttplug.Client.ButtplugWSClient.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the <a class="xref" href="Buttplug.Client.ButtplugWSClient.html">ButtplugWSClient</a> class.
+The destrctor will close the connection, if it&apos;s still open.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_RequestLog_System_String_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.RequestLog(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L454">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_RequestLog_" data-uid="Buttplug.Client.ButtplugWSClient.RequestLog*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_RequestLog_System_String_" data-uid="Buttplug.Client.ButtplugWSClient.RequestLog(System.String)">RequestLog(String)</h4>
+  <div class="markdown level1 summary"><p>Instructs the server to start forwarding log entries to the cleintf.
+Log entries will be rasied as events to <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_Log">Log</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; RequestLog(string aLogLevel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">aLogLevel</span></td>
+        <td><p>The level of most detailed logs to send.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>True if successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_SendDeviceMessage_Buttplug_Client_ButtplugClientDevice_Buttplug_Core_ButtplugDeviceMessage_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.SendDeviceMessage(Buttplug.Client.ButtplugClientDevice%2CButtplug.Core.ButtplugDeviceMessage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L465">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_SendDeviceMessage_" data-uid="Buttplug.Client.ButtplugWSClient.SendDeviceMessage*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_SendDeviceMessage_Buttplug_Client_ButtplugClientDevice_Buttplug_Core_ButtplugDeviceMessage_" data-uid="Buttplug.Client.ButtplugWSClient.SendDeviceMessage(Buttplug.Client.ButtplugClientDevice,Buttplug.Core.ButtplugDeviceMessage)">SendDeviceMessage(ButtplugClientDevice, ButtplugDeviceMessage)</h4>
+  <div class="markdown level1 summary"><p>Sends a DeviceMessage (e.g. <a class="xref" href="../Buttplug.Core/Buttplug.Core.Messages.VibrateCmd.html">VibrateCmd</a> or <a class="xref" href="../Buttplug.Core/Buttplug.Core.Messages.LinearCmd.html">LinearCmd</a>)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ButtplugMessage&gt; SendDeviceMessage(ButtplugClientDevice aDevice, ButtplugDeviceMessage aDeviceMsg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Buttplug.Client.ButtplugClientDevice.html">ButtplugClientDevice</a></td>
+        <td><span class="parametername">aDevice</span></td>
+        <td><p>The device to be controlled by the message</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugDeviceMessage.html">ButtplugDeviceMessage</a></td>
+        <td><span class="parametername">aDeviceMsg</span></td>
+        <td><p>The device message (Id and DeviceIndex will be overriden)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a>&gt;</td>
+        <td><p>True if successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_SendMessage_Buttplug_Core_ButtplugMessage_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.SendMessage(Buttplug.Core.ButtplugMessage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L498">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_SendMessage_" data-uid="Buttplug.Client.ButtplugWSClient.SendMessage*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_SendMessage_Buttplug_Core_ButtplugMessage_" data-uid="Buttplug.Client.ButtplugWSClient.SendMessage(Buttplug.Core.ButtplugMessage)">SendMessage(ButtplugMessage)</h4>
+  <div class="markdown level1 summary"><p>Sends a message and returns the resulting message</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;ButtplugMessage&gt; SendMessage(ButtplugMessage aMsg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a></td>
+        <td><span class="parametername">aMsg</span></td>
+        <td><p>Message to send.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a>&gt;</td>
+        <td><p>The response <a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_SendMessageExpectOk_Buttplug_Core_ButtplugMessage_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.SendMessageExpectOk(Buttplug.Core.ButtplugMessage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L488">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_SendMessageExpectOk_" data-uid="Buttplug.Client.ButtplugWSClient.SendMessageExpectOk*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_SendMessageExpectOk_Buttplug_Core_ButtplugMessage_" data-uid="Buttplug.Client.ButtplugWSClient.SendMessageExpectOk(Buttplug.Core.ButtplugMessage)">SendMessageExpectOk(ButtplugMessage)</h4>
+  <div class="markdown level1 summary"><p>Sends a message that we expect to respond with <a class="xref" href="../Buttplug.Core/Buttplug.Core.Messages.Ok.html">Ok</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Task&lt;bool&gt; SendMessageExpectOk(ButtplugMessage aMsg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a></td>
+        <td><span class="parametername">aMsg</span></td>
+        <td><p>Message to send.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>True if successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Serialize_Buttplug_Core_ButtplugMessage_.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Serialize(Buttplug.Core.ButtplugMessage)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L536">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Serialize_" data-uid="Buttplug.Client.ButtplugWSClient.Serialize*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Serialize_Buttplug_Core_ButtplugMessage_" data-uid="Buttplug.Client.ButtplugWSClient.Serialize(Buttplug.Core.ButtplugMessage)">Serialize(ButtplugMessage)</h4>
+  <div class="markdown level1 summary"><p>Converts a single <a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a> into a JSON string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Serialize(ButtplugMessage aMsg)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a></td>
+        <td><span class="parametername">aMsg</span></td>
+        <td><p>Message to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The JSON string representation of the message</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Serialize_Buttplug_Core_ButtplugMessage___.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Serialize(Buttplug.Core.ButtplugMessage%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L546">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_Serialize_" data-uid="Buttplug.Client.ButtplugWSClient.Serialize*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Serialize_Buttplug_Core_ButtplugMessage___" data-uid="Buttplug.Client.ButtplugWSClient.Serialize(Buttplug.Core.ButtplugMessage[])">Serialize(ButtplugMessage[])</h4>
+  <div class="markdown level1 summary"><p>Converts an array of <a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a> into a JSON string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string Serialize(ButtplugMessage[] aMsgs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../Buttplug.Core/Buttplug.Core.ButtplugMessage.html">ButtplugMessage</a>[]</td>
+        <td><span class="parametername">aMsgs</span></td>
+        <td><p>An array of messages to convert</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><p>The JSON string representation of the messages</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_StartScanning.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.StartScanning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L433">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_StartScanning_" data-uid="Buttplug.Client.ButtplugWSClient.StartScanning*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_StartScanning" data-uid="Buttplug.Client.ButtplugWSClient.StartScanning">StartScanning()</h4>
+  <div class="markdown level1 summary"><p>Instructs the server to start scanning for devices.
+New devices will be rasied as events to <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_DeviceAdded">DeviceAdded</a>.
+When scanning complets, an event will be sent to <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_ScanningFinished">ScanningFinished</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StartScanning()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>True if successful.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_StopScanning.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.StopScanning%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L443">View Source</a>
+  </span>
+  <a id="Buttplug_Client_ButtplugWSClient_StopScanning_" data-uid="Buttplug.Client.ButtplugWSClient.StopScanning*"></a>
+  <h4 id="Buttplug_Client_ButtplugWSClient_StopScanning" data-uid="Buttplug.Client.ButtplugWSClient.StopScanning">StopScanning()</h4>
+  <div class="markdown level1 summary"><p>Instructs the server to stop scanning for devices.
+If scanning was in progress, an event will be sent to <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_ScanningFinished">ScanningFinished</a> when the device managers have all stopped scanning.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StopScanning()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><p>True if the server successful recieved the command. If there are errors when stoppong the device managers, events may be sent to <a class="xref" href="Buttplug.Client.ButtplugWSClient.html#Buttplug_Client_ButtplugWSClient_ErrorReceived">ErrorReceived</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_DeviceAdded.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.DeviceAdded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L66">View Source</a>
+  </span>
+  <h4 id="Buttplug_Client_ButtplugWSClient_DeviceAdded" data-uid="Buttplug.Client.ButtplugWSClient.DeviceAdded">DeviceAdded</h4>
+  <div class="markdown level1 summary"><p>Event fired on Buttplug device added
+Should fire only immediatly after connect or whilst scanning for devices</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CanBeNull]
+public event EventHandler&lt;DeviceEventArgs&gt; DeviceAdded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Buttplug.Client.DeviceEventArgs.html">DeviceEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_DeviceRemoved.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.DeviceRemoved%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L73">View Source</a>
+  </span>
+  <h4 id="Buttplug_Client_ButtplugWSClient_DeviceRemoved" data-uid="Buttplug.Client.ButtplugWSClient.DeviceRemoved">DeviceRemoved</h4>
+  <div class="markdown level1 summary"><p>Event fired on Buttplug device removed
+Can fire are any time</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CanBeNull]
+public event EventHandler&lt;DeviceEventArgs&gt; DeviceRemoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Buttplug.Client.DeviceEventArgs.html">DeviceEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_ErrorReceived.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.ErrorReceived%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L86">View Source</a>
+  </span>
+  <h4 id="Buttplug_Client_ButtplugWSClient_ErrorReceived" data-uid="Buttplug.Client.ButtplugWSClient.ErrorReceived">ErrorReceived</h4>
+  <div class="markdown level1 summary"><p>Event fired when an error has been encountered
+This may be internal client exceptions or Error messages from the server</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CanBeNull]
+public event EventHandler&lt;ErrorEventArgs&gt; ErrorReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Buttplug.Client.ErrorEventArgs.html">ErrorEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_Log.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.Log%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L93">View Source</a>
+  </span>
+  <h4 id="Buttplug_Client_ButtplugWSClient_Log" data-uid="Buttplug.Client.ButtplugWSClient.Log">Log</h4>
+  <div class="markdown level1 summary"><p>Event fired when the client recieves a Log message
+Should only fire if the client requests logs</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CanBeNull]
+public event EventHandler&lt;LogEventArgs&gt; Log</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Buttplug.Client.LogEventArgs.html">LogEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient_ScanningFinished.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient.ScanningFinished%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L79">View Source</a>
+  </span>
+  <h4 id="Buttplug_Client_ButtplugWSClient_ScanningFinished" data-uid="Buttplug.Client.ButtplugWSClient.ScanningFinished">ScanningFinished</h4>
+  <div class="markdown level1 summary"><p>Event fired when the server has stopped scanning for devices</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CanBeNull]
+public event EventHandler&lt;ScanningFinishedEventArgs&gt; ScanningFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Buttplug.Client.ScanningFinishedEventArgs.html">ScanningFinishedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/blackspherefollower/buttplug-csharp/new/master/apiSpec/new?filename=Buttplug_Client_ButtplugWSClient.md&amp;value=---%0Auid%3A%20Buttplug.Client.ButtplugWSClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/blackspherefollower/buttplug-csharp/blob/master/Buttplug.Client/ButtplugWSClient.cs/#L22" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

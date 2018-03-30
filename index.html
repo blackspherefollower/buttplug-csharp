@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Buttplug - Windows C# Server Implementation </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Buttplug - Windows C# Server Implementation ">
+    <meta name="generator" content="docfx 2.33.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="buttplug---windows-c-server-implementation">Buttplug - Windows C# Server Implementation</h1>
+
+<p><a href="https://ci.appveyor.com/project/qdot/buttplug-csharp/branch/master"><img src="https://ci.appveyor.com/api/projects/status/vf4qvxkp3o3p3we1/branch/master?svg=true" alt="Build status"></a> <a href="https://codecov.io/gh/metafetish/buttplug-csharp"><img src="https://codecov.io/gh/metafetish/buttplug-csharp/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://www.patreon.com/qdot"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" alt="Patreon donate button"></a></p>
+<p>Buttplug is a framework for hooking up hardware to interfaces, where
+hardware usually means sex toys, but could honestly be just about
+anything. It&#39;s basically a userland HID manager for things that may
+not specifically be HID.</p>
+<p>If you&#39;re looking for the installer for the Websocket Server, Game
+Vibration Router, or Kiiroo Emulator, <a href="https://github.com/metafetish/buttplug-csharp/releases/">visit our releases page.</a></p>
+<h2 id="table-of-contents">Table Of Contents</h2>
+<ul>
+<li><a href="#support-the-project">Support The Project</a></li>
+<li><a href="#buttplug-spec-and-documentation">Buttplug Spec and Documentation</a></li>
+<li><a href="#hardware-support">Hardware Support</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#development">Development</a><ul>
+<li><a href="#special-installation-steps-when-building-buttplug-applications">Special Installation Steps When Building Buttplug Applications</a></li>
+</ul>
+</li>
+<li><a href="#third-party-applications-using-buttplug-c">Third Party Applications Using Buttplug-C#</a></li>
+<li><a href="">License</a></li>
+</ul>
+<h2 id="support-the-project">Support The Project</h2>
+<p>If you find this project helpful, you
+can
+<a href="http://patreon.com/qdot">support Metafetish projects via Patreon</a>!
+Every donation helps us afford more hardware to reverse, document, and
+write code for!</p>
+<h2 id="buttplug-spec-and-documentation">Buttplug Spec and Documentation</h2>
+<p>Buttplug implementations are available in multiple languages (rust,
+javascript, etc)/frameworks/platforms. For a full
+list of documentation, libraries, and applications,
+<a href="http://github.com/metafetish/buttplug">see the README in the main buttplug repo</a>.</p>
+<h2 id="hardware-support">Hardware Support</h2>
+<p>Buttplug C# Supports the following platforms:</p>
+<ul>
+<li><p>Windows 10 - Creators Update (15063, April 2017) or later</p>
+<ul>
+<li>BLE Devices<ul>
+<li>Fleshlight Launch</li>
+<li>Lovense Toys</li>
+<li>Vorze Interactive A10 Cyclone SA</li>
+<li>Vibratissimo Toys</li>
+<li>Magic Motion Toys</li>
+<li>WeVibe Toys</li>
+<li>Youcups Warrior II</li>
+</ul>
+</li>
+<li>Serial Devices<ul>
+<li>ErosTek ET312B</li>
+</ul>
+</li>
+<li>Other devices<ul>
+<li>Xbox Compatible Gamepads (XInput, Vibration Control Only)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Windows 7/8 and 10 pre 15063</p>
+<ul>
+<li>Serial Devices<ul>
+<li>ErosTek ET312B</li>
+</ul>
+</li>
+<li>Other devices<ul>
+<li>Xbox Compatible Gamepads (XInput, Vibration Control Only)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The Buttplug C# Repo hosts the Buttplug C# Development Libraries, as
+well as the following applications:</p>
+<ul>
+<li>Websocket Server</li>
+<li>Game Vibration Router</li>
+<li>Kiiroo Desktop Platform Emulator</li>
+</ul>
+<p>To download the installer for these applications, <a href="https://github.com/metafetish/buttplug-csharp/releases/">visit our releases page.</a></p>
+<h2 id="development">Development</h2>
+<p>Packages and libraries from the buttplug-csharp repo are available via
+<a href="http://nuget.org">nuget</a>. Simply run a search for &quot;buttplug&quot;, or
+<a href="https://www.nuget.org/packages?q=buttplug">follow this link to the nuget &quot;buttplug&quot; search</a>.</p>
+<h3 id="special-installation-steps-when-building-buttplug-applications">Special Installation Steps When Building Buttplug Applications</h3>
+<p>Due to a bug in the Windows 15063 SDK, applications using the BLE APIs
+need to have an AppId in the registry with a special SDDL access
+string. For more info on this bug,
+see
+<a href="https://social.msdn.microsoft.com/Forums/en-US/58da3fdb-a0e1-4161-8af3-778b6839f4e1/bluetooth-bluetoothledevicefromidasync-does-not-complete-on-10015063?forum=wdk#ef927009-676c-47bb-8201-8a80d2323a7f">this msdn forums post</a>.</p>
+<p>For those using the installer, this step should be taken care of by
+InnoSetup. If you are building the project locally, start regedit,
+then choose File &gt; Import, and select the app.reg file in this repo.
+This will set permissions for all executables named Buttplug.exe,
+ButtplugCLI.exe, and ButtplugGUI.exe</p>
+<h2 id="third-party-applications-using-buttplug-c">Third Party Applications Using Buttplug C#</h2>
+<ul>
+<li><a href="https://github.com/FredTungsten/ScriptPlayer">ScriptPlayer</a> - Native hardware synced movie player for Windows.</li>
+<li><a href="https://curiousjp.itch.io/caveman-bios-teaches-erotic-typing">Caveman BIOS Teaches Typing</a> - Typing Training Game</li>
+</ul>
+<h2 id="license">License</h2>
+<p>Buttplug is BSD 3-Clause licensed. More information is available in
+the LICENSE file.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

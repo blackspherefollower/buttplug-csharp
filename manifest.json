@@ -1,0 +1,1197 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/projects/buttplug-csharp/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../CHANGELOG.md",
+      "output": {
+        ".html": {
+          "relative_path": "CHANGELOG.html",
+          "hash": "xCrdIIs1fjYMLilA16M5dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../CODE_OF_CONDUCT.md",
+      "output": {
+        ".html": {
+          "relative_path": "CODE_OF_CONDUCT.html",
+          "hash": "6ztPfeoei8kT2u4/GPQtrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../CONTRIBUTING.md",
+      "output": {
+        ".html": {
+          "relative_path": "CONTRIBUTING.html",
+          "hash": "0Fp8rrLkcENnAcu2Nq4aFg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "iIVJI45/8H9O/fa9R41x4w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "../README_ET312.md",
+      "output": {
+        ".html": {
+          "relative_path": "README_ET312.html",
+          "hash": "A0sBpqCSwLAF0sWgM7wM3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.ButtplugClientDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.ButtplugClientDevice.html",
+          "hash": "iT59aqJem2LEfX7VldF10w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.ButtplugWSClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.ButtplugWSClient.html",
+          "hash": "DbSrJ3j3/uS01Ah41KrXpg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.DeviceEventArgs.DeviceAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.DeviceEventArgs.DeviceAction.html",
+          "hash": "JgLAavytzfLW24SQkWPchQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.DeviceEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.DeviceEventArgs.html",
+          "hash": "D34NAWsHKP1Y0B7Qdx1OHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.ErrorEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.ErrorEventArgs.html",
+          "hash": "Rla5RhgyuydHeG9SNUjb+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.LogEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.LogEventArgs.html",
+          "hash": "YC6ZovO7bC18X92fZ3sBVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.ScanningFinishedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.ScanningFinishedEventArgs.html",
+          "hash": "fEKU+CgJ08bocIVj6wH2Ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Client/Buttplug.Client.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Client/Buttplug.Client.html",
+          "hash": "5/v1yib62b2K+G60Ru2PNg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.AssemblyGitVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.AssemblyGitVersion.html",
+          "hash": "jjVb1+ZuSUxsrkjQ6pe+ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugConsts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugConsts.html",
+          "hash": "Cq31qD2ljwCQLwP6irQ9rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDevice.ButtplugDeviceWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDevice.ButtplugDeviceWrapper.html",
+          "hash": "kNaLKgWLgkYOlGzyebaPIw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDevice.html",
+          "hash": "XssJeUz08SIo9g24gmp6NQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDeviceMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugDeviceMessage.html",
+          "hash": "+MyqpT2cyZKIxDTLMgCYHg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugJsonMessageParser.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugJsonMessageParser.html",
+          "hash": "dwRA6AG8IiA7UTwRm38zaQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogLevel.html",
+          "hash": "m9jTntg9GeQyFFBTGrMLig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogManager.html",
+          "hash": "WWTW7J8a9NJdQZ2ral92Rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogMessageEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugLogMessageEventArgs.html",
+          "hash": "DfZ+t603mAQDxPq8VHe0Uw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugMessage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtplugMessage.html",
+          "hash": "Bfb+ocS4dblN5oqPqKEj/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.ButtugLogExtenions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.ButtugLogExtenions.html",
+          "hash": "EemdnDADMEUKWA5ix1ugow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugDevice.html",
+          "hash": "7v/JHgGO34kCbBHMLhHOfg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugLog.html",
+          "hash": "CowWgZkTB3t5SeGn4he85A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugLogManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugLogManager.html",
+          "hash": "KkQsqC6t8+dmOGoxw1u/dA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugMessageOutgoingOnly.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.IButtplugMessageOutgoingOnly.html",
+          "hash": "84YszwWOYx0pVut2venGHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.LogExceptionEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.LogExceptionEventArgs.html",
+          "hash": "BTbYMFBIA0hG7CxRIJtGcg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.MessageReceivedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.MessageReceivedEventArgs.html",
+          "hash": "7ajMK97fQbLosi9HogefmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceAdded.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceAdded.html",
+          "hash": "A+I6W+vYRNYYyePlYV762g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceAddedVersion0.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceAddedVersion0.html",
+          "hash": "s/mrK5bCUk04Ktc8fEb1Nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceList.html",
+          "hash": "X67R+wP6VMNy4gjS+BsWQA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceListVersion0.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceListVersion0.html",
+          "hash": "EzJOGk0lB6L4WhyXi10A1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceMessageInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceMessageInfo.html",
+          "hash": "7zVPqm6EaqPZ28SYGvT6Iw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceMessageInfoVersion0.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceMessageInfoVersion0.html",
+          "hash": "vM9kFRoiCD73jfTVn59ulA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceRemoved.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.DeviceRemoved.html",
+          "hash": "DbiQroOoERdteDjbl/AOog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Error.ErrorClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Error.ErrorClass.html",
+          "hash": "gouy+gm7DlWA/vJMwNacQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Error.html",
+          "hash": "IcK4FVjej4S+jLUQXIUqCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.FleshlightLaunchFW12Cmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.FleshlightLaunchFW12Cmd.html",
+          "hash": "iJ1Y+/B5zJ7RUBk0IRZdfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.KiirooCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.KiirooCmd.html",
+          "hash": "lzyJGoaIZrP3KbJXhzGACA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LinearCmd.VectorSubcommands.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LinearCmd.VectorSubcommands.html",
+          "hash": "GWIsoPh5vkhGkETWcpn/qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LinearCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LinearCmd.html",
+          "hash": "vO4Ad6leYK8Uh1oqQfRM3w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Log.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Log.html",
+          "hash": "bZ4HhiKWeoPvxzQCIdcB9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LovenseCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.LovenseCmd.html",
+          "hash": "9F6WHGspPrt1B7kNKdYXqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.MessageAttributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.MessageAttributes.html",
+          "hash": "91XwJN30nJwURmpNXEEbJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Ok.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Ok.html",
+          "hash": "Y9MjJWuShjjbfU/a6iZr9w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Ping.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Ping.html",
+          "hash": "XC/+eW5TsfinDii00mGdTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestDeviceList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestDeviceList.html",
+          "hash": "osJTrddAjUfjHw19eFQT1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestLog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestLog.html",
+          "hash": "iqI5RTpZijJvwM3B2U7+nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestServerInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RequestServerInfo.html",
+          "hash": "0ULudgFZ9vElSCfAADujAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RotateCmd.RotateSubcommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RotateCmd.RotateSubcommand.html",
+          "hash": "fYgPWeSDEROOXlZVBOTJVw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RotateCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.RotateCmd.html",
+          "hash": "4Va0uaQuavuNVvOxokBpCw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.ScanningFinished.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.ScanningFinished.html",
+          "hash": "t8T7c0Blii6C0iBjghRIaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.ServerInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.ServerInfo.html",
+          "hash": "ivcAIEFasJooJC4RWyEuiQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.SingleMotorVibrateCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.SingleMotorVibrateCmd.html",
+          "hash": "idFWkVLUCZrBpBd3cDtoeA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StartScanning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StartScanning.html",
+          "hash": "gWT59W8q2hAS13NPu+5Yqg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopAllDevices.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopAllDevices.html",
+          "hash": "SAWyIdbYFJ3CGc6PKvwwnA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopDeviceCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopDeviceCmd.html",
+          "hash": "T00bJV1f485ni8M6pQz2Hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopScanning.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.StopScanning.html",
+          "hash": "auhc+uf3D88bsoFMM0ykig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Test.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.Test.html",
+          "hash": "iiGuW5FtOsK0D++ANaKaDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VibrateCmd.VibrateSubcommand.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VibrateCmd.VibrateSubcommand.html",
+          "hash": "pfclkCCCgMm7ATKqK/+GhQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VibrateCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VibrateCmd.html",
+          "hash": "QCv5mhzPsxrzDYOv5N31eg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VorzeA10CycloneCmd.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.VorzeA10CycloneCmd.html",
+          "hash": "KDtQ2qoO12rffs5pMjtmbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.Messages.html",
+          "hash": "mSCByduJW4i/ok9bKCNQRw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Core.html",
+          "hash": "o+QDpCBoIPeBbBs14g6CNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.ILog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.ILog.html",
+          "hash": "UhYwX3OktP5kabt8DdjCYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.ILogProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.ILogProvider.html",
+          "hash": "6WlyG9qkwFz9+9nJfIWe0w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.LogExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.LogExtensions.html",
+          "hash": "MkAZOKYSMw2fJqqldUdUxA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.LogLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.LogLevel.html",
+          "hash": "Cfev8BKQFg+rYAZF2SYbnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.LogProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.LogProvider.html",
+          "hash": "pyme7OZWHgcA07GZq75Lnw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.Logger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.Logger.html",
+          "hash": "Ss8kKsjOO0a8XW/mxDzszw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Core/Buttplug.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Core/Buttplug.Logging.html",
+          "hash": "OygAPNrJkAeqDFzp0RWOtA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.BluetoothSubtypeManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.BluetoothSubtypeManager.html",
+          "hash": "0mKVFR5oaHZMCypFCVAoiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.ButtplugBluetoothDevice.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.ButtplugBluetoothDevice.html",
+          "hash": "jNXm1l/NYhIEjNS9OcfMIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.IBluetoothDeviceInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.IBluetoothDeviceInfo.html",
+          "hash": "bfdB2PU1IfAOLnVUPbKQOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.IBluetoothDeviceInterface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.IBluetoothDeviceInterface.html",
+          "hash": "AsViMJOsULwpeOHs1vmjBg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Bluetooth.html",
+          "hash": "jZwEyrPSBa5RxLE9uzJmYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.ButtplugServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.ButtplugServer.html",
+          "hash": "CACq+EkdauzBirql9QO3qA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceAddedEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceAddedEventArgs.html",
+          "hash": "EZWJKQhG8eUg0B7VDb9ixQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceManager.html",
+          "hash": "aDWARSAZi6oft5QCDG4+zQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceSubtypeManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.DeviceSubtypeManager.html",
+          "hash": "5O7gzEAoa7QTjecDNucOZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.IButtplugServerFactory.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.IButtplugServerFactory.html",
+          "hash": "i/yxZviNmV/BNTEmITwHQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.IDeviceSubtypeManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.IDeviceSubtypeManager.html",
+          "hash": "y2OnHbrUN3nnhkCBufOS+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Util.FleshlightHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Util.FleshlightHelper.html",
+          "hash": "Xi9vOn4ZmpztccotfzaDLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.Util.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.Util.html",
+          "hash": "Fm1Oo48nBnRrI7GaB1ffzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Buttplug.Server/Buttplug.Server.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Buttplug.Server/Buttplug.Server.html",
+          "hash": "Pi/6M9diCXp51AWPv5JyJA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "GJjisFt1lnWaKREngfRJ3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/CHANGELOG.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/CHANGELOG.html",
+          "hash": "i/a/NNnwLv72BZvwJrB9Mg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/CODE_OF_CONDUCT.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/CODE_OF_CONDUCT.html",
+          "hash": "MAZ7Cq9OSo+FAEcJ2rDWkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/CONTRIBUTING.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/CONTRIBUTING.html",
+          "hash": "qNoQC0/vQw178+5Afokp0A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/README.html",
+          "hash": "jihStxcHTD/16PEZ+0fqAg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/README_ET312.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/README_ET312.html",
+          "hash": "UG2XUTfzkR7R1/jmSAAROg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "W7KyNw1cLTs1Iu75OZTsFA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "6wM0h4VpjOQa4l6zDTFkdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "9xgkABhEvutMk9Bx1vs4Zg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot suppport incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build"
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing"
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

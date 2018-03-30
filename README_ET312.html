@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Erostek Support for Buttplug </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Erostek Support for Buttplug ">
+    <meta name="generator" content="docfx 2.33.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="erostek-support-for-buttplug">Erostek Support for Buttplug</h1>
+
+<p>The buttplug schema does not define E-Stim specific messages yet, and thus there are no applications yet targeting E-Stim devices via buttplug. To solve this chicken-and-egg situation and make E-Stim support in buttplug useful from the start, we will be emulating the stroking motions of a Fleshlight Launch for now. This makes synched E-Stim available for all media supporting the Launch, and to a large degree also to those supporting the Kiiroo Onyx.</p>
+<p>Simulation will alternate between Channel A and B simulating a stroking movement. The stim level will fade out when there is no movement, and will fade in for a few seconds when movement starts again to avoid unpleasurable situations. The current algorithm is still very basic. Stay tuned for future releases.</p>
+<h2 id="usage">Usage</h2>
+<p>Power up your device and turn both level pots to 0%. Connect your device to a free serial port, USB-to-serial or bluetooth-to-serial adapter using the link cable. Start your buttplug-enabled application, select &quot;Start Scanning&quot; in the device tab, and your device should show up in the list within 10 to about 60 seconds.</p>
+<p>Select the device, and you&#39;re good to go. Control the intensity by using the frontpanel Channel A and Channel B knobs. Use the MA knob to adjust the stim frequency. Pulse width will be taken from the &quot;Width&quot; parameter in your advanced settings.</p>
+<p>You can connect more than one box if you want to.</p>
+<h3 id="suggested-electrode-placement">Suggested Electrode Placement</h3>
+<ul>
+<li>Channel A -&gt; Base</li>
+<li>Channel B -&gt; Tip</li>
+<li>Common -&gt; Anal</li>
+</ul>
+<h2 id="link-cable">Link Cable</h2>
+<p>If you don&#39;t own the original overpriced &quot;ErosLink&quot; cable, you can easily build your own. The link cable consists of a 3.5mm TRS (stereo audio) jack, going to some sort of computer connection, be it Female DB-9 or a RS232-to-USB converter. The pin connections are as follows:</p>
+<pre><code>3.5mm Tip &lt;-&gt; RX (DB-9 Pin 2)
+3.5mm Ring &lt;-&gt; TX (DB-9 Pin 3)
+3.5mm Sleeve &lt;-&gt; Ground (DB-9 Pin 5)
+</code></pre><h2 id="supported-devices">Supported Devices</h2>
+<ul>
+<li>ErosTek ET312</li>
+<li>ErosTek ET312-B</li>
+<li>MK-312BT</li>
+</ul>
+<h2 id="known-issues">Known Issues</h2>
+<ul>
+<li>Box will stay in buttplug mode after application has quit.</li>
+<li>Box may have to be power cycled after certain disconnection scenarios before being able to reconnect.</li>
+<li>Buttplug does not allow user configurable settings yet, so it&#39;s not possible to set the COM port to a fixed value yet.</li>
+<li>Serial Port probing may cause other devices connected to COM ports to misbehave.</li>
+</ul>
+<h2 id="future-development">Future development</h2>
+<ul>
+<li>Add E-Stim specific messages to buttplug-schema</li>
+<li>Add user configurable COM port settings</li>
+<li>Add device control GUI</li>
+<li>Improve Fleshlight Launch emulation algorithm</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

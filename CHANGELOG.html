@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>0.2.1 (2018-03-08) </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="0.2.1 (2018-03-08) ">
+    <meta name="generator" content="docfx 2.33.0.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="021-2018-03-08">0.2.1 (2018-03-08)</h1>
+
+<h2 id="features">Features</h2>
+<ul>
+<li>Added Hardware Support<ul>
+<li>Lovense Lush/Domi/Edge (new firmware versions)</li>
+<li>WeVibe Sync</li>
+<li>Kiiroo Pearl 2</li>
+<li>Pornhub Blowbot</li>
+<li>Rez Trancevibrator (Win 7 only)</li>
+</ul>
+</li>
+<li>Game Vibration Router now have &quot;Vibes&quot; tab to show incoming vibration commands</li>
+<li>Added individual vibrator control for WeVibes</li>
+</ul>
+<h2 id="bugfixes">Bugfixes</h2>
+<ul>
+<li>Fixed XInput DLL missing crash</li>
+<li>Fixed BAD DATA error/crash on accepting certs</li>
+<li>Moved all Non .Net Standard projects to .Net 4.7</li>
+<li>Far more test coverage</li>
+<li>Game Vibration Router only updates toys at 20hz max</li>
+</ul>
+<h1 id="020-2018-01-22">0.2.0 (2018-01-22)</h1>
+<h2 id="features-1">Features</h2>
+<ul>
+<li>Added Hardware Support<ul>
+<li>Youcups Warrior II Masturbator</li>
+<li>Erostek ET312B</li>
+<li>Wevibe 4</li>
+<li>OhMiBod/Kiiroo Fuse</li>
+<li>Lovense Edge/Hush/Domi (new firmware versions)</li>
+<li>Individual Vibrator support for Lovense Edge</li>
+</ul>
+</li>
+<li>Now uses v1 of the Buttplug Protocol spec, adds new generic messages, as well as feature counts for device messages</li>
+<li>Supports message downgrading, meaning older clients can connect to newer servers<ul>
+<li>Newer clients cannot connect to older servers, though</li>
+</ul>
+</li>
+<li>Moved code to .Net Standard 2.0 compatibility</li>
+<li>Moved testing to NUnit</li>
+</ul>
+<h2 id="bugfixes-1">Bugfixes</h2>
+<ul>
+<li>Game Router process select button disabled until process selected</li>
+<li>Fix SynchronizationContext crash in client</li>
+</ul>
+<h1 id="013-2017-12-07">0.1.3 (2017-12-07)</h1>
+<h2 id="features-2">Features</h2>
+<ul>
+<li>Add ignore cert errors for client library</li>
+<li>Handle message ID iteration in client library</li>
+</ul>
+<h1 id="012-2017-09-15">0.1.2 (2017-09-15)</h1>
+<h2 id="bugfixes-2">Bugfixes</h2>
+<ul>
+<li>Fix ArgumentOutOfBoundsException in updater</li>
+</ul>
+<h1 id="011-2017-09-15">0.1.1 (2017-09-15)</h1>
+<h2 id="features-3">Features</h2>
+<ul>
+<li>Added auto update and update checking functionality</li>
+<li>Added support for the following hardware<ul>
+<li>WeVibe 4 Plus, Ditto, Nova, Pivot, Wish, Verge</li>
+<li>Lovense Domi</li>
+</ul>
+</li>
+<li>Added more product names for the Lovense Hush (LVS-Z36, LVS_Z001)</li>
+<li>Added Game Vibration Router application</li>
+<li>WebsocketServer now defaults to SSL</li>
+</ul>
+<h2 id="bugfixes-3">Bugfixes</h2>
+<ul>
+<li>Fixed hang when no XBox controllers and no Bluetooth adapters are
+connected</li>
+<li>SSL Errors in Websocket Server are now shown in GUI or as a
+notification, not in modal dialogs</li>
+<li>Fixed ObjectDisposed Exception in Kiiroo App</li>
+<li>Fixed port number changing in Websocket Server</li>
+<li>Fixed crash when copying IP addresses in Websocket Server</li>
+<li>Fixed version number listing in logs</li>
+<li>Vibratissimo devices now required to be named &quot;Vibratissimo&quot;</li>
+</ul>
+<h1 id="010-2017-08-07">0.1.0 (2017-08-07)</h1>
+<h2 id="features-4">Features</h2>
+<ul>
+<li>First release</li>
+<li>Added support for the following hardware<ul>
+<li>XInput (XBox) Gamepads</li>
+<li>Lovense Max, Nora, Lush, Hush, Ambi, Edge (vibration only)</li>
+<li>Fleshlight Launch</li>
+<li>Vorze A10 Cyclone</li>
+<li>Magic Motion toys</li>
+<li>Vibratissimo toys</li>
+</ul>
+</li>
+<li>Added libraries (available as nuget packages)<ul>
+<li>Core</li>
+<li>Client</li>
+<li>Server</li>
+<li>XInputGamepadManager</li>
+<li>UWPBluetoothManager</li>
+</ul>
+</li>
+<li>Added applications<ul>
+<li>Websocket Server</li>
+<li>Kiiroo Platform Emulator</li>
+</ul>
+</li>
+</ul>
+<h1 id="000-2017-04-24">0.0.0 (2017-04-24)</h1>
+<ul>
+<li>Project Started</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
