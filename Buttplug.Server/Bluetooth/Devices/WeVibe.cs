@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
+using JetBrains.Annotations;
 
 namespace Buttplug.Server.Bluetooth.Devices
 {
@@ -49,6 +50,19 @@ namespace Buttplug.Server.Bluetooth.Devices
             IBluetoothDeviceInterface aInterface)
         {
             return new WeVibe(aLogManager, aInterface, this);
+        }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            // All WeVibes have the same UUIDs so far
+            if (services.ContainsKey(Services[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[1]))
+            {
+                return name;
+            }
+
+            return null;
         }
     }
 

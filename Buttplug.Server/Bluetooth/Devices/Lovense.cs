@@ -43,6 +43,23 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new Lovense(aLogManager, aInterface, this);
         }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            // All Lovense devices start with LVS, so this will match any new model numbers
+            if (!name.ToLower().StartsWith("lvs-") && !name.ToLower().StartsWith("lvs_"))
+            {
+                return null;
+            }
+
+            if (services.ContainsKey(Services[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[1]))
+            {
+            }
+
+            return "Lovense";
+        }
     }
 
     internal class LovenseRev2BluetoothInfo : IBluetoothDeviceInfo

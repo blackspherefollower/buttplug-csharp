@@ -67,6 +67,11 @@ namespace Buttplug.Server.Managers.UWPBluetoothManager
             return false;
         }
 
+        public string MayBeUnkownDevice(BluetoothGattHolder aBluetoothGattHolder)
+        {
+            return _deviceInfo.IsUnkownDevice(aBluetoothGattHolder);
+        }
+
         // TODO Have this throw exceptions instead of return null. Once we've made it this far, if we don't find what we're expecting, that's weird.
         [ItemCanBeNull]
         public async Task<IButtplugDevice> CreateDeviceAsync([NotNull] BluetoothLEDevice aDevice)

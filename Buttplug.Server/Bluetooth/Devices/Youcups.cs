@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
+using JetBrains.Annotations;
 
 namespace Buttplug.Server.Bluetooth.Devices
 {
@@ -32,6 +33,11 @@ namespace Buttplug.Server.Bluetooth.Devices
             IBluetoothDeviceInterface aInterface)
         {
             return new Youcups(aLogManager, aInterface, this);
+        }
+
+        public string IsUnkownDevice([NotNull] string name, [NotNull] Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            return null;
         }
     }
 

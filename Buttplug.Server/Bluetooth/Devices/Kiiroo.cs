@@ -34,6 +34,11 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new Kiiroo(aLogManager, aInterface, this);
         }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            return null;
+        }
     }
 
     internal class Kiiroo : ButtplugBluetoothDevice

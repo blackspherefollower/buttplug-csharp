@@ -43,6 +43,20 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new KiirooGen2Vibe(aLogManager, aInterface, this);
         }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            // All Kiiroo Gen2 Vibes have the same UUIDs so far
+            if (services.ContainsKey(Services[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[0]) &&
+                services[Services[0]].ContainsKey(Characteristics[1]) &&
+                services[Services[0]].ContainsKey(Characteristics[3]))
+            {
+                return name;
+            }
+
+            return null;
+        }
     }
 
     // ReSharper disable once InconsistentNaming

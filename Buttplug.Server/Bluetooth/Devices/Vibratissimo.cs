@@ -39,6 +39,11 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new Vibratissimo(aLogManager, aInterface, this);
         }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            return null;
+        }
     }
 
     internal class Vibratissimo : ButtplugBluetoothDevice

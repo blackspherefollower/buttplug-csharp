@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Buttplug.Core;
 using Buttplug.Core.Messages;
@@ -26,6 +27,11 @@ namespace Buttplug.Server.Bluetooth.Devices
             IBluetoothDeviceInterface aInterface)
         {
             return new VorzeA10Cyclone(aLogManager, aInterface, this);
+        }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            return null;
         }
     }
 

@@ -42,6 +42,11 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new MagicMotion(aLogManager, aInterface, this);
         }
+
+        public string IsUnkownDevice(string name, Dictionary<Guid, Dictionary<Guid, ulong>> services)
+        {
+            return null;
+        }
     }
 
     internal class MagicMotion : ButtplugBluetoothDevice
