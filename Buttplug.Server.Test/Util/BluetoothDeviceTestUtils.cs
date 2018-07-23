@@ -102,31 +102,56 @@ namespace Buttplug.Server.Test.Util
             }
         }
 
-        private void TestPacketMatching(IEnumerable<(byte[], uint)> aExpectedBytes, bool aWriteWithResponse)
+        private void TestPacketMatching(IEnumerable<(byte[], uint)> aExpectedBytes, bool aWriteWithResponse, bool aStrict = true)
         {
             // ExpectedBytes should have the same number of packets as LastWritten
-            Assert.AreEqual(aExpectedBytes.Count(), bleIface.LastWritten.Count);
-
-            // Since the expected values and lastwritten in interface should be lockstepped, we can
-            // merge them and iterate through everything at once.
-            var checkSeq = aExpectedBytes.Zip(bleIface.LastWritten, (first, second) => (first, second));
-            foreach (var ((bytes, chr), lastWritten) in checkSeq)
+            if (aStrict)
             {
-                Assert.AreEqual(bytes, lastWritten.Value);
-                Assert.AreEqual(aWriteWithResponse, lastWritten.WriteWithResponse);
-                if (chr != NoCharacteristic)
+                Assert.AreEqual(aExpectedBytes.Count(), bleIface.LastWritten.Count);
+
+                // Since the expected values and lastwritten in interface should be lockstepped, we can
+                // merge them and iterate through everything at once.
+                var checkSeq = aExpectedBytes.Zip(bleIface.LastWritten, (first, second) => (first, second));
+                foreach (var ((bytes, chr), lastWritten) in checkSeq)
                 {
-                    Assert.AreEqual(chr, lastWritten.Characteristic);
+                    Assert.AreEqual(bytes, lastWritten.Value);
+                    Assert.AreEqual(aWriteWithResponse, lastWritten.WriteWithResponse);
+                    if (chr != NoCharacteristic)
+                    {
+                        Assert.AreEqual(chr, lastWritten.Characteristic);
+                    }
+                }
+            }
+            else
+            {
+                Assert.True(aExpectedBytes.Count() <= bleIface.LastWritten.Count);
+                foreach (var (bytes, chr) in aExpectedBytes)
+                {
+                    var matched = false;
+                    foreach (var lastWritten in bleIface.LastWritten)
+                    {
+                        if (!lastWritten.Value.SequenceEqual(bytes) ||
+                            lastWritten.WriteWithResponse != aWriteWithResponse ||
+                            (chr != NoCharacteristic && chr != lastWritten.Characteristic))
+                        {
+                            continue;
+                        }
+
+                        matched = true;
+                        break;
+                    }
+
+                    Assert.True(matched, "Expected data must be in send history");
                 }
             }
         }
 
-        public void TestDeviceInitialize(IEnumerable<(byte[], uint)> aExpectedBytes, bool aWriteWithResponse)
+        public void TestDeviceInitialize(IEnumerable<(byte[], uint)> aExpectedBytes, bool aWriteWithResponse, bool aStrict = true)
         {
             Clear();
             Assert.True(bleDevice.Initialize().GetAwaiter().GetResult() is Ok);
 
-            TestPacketMatching(aExpectedBytes, aWriteWithResponse);
+            TestPacketMatching(aExpectedBytes, aWriteWithResponse, aStrict);
         }
 
         // Testing timing with delays is a great way to get inetermittents, but here we are. Sadness.
@@ -146,6 +171,14 @@ namespace Buttplug.Server.Test.Util
             Assert.True(bleDevice.ParseMessage(aOutgoingMessage).GetAwaiter().GetResult() is Ok);
 
             TestPacketMatching(aExpectedBytes, aWriteWithResponse);
+        }
+
+        public void TestDeviceMessageDelayed(ButtplugDeviceMessage aOutgoingMessage, IEnumerable<(byte[], uint)> aExpectedBytes, bool aWriteWithResponse, uint aMilliseconds)
+        {
+            Clear();
+            Assert.True(bleDevice.ParseMessage(aOutgoingMessage).GetAwaiter().GetResult() is Ok);
+            Thread.Sleep(new TimeSpan(0, 0, 0, 0, (int)aMilliseconds));
+            TestPacketMatching(aExpectedBytes, aWriteWithResponse, false);
         }
 
         public void TestDeviceMessageNoop(ButtplugDeviceMessage aOutgoingMessage)
