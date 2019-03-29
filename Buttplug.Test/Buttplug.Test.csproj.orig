@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Condition=" '$(OS)' != 'Windows_NT' ">
+      <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' "> 
+      <TargetFrameworks>netcoreapp2.1;net47</TargetFrameworks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.6.0" />
+    <PackageReference Include="NLog" Version="4.5.11" />
+    <PackageReference Include="nunit" Version="3.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="NUnit.Console" Version="3.9.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+<<<<<<< HEAD
+    <PackageReference Update="Microsoft.NETCore.App" Version="2.1.0" />
+=======
+    <Compile Include="Client\ArgsTests.cs" />
+    <Compile Include="Client\ButtplugClientConnectorTestBase.cs" />
+    <Compile Include="Client\ButtplugClientEmbeddedConnectorTests.cs" />
+    <Compile Include="Client\ButtplugClientIPCConnectorTests.cs" />
+    <Compile Include="Client\ButtplugClientTestClientServerErrors.cs" />
+    <Compile Include="Client\ButtplugClientTestConnector.cs" />
+    <Compile Include="Client\ButtplugClientTestJSONConnector.cs" />
+    <Compile Include="Client\ButtplugClientTests.cs" />
+    <Compile Include="Client\SystemMessageSendingClient.cs" />
+    <Compile Include="Core\ArgsTests.cs" />
+    <Compile Include="Core\AssemblyGitVersionTests.cs" />
+    <Compile Include="Core\ButtplugDeviceTests.cs" />
+    <Compile Include="Core\ButtplugExceptionTests.cs" />
+    <Compile Include="Core\ButtplugJsonMessageParserTests.cs" />
+    <Compile Include="Core\ButtplugMessagesTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\FleshlightLaunchTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\GeneralDeviceTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\KiirooGen2VibeTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\KiirooOnyx1Tests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\KiirooOnyx2Tests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\KiirooTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\LiBoTest.cs" />
+    <Compile Include="Server\Bluetooth\Devices\LovenseTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\MagicMotionTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\MysteryVibeTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\VibratissimoTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\VorzeCycloneSATests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\VorzeSATests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\VorzeUFOSATests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\WeVibeTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\PicobongTests.cs" />
+    <Compile Include="Server\Bluetooth\Devices\YoucupsTests.cs" />
+    <Compile Include="Server\ButtplugBluetoothDeviceTests.cs" />
+    <Compile Include="Server\ButtplugServerMessageTests.cs" />
+    <Compile Include="Server\ButtplugServerTests.cs" />
+    <Compile Include="Server\TestBluetoothDeviceInterface.cs" />
+    <Compile Include="Server\TestBluetoothSubtypeManager.cs" />
+    <Compile Include="Server\TestLoggingServer.cs" />
+    <Compile Include="Server\Util\BluetoothDeviceTestUtils.cs" />
+    <Compile Include="Server\Util\FleshlightHelperTests.cs" />
+>>>>>>> chore: Adding tests for Picobong driver
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Buttplug\Buttplug.csproj" />
+  </ItemGroup>
+
+  <!-- IPC Tests break on non-windows platforms -->
+  <ItemGroup Condition=" '$(OS)' != 'Windows_NT' ">
+    <Compile Remove=".\Client\ButtplugClientIPCConnectorTests.cs" />
+  </ItemGroup>
+</Project>

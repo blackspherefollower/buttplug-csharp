@@ -5,17 +5,14 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Buttplug.Core;
-using Buttplug.Core.Devices;
 using Buttplug.Core.Logging;
 using Buttplug.Core.Messages;
 
-namespace Buttplug.Server.Bluetooth.Devices
+namespace Buttplug.Devices.Protocols
 {
-    internal class LouvivaBluetoothInfo : IBluetoothDeviceInfo
+ /*   internal class LouvivaBluetoothInfo : IBluetoothDeviceInfo
     {
         public enum Chrs : uint
         {
@@ -47,28 +44,26 @@ namespace Buttplug.Server.Bluetooth.Devices
         {
             return new Louviva(aLogManager, aInterface, this);
         }
-    }
+    }*/
 
-    internal class Louviva : ButtplugBluetoothDevice
+    internal class LouvivaProtocol : ButtplugDeviceProtocol
     {
         private double _vibratorSpeed = 0;
 
-        public Louviva(IButtplugLogManager aLogManager,
-            IBluetoothDeviceInterface aInterface,
-            IBluetoothDeviceInfo aInfo)
+        public LouvivaProtocol(IButtplugLogManager aLogManager,
+            IButtplugDeviceImpl aInterface)
             : base(aLogManager,
                 $"Louviva {aInterface.Name}",
-                aInterface,
-                aInfo)
+                aInterface)
         {
             AddMessageHandler<SingleMotorVibrateCmd>(HandleSingleMotorVibrateCmd);
             AddMessageHandler<VibrateCmd>(HandleVibrateCmd, new MessageAttributes() { FeatureCount = 1 });
             AddMessageHandler<StopDeviceCmd>(HandleStopDeviceCmd);
         }
 
-        public override async Task<ButtplugMessage> InitializeAsync(CancellationToken aToken)
+        public override async Task InitializeAsync(CancellationToken aToken)
         {
-            return await Interface.WriteValueAsync(ButtplugConsts.SystemMsgId, (uint)LouvivaBluetoothInfo.Chrs.Cmd, new byte[]{ 0x09, 0xb7 }, false, aToken).ConfigureAwait(false);
+            await Interface.WriteValueAsync(new byte[] { 0x09, 0xb7 }, new ButtplugDeviceWriteOptions { Endpoint = Endpoints.TxMode }, aToken).ConfigureAwait(false);
         }
 
         private async Task<ButtplugMessage> HandleStopDeviceCmd(ButtplugDeviceMessage aMsg, CancellationToken aToken)
@@ -106,7 +101,8 @@ namespace Buttplug.Server.Bluetooth.Devices
 
             var speedInt = Convert.ToUInt16(_vibratorSpeed * 256);
 
-            return await Interface.WriteValueAsync(aMsg.Id, (uint)LouvivaBluetoothInfo.Chrs.Tx, new byte[] { Convert.ToByte(speedInt)}, false, aToken).ConfigureAwait(false);
+            await Interface.WriteValueAsync(new byte[] { Convert.ToByte(speedInt) }, new ButtplugDeviceWriteOptions { Endpoint = Endpoints.Tx }, aToken).ConfigureAwait(false);
+            return new Ok(aMsg.Id);
         }
     }
 }

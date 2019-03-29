@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Buttplug.Core;
+using Buttplug.Core.Logging;
 using Buttplug.Core.Messages;
 
 // Tutorial file, disable ConfigureAwait checking since it's an actual program.
@@ -39,7 +40,6 @@ namespace Buttplug.Examples._07.FullProgram
             // As usual, we start off with our connector setup. We really don't need access to the
             // connector this time, so we can just pass the created connector directly to the client.
             var client = new ButtplugClient("Example Client", new ButtplugEmbeddedConnector("Example Server"));
-
             // If you want to use a websocket client and talk to a websocket server instead,
             // uncomment the following line and comment the one above out. Note you will need to turn
             // off TLS/SSL on the server.
@@ -71,6 +71,17 @@ namespace Buttplug.Examples._07.FullProgram
             }
 
             client.DeviceRemoved += HandleDeviceRemoved;
+
+
+            
+            void HandleLog(object aObj, LogEventArgs aArgs)
+            {
+                Console.WriteLine($"Log event [{aArgs.Message.LogLevel}]: {aArgs.Message.LogMessage}");
+            }
+
+            client.Log += HandleLog;
+            await client.RequestLogAsync(ButtplugLogLevel.Debug);
+
             // The structure here is gonna get a little weird now, because I'm using method scoped
             // functions. We'll be defining our scanning function first, then running it just to find
             // any devices up front. Then we'll define our command sender. Finally, with all of that done,

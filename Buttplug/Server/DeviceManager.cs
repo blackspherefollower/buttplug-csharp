@@ -267,7 +267,7 @@ namespace Buttplug.Server
         private async Task StartScanning()
         {
             // Check for subtype managers before we lock.
-            if (!_hasAddedSubtypeManagers)
+            if (!_managers.Any())
             {
                 await AddAllSubtypeManagers();
             }

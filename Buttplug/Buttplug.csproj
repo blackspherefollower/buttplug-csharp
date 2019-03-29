@@ -63,4 +63,8 @@
     <AdditionalFiles Include="..\Buttplug.ProjectFiles\stylecop.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Server\Bluetooth\Devices\" />
+  </ItemGroup>
+
 </Project>

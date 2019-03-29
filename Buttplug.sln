@@ -37,11 +37,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buttplug.Examples.07.FullPr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buttplug.Server.CLI", "Buttplug.Server.CLI\Buttplug.Server.CLI.csproj", "{6B62C7A4-8712-4A0E-9ABF-4D4F3D8F0895}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buttplug.Server.Managers.XInputGamepadManager", "Buttplug.Server.Managers.XInputGamepadManager\Buttplug.Server.Managers.XInputGamepadManager.csproj", "{E9286D4C-AFEC-486D-89B0-74A621F2E1E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buttplug.Server.Managers.XInputGamepadManager", "Buttplug.Server.Managers.XInputGamepadManager\Buttplug.Server.Managers.XInputGamepadManager.csproj", "{E9286D4C-AFEC-486D-89B0-74A621F2E1E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buttplug.Server.Managers.WinUSBManager", "Buttplug.Server.Managers.WinUSBManager\Buttplug.Server.Managers.WinUSBManager.csproj", "{14B529C4-4921-4EF3-847F-2FAE488B35BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buttplug.Server.Managers.WinUSBManager", "Buttplug.Server.Managers.WinUSBManager\Buttplug.Server.Managers.WinUSBManager.csproj", "{14B529C4-4921-4EF3-847F-2FAE488B35BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buttplug.Server.Managers.UWPBluetoothManager", "Buttplug.Server.Managers.UWPBluetoothManager\Buttplug.Server.Managers.UWPBluetoothManager.csproj", "{90503A9A-8377-46A4-80D1-7686F7DB72C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buttplug.Server.Managers.UWPBluetoothManager", "Buttplug.Server.Managers.UWPBluetoothManager\Buttplug.Server.Managers.UWPBluetoothManager.csproj", "{90503A9A-8377-46A4-80D1-7686F7DB72C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buttplug.Server.Managers.BlueGigaBluetoothManager", "Buttplug.Server.Managers.BlueGigaBluetoothManager\Buttplug.Server.Managers.BlueGigaBluetoothManager.csproj", "{00859D4A-6890-4194-BCB8-B87041C7948C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -189,6 +191,14 @@ Global
 		{90503A9A-8377-46A4-80D1-7686F7DB72C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90503A9A-8377-46A4-80D1-7686F7DB72C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90503A9A-8377-46A4-80D1-7686F7DB72C1}.ReleaseStandard|Any CPU.ActiveCfg = Release|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.DebugStandard|Any CPU.ActiveCfg = Debug|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.DebugStandard|Any CPU.Build.0 = Debug|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.ReleaseStandard|Any CPU.ActiveCfg = Release|Any CPU
+		{00859D4A-6890-4194-BCB8-B87041C7948C}.ReleaseStandard|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

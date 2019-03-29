@@ -3,13 +3,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
-    <TargetFrameworks>netcoreapp2.1;net47</TargetFrameworks>
+    <TargetFrameworks>net47</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RootNamespace>Buttplug.Examples._07.FullProgram</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Buttplug.Server.Managers.BlueGigaBluetoothManager\Buttplug.Server.Managers.BlueGigaBluetoothManager.csproj" />
     <ProjectReference Include="..\Buttplug\Buttplug.csproj" />
   </ItemGroup>
   <ItemGroup>
